@@ -1,0 +1,85 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)
+author: Dennis Janka
+logo: bilder/HKA_IWI_Bildmarke-h_RGB.svg
+copyright: "2023"
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: force
+  allow_errors: true
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
+# Information about where the book exists on the web
+#repository:
+#  url: https://github.com/executablebooks/jupyter-book  # Online location of your book
+#  path_to_book: docs  # Optional path to your book, relative to the repository root
+#  branch: master  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+#html:
+#  use_issues_button: true
+#  use_repository_button: true
+# Publish command ghp-import -n -p -f _build/html
+
+sphinx:
+  extra_extensions:
+    - sphinx_proof
+  recursive_update: true
+  config:
+    language: de
+    html_js_files:
+    - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+    mathjax_config:
+      tex:
+        macros:
+          "N": "\\mathbb{N}"
+          "R": "\\mathbb{R}"
+          "B": "\\mathbb{B}"
+          "I": "\\mathbb{I}"
+          "NN": "\\mathbb{N}"
+          "RR": "\\mathbb{R}"
+          "BB": "\\mathbb{B}"
+          "norm": ["\\left\\lVert#1 \\right\\rVert", 1]
+          "floor": ["\\lfloor#1\\rfloor", 1]
+          "bmat" : ["\\begin{pmatrix}"]
+          "emat" : ["\\end{pmatrix}"]
+          "bmats" : ["\\left(\\begin{smallmatrix}"]
+          "emats" : ["\\end{smallmatrix}\\right)"]
+          "scikit": ["\\texttt{scikit-learn}"]
+          "derv": ["\\frac{\\partial #1}{\\partial #2}", 2]
+          "dervquad": ["\\frac{\\partial^2 #1}{\\partial #2^2}", 2]
+          "dervzwei": ["\\frac{\\partial^2 #1}{\\partial {#2} \\partial {#3}}", 3]
+          "v": ["\\mathbf{#1}", 1]
+          "m": ["\\mathbf{#1}", 1]
+          "argmin": ["\\underset{#1}{\\operatorname{arg\\!min}}", 1]
+          "hyper": ["{\\color{Bittersweet}{#1}}", 1]
+          "initial": "\\DeclareMathOperator{\\initial}{initial}"
+          "reduced": "\\DeclareMathOperator{\\reduced}{reduced}"
+          "lazy": "\\DeclareMathOperator{\\lazy}{lazy}"
+          "ILP": "\\DeclareMathOperator{\\ILP}{ILP}"
+parse:   
+  myst_enable_extensions:
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
+    - tasklist

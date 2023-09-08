@@ -1,0 +1,18 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: 00_Ueberblick
+defaults:
+  numbered: True
+parts:
+  - caption: Mathematische Grundlagen
+    chapters:
+      - file: 01_Einfuehrung
+  - caption: Überwachtes Lernen
+    chapters:
+      - file: 02_Supervised
+  - caption: Unüberwachtes Lernen und Anwendungen
+    chapters:
+      - file: 03_Unsupervised
+  
