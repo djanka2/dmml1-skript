@@ -3,16 +3,50 @@
 
 format: jb-book
 root: 00_Ueberblick
-defaults:
-  numbered: True
-parts:
-  - caption: Mathematische Grundlagen
-    chapters:
-      - file: 01_Einfuehrung
-  - caption: Überwachtes Lernen
-    chapters:
-      - file: 02_Supervised
-  - caption: Unüberwachtes Lernen und Anwendungen
-    chapters:
-      - file: 03_Unsupervised
-  
+options:
+  numbered: 2
+chapters:
+  - file: 01_Einfuehrung
+  - file: 02_Lineare_Algebra.md
+    sections:
+    - file: 02_Uebungen.ipynb
+  - file: 03_Multivariate_Analysis.md
+    sections:
+    - file: 03_Uebungen.ipynb
+  - file: 04_Lineare_Regression.md
+    sections:
+    - file: 04_Uebungen.ipynb
+    - file: 04_Uebung_Warm-up.ipynb
+    - file: 04_Uebung_Salary_Daten.ipynb
+  - file: 06_Modellentwicklung.md
+    sections:
+    - file: 06_Uebung_Immoscout.ipynb
+  - file: 07_Regularisierung.md
+    sections:
+    - file: 07_Uebung_Immoscout_Regularisierung.ipynb
+  - file: 08_Logistische_Regression.md
+    sections:
+    - file: 08_Uebungen.ipynb
+    - file: 08_Uebung_Gradientenabstieg.ipynb
+  - file: 09_SVM.md
+  - file: 10_Entscheidungsbaeume.md
+    sections: 
+    - file: 10_Uebungen.ipynb
+    - file: 10_Beispiel_Entscheidungsbaum.ipynb
+    - file: 10_Uebung_Titanic.ipynb
+  - file: 11_Ensemble_Methoden.md
+    sections:
+    - file: 11_Uebung_Immoscout.ipynb
+  - file: 12_Eigenwertzerlegung.md
+    sections:
+    - file: 12_Uebungen.ipynb
+  - file: 13_Dimensionsreduktion.md
+    sections:
+    - file: 13_Uebungen.ipynb
+  - file: 14_Empfehlungsdienste.md
+    sections:
+    - file: 14_Uebungen.ipynb
+  - file: 15_Clustering.md
+    sections:
+    - file: 15_Uebungen.ipynb
+    - file: 15_Uebung_Clustering.ipynb

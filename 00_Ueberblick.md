@@ -5,7 +5,7 @@ Dies ist das Skript für die Vorlesung Data Mining und Grundlagen Maschinelles L
 ```{tableofcontents}
 ```
 
-## Notation
+<!-- ## Notation
 Naturgemäß werden Sie in diesem Mathe-Skript mit vielen Symbolen konfrontiert. Um Ihnen den Weg durch diesen algebraischen Dschungel zu erleichtern (was ist Zahl, was ist Vektor?), wird in diesem Skript folgende Notation angewendet. 
 - **Lateinische Kleinbuchstaben** wie $x$, $y$, $a$ usw. bezeichnen (meist reelle) Zahlen.
 - **Fettgedruckte, lateinische Kleinbuchstaben** wie $\v x$, $\v y$, $\v a$ usw. bezeichnen Vektoren im $\R^n$. Deren Komponenten sind reelle Zahlen und werden mit einem Subscript indiziert (und sind nicht fettgedruckt, sind ja Zahlen):
@@ -21,6 +21,7 @@ Naturgemäß werden Sie in diesem Mathe-Skript mit vielen Symbolen konfrontiert.
   \end{align*}
 - **Griechische Kleinbuchstaben** wie $\alpha$, $\lambda$, $\mu$ usw. bezeichnen reelle Zahlen.
 - Iterationszähler in iterativen Verfahren (Gradientenverfahren u.ä.) werden mit einem **Superscript in eckigen Klammern** indiziert: So bezeichnet $\v x^{[k]}$ den Vektor $\v x$ während der $k$-ten Iteration.
-
+ -->
+ 
 ## Kontakt
 Wenn Sie Fehler finden oder sonstige Kommentare und Anregungen haben, schreiben Sie mir gerne eine E-Mail: dennis.janka@h-ka.de.
