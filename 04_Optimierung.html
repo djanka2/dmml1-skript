@@ -1,0 +1,975 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4. Grundlagen Optimierung &#8212; Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "R": "\\mathbb{R}", "B": "\\mathbb{B}", "I": "\\mathbb{I}", "NN": "\\mathbb{N}", "RR": "\\mathbb{R}", "BB": "\\mathbb{B}", "norm": ["\\left\\lVert#1 \\right\\rVert", 1], "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\begin{pmatrix}"], "emat": ["\\end{pmatrix}"], "bmats": ["\\left(\\begin{smallmatrix}"], "emats": ["\\end{smallmatrix}\\right)"], "scikit": ["\\texttt{scikit-learn}"], "derv": ["\\frac{\\partial #1}{\\partial #2}", 2], "dervquad": ["\\frac{\\partial^2 #1}{\\partial #2^2}", 2], "dervzwei": ["\\frac{\\partial^2 #1}{\\partial {#2} \\partial {#3}}", 3], "v": ["\\mathbf{#1}", 1], "m": ["\\mathbf{#1}", 1], "argmin": ["\\underset{#1}{\\operatorname{arg\\!min}}", 1], "hyper": ["{\\color{Bittersweet}{#1}}", 1], "initial": "\\DeclareMathOperator{\\initial}{initial}", "reduced": "\\DeclareMathOperator{\\reduced}{reduced}", "lazy": "\\DeclareMathOperator{\\lazy}{lazy}", "ILP": "\\DeclareMathOperator{\\ILP}{ILP}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="5. Lineare Regression" href="05_Lineare_Regression.html" />
+    <link rel="prev" title="3.11. Übungen" href="03_Uebungen.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="de">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/HKA_IWI_Bildmarke-h_RGB.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_Ueberblick.html">
+                    Überblick
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="02_Lineare_Algebra.html">
+   2. Grundlagen Lineare Algebra
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_Uebungen.html">
+     2.1. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="03_Multivariate_Analysis.html">
+   3. Grundlagen Analysis
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_Uebungen.html">
+     3.11. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Grundlagen Optimierung
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="05_Lineare_Regression.html">
+   5. Lineare Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_Uebungen.html">
+     5.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_Uebung_Warm-up.html">
+     5.2. Praxisübung: Lineare Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_Uebung_Salary_Daten.html">
+     5.3. Praxisübung: Polynomielle Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="06_Modellentwicklung.html">
+   6. Modellentwicklung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_Uebung_Immoscout.html">
+     6.1. Praxisübung: Vorhersage von Wohnungsmieten
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="07_Regularisierung.html">
+   7. Overfitting und Regularisierung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_Uebung_Immoscout_Regularisierung.html">
+     7.1. Praxisübung: Regularisierung und Hyperparametersuche
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="08_Logistische_Regression.html">
+   8. Logistische Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_Uebungen.html">
+     8.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_Uebung_Gradientenabstieg.html">
+     8.3. Praxisübung: Logistische Regression und Gradientenabstieg
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_SVM.html">
+   9. Support Vector Machines
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="10_Entscheidungsbaeume.html">
+   10. Entscheidungsbäume
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Uebungen.html">
+     10.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Beispiel_Entscheidungsbaum.html">
+     10.2. Beispielcode Entscheidungsbäume
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Uebung_Titanic.html">
+     10.3. Praxisübung: Entscheidungsbaum
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="11_Ensemble_Methoden.html">
+   11. Ensemble Methoden
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Uebung_Immoscout.html">
+     11.1. Praxisübung: Ensemble Modelle
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="12_Eigenwertzerlegung.html">
+   12. Eigenwerte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_Uebungen.html">
+     12.1. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="13_Dimensionsreduktion.html">
+   13. Hauptkomponentenanalyse (PCA)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Uebungen.html">
+     13.1. Praxisübung: PCA
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="14_Empfehlungsdienste.html">
+   14. Empfehlungsdienste
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_Uebungen.html">
+     14.1. Praxisübung: Empfehlungsdienst
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="15_Clustering.html">
+   15. Clustering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_Uebungen.html">
+     15.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_Uebung_Clustering.html">
+     15.2. Praxisübung Clustering
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/04_Optimierung.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/04_Optimierung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/04_Optimierung.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grundbegriffe">
+   4.1. Grundbegriffe
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradientenabstieg-fur-univariate-funktionen">
+   4.2. Gradientenabstieg für univariate Funktionen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradientenabstieg-fur-multivariate-funktionen">
+   4.3. Gradientenabstieg für multivariate Funktionen
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Grundlagen Optimierung</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grundbegriffe">
+   4.1. Grundbegriffe
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradientenabstieg-fur-univariate-funktionen">
+   4.2. Gradientenabstieg für univariate Funktionen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradientenabstieg-fur-multivariate-funktionen">
+   4.3. Gradientenabstieg für multivariate Funktionen
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="grundlagen-optimierung">
+<h1><span class="section-number">4. </span>Grundlagen Optimierung<a class="headerlink" href="#grundlagen-optimierung" title="Link zu dieser Überschrift">#</a></h1>
+<section id="grundbegriffe">
+<h2><span class="section-number">4.1. </span>Grundbegriffe<a class="headerlink" href="#grundbegriffe" title="Link zu dieser Überschrift">#</a></h2>
+<p>Was ist eigentlich ein Optimierungsproblem? Bei einem Optimierungsproblem besteht die Aufgabe darin, einen Vektor <span class="math notranslate nohighlight">\(\v x\)</span> zu suchen, so dass eine Funktion <span class="math notranslate nohighlight">\(f(\v x)\)</span>, also ein mathematischer Ausdruck, der von <span class="math notranslate nohighlight">\(\v x\)</span> abhängt, <em>minimal</em> oder <em>maximal</em> wird. In der Mathematik gibt es eine standardisierte Form um Optimierungsprobleme zu spezifizieren.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 4.1 </span> (Optimierungsproblem)</p>
+<section class="definition-content" id="proof-content">
+<p>Ein <em>Optimierungsproblem</em> ist ein Problem der Form</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\min_{\v x\in D\in\R^n} f(\v x)
+\end{align*}\]</div>
+<p>Dabei nennen wir</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(D\subseteq \R^n\)</span> den <em>Definitionsbereich</em>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(f:\R^n\rightarrow \R\)</span> die <em>Zielfunktion</em> (manchmal auch <em>Kostenfunktion</em>, speziell im maschinellen Lernen auch <em>Verlustfunktion</em>)</p></li>
+<li><p>den Vektor <span class="math notranslate nohighlight">\(x\in\R^n\)</span> die <em>(Optimierungs-)Variablen</em> (im Kontext des maschinellen Lernens oft auch <em>Parameter</em>, <em>Koeffizienten</em> oder <em>Gewichte</em>)</p></li>
+</ul>
+</section>
+</div><p>Wir nehmen in dieser Vorlesung an, dass <span class="math notranslate nohighlight">\(f\)</span> <em>stetig differenzierbar</em> ist. Dies ist in der Praxis, gerade im Bereich des maschinellen Lernens, nicht immer erfüllt, soll uns aber hier nicht weiter stören. Weiterhin möchten wir annehmen, dass es bei der Wahl des Vektors <span class="math notranslate nohighlight">\(\v x\)</span> keine Einschränkungen gibt, d.h. der Bereich <span class="math notranslate nohighlight">\(D\)</span>, in dem wir nach einer Lösung suchen, soll der gesamte <span class="math notranslate nohighlight">\(\R^n\)</span> sein.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Minimierung vs. Maximierung
+Per Konvention schauen wir uns nur Minimierungsprobleme an, d.h. eine Funktion soll so <em>klein</em> wie möglich sein. Haben wir es doch einmal mit einem Maximierungsproblem zu tun, also <span class="math notranslate nohighlight">\(\max_{\v x\in D\in\R^n} f(\v x)\)</span>, so können wir genausogut das Minimierungsproblem <span class="math notranslate nohighlight">\(\min_{\v x\in D\in\R^n} f(\v x)\)</span> betrachten.</p>
+</div>
+<p>Wir haben nun schon von einer <em>Lösung</em> des Problems gesprochen, ohne präzise zu sagen, was das überhaupt sein soll. Man unterscheidet dabei zwischen lokalen und globalen Lösungen. Hier die Definitionen:</p>
+<div class="proof definition admonition" id="def:minmax">
+<p class="admonition-title"><span class="caption-number">Definition 4.2 </span> (Globale und lokale Minima)</p>
+<section class="definition-content" id="proof-content">
+<p>Ein Punkt <span class="math notranslate nohighlight">\(\v x^{\star}\in D\)</span> heißt <em>globales Minimum</em> von <span class="math notranslate nohighlight">\(f\)</span> oder <em>globale Lösung</em> des Minimierungsproblems, falls <span class="math notranslate nohighlight">\(f(\v x)\geq f(\v x^{\star})\)</span> für <em>jeden</em> Vektor <span class="math notranslate nohighlight">\(\v x\in \R^n\)</span>.</p>
+<p>Ein Punkt <span class="math notranslate nohighlight">\(\v x^{\star}\in D\)</span> heißt <em>lokales  Minimum</em> von <span class="math notranslate nohighlight">\(f\)</span> oder <em>lokale Lösung</em> des Minimierungsproblems, falls <span class="math notranslate nohighlight">\(f(\v x)\geq f(\v x^{\star})\)</span> für <em>jeden</em> Vektor <span class="math notranslate nohighlight">\(\v x\)</span> in einer Umgebung von <span class="math notranslate nohighlight">\(\v x^{\star}\)</span>.</p>
+<p>Wenn ein Minimierungsproblem keine globale Lösung besitzt, nennt man es <em>unbeschränkt</em>.</p>
+</section>
+</div><p>Wie groß diese “Umgebung” ist, ist nicht weiter spezifiziert. Die Aussage bedeutet lediglich, dass es eine solche gibt. Mathematisch exakter kann man das auch so formulieren:
+Wir definieren für eine Zahl <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span> die Menge <span class="math notranslate nohighlight">\(U_{\varepsilon}(\v x^{\star})\)</span> als <span class="math notranslate nohighlight">\(\varepsilon\)</span>-Kugel um <span class="math notranslate nohighlight">\(\v x^{\star}\)</span>, formell <span class="math notranslate nohighlight">\(U_{\varepsilon}(\v x^{\star})=\{\v x\in\R^n :\ \norm{\v x^{\star}}-\v x\}&lt;\varepsilon \}\)</span>. Ein Vektor <span class="math notranslate nohighlight">\(\v x^{\star}\)</span> ist ein lokales Minimum, wenn es eine Zahl <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span> gibt, so dass <span class="math notranslate nohighlight">\(f(\v x)\geq f(\v x^{\star})\)</span> für <em>jeden</em> Vektor <span class="math notranslate nohighlight">\(\v x\in U_{\varepsilon}\)</span></p>
+<div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 4.1 </span> (Lokale und globale Minima)</p>
+<section class="example-content" id="proof-content">
+<p>Die folgenden Beispiele zeigen, dass eine Funktion weder lokale noch globale Minima haben muss. Wenn es welche gibt, kann es auch sein, dass es mehrere gibt.</p>
+<dl class="simple myst">
+<dt>Kein Minimum (unbeschränktes Problem)</dt><dd><p><span class="math notranslate nohighlight">\(f(x)=x\)</span></p>
+</dd>
+</dl>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/minima3.png"><img alt="_images/minima3.png" src="_images/minima3.png" style="width: 400px;" /></a>
+</figure>
+<dl class="simple myst">
+<dt>Ein lokales Minimum, das gleichzeitig das globale Minimum ist</dt><dd><p><span class="math notranslate nohighlight">\(f(x)=x^2\)</span></p>
+</dd>
+</dl>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/minima5.png"><img alt="_images/minima5.png" src="_images/minima5.png" style="width: 400px;" /></a>
+</figure>
+<dl class="simple myst">
+<dt>Ein lokales und ein globales Minimum</dt><dd><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{4}x^4-\frac{1}{3}x^3-x^2+2\)</span></p>
+</dd>
+</dl>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/minima4.png"><img alt="_images/minima4.png" src="_images/minima4.png" style="width: 400px;" /></a>
+</figure>
+<dl class="simple myst">
+<dt>Unendliche viele globale (und lokale) Minima</dt><dd><p><span class="math notranslate nohighlight">\(f(x)=\sin(x)\)</span></p>
+</dd>
+</dl>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/minima2.png"><img alt="_images/minima2.png" src="_images/minima2.png" style="width: 400px;" /></a>
+</figure>
+<dl class="simple myst">
+<dt>Unendliche viele lokale Minima, kein globales Minimum (unbeschränktes Problem)</dt><dd><p><span class="math notranslate nohighlight">\(f(x)=\sin(x) + 0.3x\)</span></p>
+</dd>
+</dl>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/minima1.png"><img alt="_images/minima1.png" src="_images/minima1.png" style="width: 400px;" /></a>
+</figure>
+<dl class="simple myst">
+<dt>Unendliche viele lokale Minima, ein globales Minimum</dt><dd><p><span class="math notranslate nohighlight">\(f(x)=\sin(x)+ 0.3|x|\)</span></p>
+</dd>
+</dl>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/minima6.png"><img alt="_images/minima6.png" src="_images/minima6.png" style="width: 400px;" /></a>
+</figure>
+</section>
+</div><p>Nachdem wir nun die Grundbegriffe der Optimierung kennen, wenden wir uns als nächstes den Optimalitätsbedingungen und der Grundidee der Gradientenverfahren zu. Wir schauen uns alle Konzepte zunächst im univariaten, d.h. eindimensionalen Fall an, da dieser leichter zu verstehen ist.
+Danach wiederholen wir das Ganze für den allgemeinen multivariaten Fall (d.h. Vektoren statt Zahlen). Ich hoffe, dass man dadurch viele Parallelen zum (anschaulichen) eindimensionalen Fall erkennt und dass der mehrdimensionale Fall dadurch etwas eingängiger ist.</p>
+</section>
+<section id="gradientenabstieg-fur-univariate-funktionen">
+<h2><span class="section-number">4.2. </span>Gradientenabstieg für univariate Funktionen<a class="headerlink" href="#gradientenabstieg-fur-univariate-funktionen" title="Link zu dieser Überschrift">#</a></h2>
+<p>Kehren wir zurück zu unserer ursprünglichen Aufgabe: wir möchten das Minimierungsproblem</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\min_{x\in\R} f(x)
+\end{align*}\]</div>
+<p>für eine beliebige differenzierbare Funktion <span class="math notranslate nohighlight">\(f\)</span> lösen. In der Analysis gibt es dafür gewisse Bedingungen an die Ableitungen, die man in speziellen Fällen algebraisch auflösen kann (das, was man in der Schule unter dem Begriff “Kurvendiskussion” kennenlernt). Allerdings funktioniert das in der Mehrzahl der praktisch relevanten Fälle nicht, d.h. Gleichungen lassen sich nicht per Hand auflösen.</p>
+<p>In der Praxis bedient man sich stattdessen sogenannter <em>Abstiegsverfahren</em>, um ein Minimum zu approximieren. Man nähert sich einem Minimum an, indem man eine Folge von Punkten konstruiert, bei denen man sicherstellt, dass der Funktionswert immer kleiner wird. Der prototypische Vertreter dieser Abstiegsverfahren ist der <em>Gradientenabstieg</em>, auch genannt Verfahren des steilsten Abstiegs/steepest descen oder gradient descent.
+Wir schauen uns zunächst die Grundform dieses Algorithmus an, der uns dieses Semester an vielen Stellen begegnen wird. Zur Notation: hier und im Rest der Vorlesung indizieren wir die Iteration mit einem Superskript in eckigen Klammern: <span class="math notranslate nohighlight">\(^{[k]}\)</span>. Jede Größe (Skalar, Vektor, Matrix), an der Sie ein <span class="math notranslate nohighlight">\(^{[k]}\)</span> sehen, kann sich von Iteration zu Iteration ändern. <span class="math notranslate nohighlight">\(x^{[k]}\)</span> bezeichnet also den Wert <span class="math notranslate nohighlight">\(x\)</span> während der Iteration <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<div class="proof algorithm admonition" id="algorithm-3">
+<p class="admonition-title"><span class="caption-number">Algorithm 4.1 </span> (Gradientenabstieg für univariate Funktionen)</p>
+<section class="algorithm-content" id="proof-content">
+<dl class="simple myst">
+<dt>Gegeben:</dt><dd><p>Differenzierbare Funktion <span class="math notranslate nohighlight">\(f:\R\rightarrow\R\)</span>.</p>
+</dd>
+<dd><p>Folge von Schrittweiten <span class="math notranslate nohighlight">\(\alpha^{[k]}\)</span>, für <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span>.</p>
+</dd>
+<dt>Gesucht:</dt><dd><p>Lokales Minimum von <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</dd>
+</dl>
+<p><strong>Algorithmus</strong>:</p>
+<ol class="simple">
+<li><p>Starte mit initialer Schätzung <span class="math notranslate nohighlight">\(x^{[0]}\)</span>, setze <span class="math notranslate nohighlight">\(k=0\)</span>.</p></li>
+<li><p>Für <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span>:</p>
+<ul class="simple">
+<li><p>Berechne neue Iterierte <span class="math notranslate nohighlight">\(x^{[k+1]}=x^{[k]}-\alpha^{[k]}f'(x^{[k]})\)</span>.</p></li>
+<li><p>Erhöhe <span class="math notranslate nohighlight">\(k\)</span> um <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
+<li><p>Falls Abbruchbedingung erfüllt, beende Algorithmus mit Lösung <span class="math notranslate nohighlight">\(x^{[k]}\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</div><p>Hier ergeben sich sofort zwei Fragen:</p>
+<ol class="simple">
+<li><p>Wie wählt man die Folge von Schrittweiten <span class="math notranslate nohighlight">\(\alpha^{[k]}\)</span>?</p></li>
+<li><p>Was ist die Abbruchbedingung?</p></li>
+</ol>
+<p>Bevor wir uns diesen widmen, schauen wir uns ein Beispiel für den Gradientenabstieg an, um zu verstehen, wie die Iteration funktioniert.</p>
+<p>Ziel ist es, das Minimum der Funktion <span class="math notranslate nohighlight">\(f(x)=x^2\ln(x)+x-1\)</span> zu bestimmen:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/gd_beispiel.png"><img alt="_images/gd_beispiel.png" src="_images/gd_beispiel.png" style="width: 400px;" /></a>
+</figure>
+<p>Das globale Minimum liegt bei <span class="math notranslate nohighlight">\(x^*=1\)</span> mit dem Funktionswert <span class="math notranslate nohighlight">\(f(x)=-1\)</span>. Im Minimum hat die Ableitung <span class="math notranslate nohighlight">\(f'(x)=2x\ln(x)+x-1\)</span> eine Nullstelle, d.h. <span class="math notranslate nohighlight">\(f'(1)=0\)</span>.</p>
+<p>Der Einfachheit halber wählen wir die Schrittweite <span class="math notranslate nohighlight">\(\alpha^{[k]}\)</span> konstant <span class="math notranslate nohighlight">\(\alpha^{[k]}=0.1\)</span> in jeder Iteration <span class="math notranslate nohighlight">\(k\)</span>. Als Startwert für die Iterationen wählen wir <span class="math notranslate nohighlight">\(x^{[0]}=2\)</span>. Die Berechnung der Iterationen funktioniert wie folgt:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p><span class="math notranslate nohighlight">\(k\)</span></p></th>
+<th class="text-align:left head"><p><span class="math notranslate nohighlight">\(x^{[k]}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(2-0.1\cdot f'(2)=1.62\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(1.62-0.1\cdot f'(1.62)=1.40\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(1.40-0.1\cdot f'(1.40)=1.26\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(15\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(1.003\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>In diesem Beispiel ist man nach <span class="math notranslate nohighlight">\(15\)</span> Iterationen schon recht nah an der Lösung <span class="math notranslate nohighlight">\(x^*=1\)</span>. Auch klar: Wenn man einen anderen Startwert oder eine andere Schrittweite wählt, erhält man eine andere Folge von Iterationen. Hier ein Beispiel mit <span class="math notranslate nohighlight">\(\alpha^{[k]}=0.5\)</span>:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p><span class="math notranslate nohighlight">\(k\)</span></p></th>
+<th class="text-align:left head"><p><span class="math notranslate nohighlight">\(x^{[k]}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(2-0.5\cdot f'(2)=0.11\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0.11-0.5\cdot f'(0.11)=0.8\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0.8-0.1\cdot f'(0.8)=1.07\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(9\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(1.001\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Beobachtung: Wenn wir die Schrittweite vergrößern, machen wir schneller Fortschritte in Richtung der Lösung. Nach 9 Iterationen beträgt die Differenz zur (normalerweise unbekannten) optimalen Lösung nur noch <span class="math notranslate nohighlight">\(0.001\)</span>.</p>
+<p>In folgendem Code ist ein einfaches Gradientenverfahren implementiert, das ein Minimum der Funktion <span class="math notranslate nohighlight">\(f(x)=x^2\ln(x)+x-1\)</span> sucht. In jeder Iteration werden <span class="math notranslate nohighlight">\(x^{[k]},f(x^{[k]})\)</span> und <span class="math notranslate nohighlight">\(f'(x^{[k]})\)</span> ausgegeben. Des weiteren wird die Historie der <span class="math notranslate nohighlight">\(x^{[k]}\)</span>-Werte zurückgegeben und visualisiert.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Function to minimize &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">df</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Derivative of the function to minimize &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">gd</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">derv</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Perform n_steps iterations of gradient descent with steplength alpha and print iterates &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; k     x           f(x)        f&#39;(x)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">0</span><span class="si">:</span><span class="s2">2</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">x0</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">func</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">derv</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">x_history</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_steps</span><span class="p">):</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">derv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dx</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s2">2</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">dx</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">x_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_history</span><span class="p">)</span>
+
+<span class="n">x_history</span> <span class="o">=</span> <span class="n">gd</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">derv</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_history</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_history</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> k     x           f(x)        f&#39;(x)
+ 0     2.0000,     0.7726,     3.7726
+ 1     1.6227,    -0.3479,     3.7726
+ 2     1.4033,    -0.7360,     2.1939
+ 3     1.2679,    -0.8863,     1.3544
+ 4     1.1809,    -0.9490,     0.8698
+ 5     1.1236,    -0.9765,     0.5737
+ 6     1.0850,    -0.9890,     0.3853
+ 7     1.0588,    -0.9947,     0.2621
+ 8     1.0408,    -0.9975,     0.1798
+ 9     1.0284,    -0.9988,     0.1241
+10     1.0198,    -0.9994,     0.0860
+11     1.0138,    -0.9997,     0.0598
+12     1.0097,    -0.9999,     0.0417
+13     1.0068,    -0.9999,     0.0291
+14     1.0047,    -1.0000,     0.0203
+15     1.0033,    -1.0000,     0.0142
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="_images/04_Optimierung_1_2.png" src="_images/04_Optimierung_1_2.png" />
+</div>
+</div>
+</section>
+<section id="gradientenabstieg-fur-multivariate-funktionen">
+<h2><span class="section-number">4.3. </span>Gradientenabstieg für multivariate Funktionen<a class="headerlink" href="#gradientenabstieg-fur-multivariate-funktionen" title="Link zu dieser Überschrift">#</a></h2>
+<p>Wir betrachten nun allgemeine, mehrdimensionale Optimierungsprobleme der Form</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\min_{\v x\in D\in\R^n} f(\v x)
+\end{align*}\]</div>
+<p>mit einer differenzierbaren Funktion <span class="math notranslate nohighlight">\(f:\R^n\rightarrow \R\)</span>. Der erste Unterschied zum eindimensionalen Fall, der ins Auge fällt, ist, dass die ersten Ableitungen Vektoren sind, die zweiten Ableitungen (Hesse-)Matrizen. Man muss also genau aufpassen, welche Summen und Produkte überhaupt definiert sind.</p>
+<p>Mit Blick auf das Gradientenverfahren gibt es außerdem nicht mehr nur zwei Richtungen (“links und rechts”), in denen man nach einem Abstieg der Funktion suchen kann, sondern unendlich viele: Man stelle sich vor, man stehe in der <span class="math notranslate nohighlight">\(\R^2\)</span>-Ebene an einem bestimmten Punkt und blickt in eine Richtung. Jeder Winkel (reelle Zahl) zwischen <span class="math notranslate nohighlight">\(0\)</span> und <span class="math notranslate nohighlight">\(360°\)</span> definiert einen eigenen Richtungsvektor in der Ebene.</p>
+<p>Die Idee des Gradientenverfahrens ist es, von einem Punkt ein kleines Stück in die Richtung des (lokal) steilsten Abstiegs zu gehen. Diese Richtung ist gerade durch den Gradienten an der Stelle gegeben. Wenn der Schritt nicht zu groß ist, erwartet man, dass man damit ein Stück “bergab” geht, dass der Funktionswert also kleiner wird. Führt man dies iterativ immer wieder aus, so erwartet man, dass man irgendwann “unten ankommt”, d.h. an einem lokalen Minimum (unter gewissen Bedingungen trifft das auch zu).</p>
+<p>Formal können wir den Gradientenabstieg analog zum eindimensionalen Fall beschreiben. Dafür müssen wir lediglich die Ableitung <span class="math notranslate nohighlight">\(f'\)</span> durch ihre mehrdimensionale Verallgemeinerung, den Gradienten <span class="math notranslate nohighlight">\(\nabla f\)</span>, ersetzen, außerdem werden aus Zahlen <span class="math notranslate nohighlight">\(x\)</span> Vektoren <span class="math notranslate nohighlight">\(\v x\)</span>.</p>
+<p>Die Grundform des Verfahrens ist wie folgt:</p>
+<div class="proof algorithm admonition" id="alg:gd">
+<p class="admonition-title"><span class="caption-number">Algorithm 4.2 </span> (Gradientenabstieg für multivariate Funktionen)</p>
+<section class="algorithm-content" id="proof-content">
+<dl class="simple myst">
+<dt>Gegeben:</dt><dd><p>Differenzierbare Funktion <span class="math notranslate nohighlight">\(f:\R^n\rightarrow\R\)</span>.</p>
+</dd>
+<dd><p>Folge von Schrittweiten <span class="math notranslate nohighlight">\(\alpha^{[k]}\)</span>, für <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span>.</p>
+</dd>
+<dt>Gesucht:</dt><dd><p>Lokales Minimum von <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</dd>
+</dl>
+<p><strong>Algorithmus</strong>:</p>
+<ol class="simple">
+<li><p>Starte mit initialer Schätzung <span class="math notranslate nohighlight">\(\v x^{[0]}\)</span>, setze <span class="math notranslate nohighlight">\(k=0\)</span>.</p></li>
+<li><p>Für <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span>:</p>
+<ul class="simple">
+<li><p>Berechne neue Iterierte <span class="math notranslate nohighlight">\(\v x^{[k+1]}=x^{[k]}-\alpha^{[k]}\nabla f(\v x^{[k]})\)</span>, <span class="math notranslate nohighlight">\(\alpha^{[k]}&gt;0\)</span>.</p></li>
+<li><p>Erhöhe <span class="math notranslate nohighlight">\(k\)</span> um <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
+<li><p>Falls Abbruchbedingung erfüllt, beende Algorithmus mit Lösung <span class="math notranslate nohighlight">\(\v x^{[k]}\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</div><div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span class="caption-number">Example 4.2 </span> (Beispiel Gradientenabstieg)</p>
+<section class="example-content" id="proof-content">
+<p>TODO</p>
+</section>
+</div><p>Um ein Verfahren zu erhalten, das in der Praxis funktioniert, müssen einige Dinge beachtet werden, insbesondere:</p>
+<ul class="simple">
+<li><p>Wie wird die Folge von Schrittweiten gewählt?</p></li>
+<li><p>Wann soll das Verfahren abbrechen?</p></li>
+<li><p>Was kann schiefgehen?</p></li>
+</ul>
+<p>Diesen Fragen werden wir uns in der Vorlesung “Optimierungsverfahren, Modellierung und Simulation” intensiv widmen.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03_Uebungen.html" title="zurück Seite">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">zurück</p>
+            <p class="prev-next-title"><span class="section-number">3.11. </span>Übungen</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="05_Lineare_Regression.html" title="weiter Seite">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">weiter</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Lineare Regression</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dennis Janka<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

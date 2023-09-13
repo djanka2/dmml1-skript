@@ -1,5 +1,5 @@
 # Überblick
-Dies ist das Skript für die Vorlesung Data Mining und Grundlagen Maschinelles Lernen I an der Hochschule Karlsruhe im Studiengang Data Science. 
+Dies ist der Beginn eines Skriptes für die Vorlesung Data Mining und Grundlagen Maschinelles Lernen I an der Hochschule Karlsruhe im Studiengang Data Science. Vorläufig sind hier nur die Übungen zu allen Kapiteln sowie Texte für die Kapitel 3 und 4 zu finden. Bei allen anderen Kapiteln finden Sie neben den Übungen lediglich Links zu den jeweiligen Folien in ILIAS.
 
 ## Inhaltsverzeichnis
 ```{tableofcontents}
