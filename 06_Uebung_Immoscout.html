@@ -1,0 +1,1207 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5.1. Praxisübung: Vorhersage von Wohnungsmieten &#8212; Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "R": "\\mathbb{R}", "B": "\\mathbb{B}", "I": "\\mathbb{I}", "NN": "\\mathbb{N}", "RR": "\\mathbb{R}", "BB": "\\mathbb{B}", "norm": ["\\left\\lVert#1 \\right\\rVert", 1], "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\begin{pmatrix}"], "emat": ["\\end{pmatrix}"], "bmats": ["\\left(\\begin{smallmatrix}"], "emats": ["\\end{smallmatrix}\\right)"], "scikit": ["\\texttt{scikit-learn}"], "derv": ["\\frac{\\partial #1}{\\partial #2}", 2], "dervquad": ["\\frac{\\partial^2 #1}{\\partial #2^2}", 2], "dervzwei": ["\\frac{\\partial^2 #1}{\\partial {#2} \\partial {#3}}", 3], "v": ["\\mathbf{#1}", 1], "m": ["\\mathbf{#1}", 1], "argmin": ["\\underset{#1}{\\operatorname{arg\\!min}}", 1], "hyper": ["{\\color{Bittersweet}{#1}}", 1], "initial": "\\DeclareMathOperator{\\initial}{initial}", "reduced": "\\DeclareMathOperator{\\reduced}{reduced}", "lazy": "\\DeclareMathOperator{\\lazy}{lazy}", "ILP": "\\DeclareMathOperator{\\ILP}{ILP}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="6. Overfitting und Regularisierung" href="07_Regularisierung.html" />
+    <link rel="prev" title="5. Modellentwicklung" href="06_Modellentwicklung.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="de">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/HKA_IWI_Bildmarke-h_RGB.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_Ueberblick.html">
+                    Überblick
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="02_Lineare_Algebra.html">
+   2. Grundlagen Lineare Algebra
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_Uebungen.html">
+     2.1. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="03_Multivariate_Analysis.html">
+   3. Grundlagen multivariate Analysis
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_Uebungen.html">
+     3.11. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="04_Lineare_Regression.html">
+   4. Lineare Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_Uebungen.html">
+     4.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_Uebung_Warm-up.html">
+     4.2. Praxisübung: Lineare Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_Uebung_Salary_Daten.html">
+     4.3. Praxisübung: Polynomielle Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="06_Modellentwicklung.html">
+   5. Modellentwicklung
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.1. Praxisübung: Vorhersage von Wohnungsmieten
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="07_Regularisierung.html">
+   6. Overfitting und Regularisierung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_Uebung_Immoscout_Regularisierung.html">
+     6.1. Praxisübung: Regularisierung und Hyperparametersuche
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="08_Logistische_Regression.html">
+   7. Logistische Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_Uebungen.html">
+     7.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_Uebung_Gradientenabstieg.html">
+     7.3. Praxisübung: Logistische Regression und Gradientenabstieg
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_SVM.html">
+   8. Support Vector Machines
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="10_Entscheidungsbaeume.html">
+   9. Entscheidungsbäume
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Uebungen.html">
+     9.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Beispiel_Entscheidungsbaum.html">
+     9.2. Beispielcode Entscheidungsbäume
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Uebung_Titanic.html">
+     9.3. Praxisübung: Entscheidungsbaum
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="11_Ensemble_Methoden.html">
+   10. Ensemble Methoden
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Uebung_Immoscout.html">
+     10.1. Praxisübung: Ensemble Modelle
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="12_Eigenwertzerlegung.html">
+   11. Eigenwerte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_Uebungen.html">
+     11.1. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="13_Dimensionsreduktion.html">
+   12. Hauptkomponentenanalyse (PCA)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Uebungen.html">
+     12.1. Praxisübung: PCA
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="14_Empfehlungsdienste.html">
+   13. Empfehlungsdienste
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_Uebungen.html">
+     13.1. Praxisübung: Empfehlungsdienst
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="15_Clustering.html">
+   14. Clustering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_Uebungen.html">
+     14.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_Uebung_Clustering.html">
+     14.2. Praxisübung Clustering
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/06_Uebung_Immoscout.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/06_Uebung_Immoscout.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datenanalyse">
+   Datenanalyse
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nicht-numerische-daten">
+     Nicht-numerische Daten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerische-daten">
+     Numerische Daten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#untersuchung-von-ausreiszern">
+     Untersuchung von Ausreißern
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datenbereinigung">
+   Datenbereinigung
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#behandlung-von-fehlenden-datensatzen">
+     Behandlung von fehlenden Datensätzen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-engineering">
+   Feature Engineering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#korrelationen">
+     Korrelationen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#onehot-encoding">
+     OneHot Encoding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#entfernen-des-labels-aus-den-attributen">
+     Entfernen des Labels aus den Attributen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erstellen-von-trainings-und-testset">
+     Erstellen von Trainings- und Testset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modelltraining">
+     Modelltraining
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-1">
+   ✏ Aufgabe 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-2">
+   ✏ Aufgabe 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-3">
+   ✏ Aufgabe 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-4">
+   ✏ Aufgabe 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-5">
+   ✏ Aufgabe 5 🤯
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Praxisübung: Vorhersage von Wohnungsmieten</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datenanalyse">
+   Datenanalyse
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nicht-numerische-daten">
+     Nicht-numerische Daten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerische-daten">
+     Numerische Daten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#untersuchung-von-ausreiszern">
+     Untersuchung von Ausreißern
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datenbereinigung">
+   Datenbereinigung
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#behandlung-von-fehlenden-datensatzen">
+     Behandlung von fehlenden Datensätzen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-engineering">
+   Feature Engineering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#korrelationen">
+     Korrelationen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#onehot-encoding">
+     OneHot Encoding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#entfernen-des-labels-aus-den-attributen">
+     Entfernen des Labels aus den Attributen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erstellen-von-trainings-und-testset">
+     Erstellen von Trainings- und Testset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modelltraining">
+     Modelltraining
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-1">
+   ✏ Aufgabe 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-2">
+   ✏ Aufgabe 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-3">
+   ✏ Aufgabe 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-4">
+   ✏ Aufgabe 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-5">
+   ✏ Aufgabe 5 🤯
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="praxisubung-vorhersage-von-wohnungsmieten">
+<h1><span class="section-number">5.1. </span>Praxisübung: Vorhersage von Wohnungsmieten<a class="headerlink" href="#praxisubung-vorhersage-von-wohnungsmieten" title="Link zu dieser Überschrift">#</a></h1>
+<p>Ziel dieser Übung ist es, die Monatskaltmiete für eine Mietwohnung vorherzusagen anhand verschiedener Features wie Größe und Zustand der Wohnung, Nebenkosten, Bundesland etc. Laden Sie sich dafür die Dateien “immo_data.csv” und “immo_data_column_description.csv” herunter. Alternativ können Sie sich die Datei immo_data.csv hier herunterladen: <a class="reference external" href="https://www.kaggle.com/corrieaar/apartment-rental-offers-in-germany">https://www.kaggle.com/corrieaar/apartment-rental-offers-in-germany</a> (Account benötigt).</p>
+<p>Die Daten stammen von Immoscout24, der größten Immobilienplattform in Deutschland. Immoscout24 bietet sowohl Miet- als auch Kaufobjekte an, allerdings enthalten die Daten nur Angebote für Mietobjekte. Zu einem bestimmten Zeitpunkt wurden alle verfügbaren Angebote von der Website abgefragt und gespeichert. Dieser Vorgang wurde dreimal wiederholt, so dass der Datensatz Angebote aus den Zeiträumen 2018-09-22, 2019-05-10 und 2019-10-08 enthält.</p>
+<p>Der Datensatz enthält die meisten wichtigen Eigenschaften, wie z.B. die Größe der Wohnfläche, die Miete, sowohl Kaltmiete als auch Gesamtmiete (falls zutreffend), die Lage (Straße und Hausnummer, falls vorhanden, Postleitzahl und Bundesland), Energieart usw. Außerdem gibt es zwei Variablen, die längere Freitextbeschreibungen enthalten: Beschreibung mit einem Text, der das Angebot beschreibt, und Ausstattung mit einer Beschreibung aller verfügbaren Einrichtungen, der neuesten Renovierung usw. Die Datumsspalte wurde hinzugefügt, um den Zeitpunkt des Scrapings anzugeben.</p>
+<p>Wir möchten unser Wissen über lineare Regression und Datenanalyse an diesem Datensatz testen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="mi">50</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Daten/immo_data.csv&quot;</span><span class="p">)</span>
+<span class="n">desc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Daten/immo_data_column_description.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Spaltenbeschreibungen</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">desc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aus der Liste der Beschreibungen fallen uns einige Attribute auf, die doppelt auftreten oder (wahrscheinlich) keine Vorhersagekraft haben (eigentlich müsste man das verifizieren!). Diese schließen wir direkt aus, indem wir die “drop” Methode des DataFrame aufrufen und die entsprechenden Spaltennamen übergeben. Das Argument errors=“ignore” besagt, dass, falls die Spalte nicht (mehr) existiert, keine Fehlermeldung produziert werden soll. Das ist hier hilfreich: falls man im Notebook eine Zelle mehrmals ausführt, würde ab dem zweiten Mal immer eine Fehlermeldung auftauchen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># Einschränken des Datensatzes auf eine bestimmte Region</span>
+<span class="c1">#df = df[df[&quot;regio2&quot;]==&quot;Karlsruhe&quot;]</span>
+<span class="c1">#df = df[df[&quot;regio1&quot;]==&quot;Baden_Württemberg&quot;]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;scoutId&quot;</span><span class="p">,</span> <span class="s2">&quot;houseNumber&quot;</span><span class="p">,</span> <span class="s2">&quot;geo_bln&quot;</span><span class="p">,</span> <span class="s2">&quot;geo_krs&quot;</span><span class="p">,</span> <span class="s2">&quot;geo_plz&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="datenanalyse">
+<h2>Datenanalyse<a class="headerlink" href="#datenanalyse" title="Link zu dieser Überschrift">#</a></h2>
+<section id="nicht-numerische-daten">
+<h3>Nicht-numerische Daten<a class="headerlink" href="#nicht-numerische-daten" title="Link zu dieser Überschrift">#</a></h3>
+<p>Wir schauen uns die Spalten, d.h. die <em>Attribute</em>, von denen einige später zu <em>Features</em> werden, genauer an. Um es etwas übersichtlicher zu halten schauen wir uns zunächst die nicht-numerischen und dann die numerischen Spalten an.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">categorical_columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="n">df</span><span class="p">[</span><span class="n">categorical_columns</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wir erinnern uns: Wenn kategorielle Features mittels OneHot Encoding transformiert werden, so entsteht für jede Ausprägung eine neue Spalte. Die Anzahl der unterschiedlichen Ausprägungen gibt die Zeile “unique” an. Wenn wir also z.B. “description” (das ist ein Freitext Feld) mittels OneHot Encoding transformieren würden, würden wir einen DataFrame (also eine Datenmatrix) mit über 200,000 Spalten erhalten! Attribute mit zu vielen Ausprägungen schließen wir also zunächst aus.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;streetPlain&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;facilities&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wir schließen explizit die Postleitzahl aus. Aus Problemsicht: Glauben Sie, dass die PLZ ein gutes Feature wäre, d.h. hätte die PLZ Aussagekraft bezüglich der Kaltmiete?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;regio3&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Uns fällt ein Attribut “firingTypes” (laut Beschreibung die “main energy source”) auf, das 132 verschiedene Ausprägungen hat. Das schauen wir uns genauer an.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;firingTypes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es gibt ein ähnliches Attribut heatingType, das hat aber deutlich weniger Ausprägungen. Wir schauen uns an, welche Ausprägungen es gibt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;heatingType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wir entscheiden uns zunächst, das detailliertere von beiden Attributen auszuschließen, damit das entstehende Datenset nicht so groß wird.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df = df.drop(&quot;firingTypes&quot;, axis=1, errors=&quot;ignore&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wir schauen noch einmal die kategoriellen Attribute an, die wir als Kandidaten für Features behalten möchten.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Als nächstes schauen wir uns noch die Häufigkeitsverteilung der verschiedenen Ausprägungen an. Hier arbeiten wir mit der Methode .value_counts() von Pandas und erzeugen jeden Plot separat in einem Gitter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="c1"># n times n subplots</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">categorical_columns</span><span class="p">))))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">categorical_columns</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Auf den ersten Blick keine größeren Auffälligkeiten, außer dass in NRW und vor allem Sachsen überdurchschnittlich viele Wohnungen angeboten werden.</p>
+</section>
+<section id="numerische-daten">
+<h3>Numerische Daten<a class="headerlink" href="#numerische-daten" title="Link zu dieser Überschrift">#</a></h3>
+<p>Als nächstes schauen wir uns nun die numerischen Attribute genauer an.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wir sehen, dass es einige extreme <em>Ausreißer</em> in den Daten gibt. So gibt es z.B. eine Wohnung mit monatlichen Nebenkosten von 146118 EUR, ein Objekt, das etwa 15 mio EUR Miete pro Monat kostet oder 111111m² Wohnfläche besitzt. Wir speichern uns die Namen der verdächtigen Spalten in einer Liste.
+Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10 hat oder leer ist, deshalb löschen wir es.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interesting_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;serviceCharge&quot;</span><span class="p">,</span> <span class="s2">&quot;totalRent&quot;</span><span class="p">,</span> <span class="s2">&quot;yearConstructed&quot;</span><span class="p">,</span> <span class="s2">&quot;noParkSpaces&quot;</span><span class="p">,</span> <span class="s2">&quot;baseRent&quot;</span><span class="p">,</span> <span class="s2">&quot;livingSpace&quot;</span><span class="p">,</span> <span class="s2">&quot;noRooms&quot;</span><span class="p">,</span> <span class="s2">&quot;numberOfFloors&quot;</span><span class="p">,</span> <span class="s2">&quot;heatingCosts&quot;</span><span class="p">,</span> <span class="s2">&quot;lastRefurbish&quot;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;telekomHybridUploadSpeed&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="untersuchung-von-ausreiszern">
+<h3>Untersuchung von Ausreißern<a class="headerlink" href="#untersuchung-von-ausreiszern" title="Link zu dieser Überschrift">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">interesting_columns</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="datenbereinigung">
+<h2>Datenbereinigung<a class="headerlink" href="#datenbereinigung" title="Link zu dieser Überschrift">#</a></h2>
+<p>Das sind zu viele Ausreißer, als dass wir sie alle gesondert betrachten möchten. Wir schauen uns an, was passieren würde, wenn wir einfach die unteren und oberen 0.5% der Daten bezüglich dieser Attribute wegwerfen würden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">interesting_columns</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.995</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">interesting_columns</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.005</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das sieht nach einer gesünderen Verteilung aus. Wir wollen mit diesen Daten weiterarbeiten. Dazu erzeugen wir eine Kopie von df. Sonst würde df bei versehentlichem mehrmaligen Ausführen der Zelle immer kleiner werden (die Quantile würden auf dem neuen, kleineren df neu berechnet)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">upper_limits</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">interesting_columns</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.995</span><span class="p">)</span>
+<span class="n">lower_limits</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">interesting_columns</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.005</span><span class="p">)</span>
+
+<span class="n">df_reduced</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_reduced</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">))</span>
+
+<span class="c1"># Für jede Spalte behalten wir: Daten die &lt; (99.5%-Quantil) sind und &gt; (0.5%-Quantil) sind ODER die NaN sind (damit befassen wir uns spaeter noch) </span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">interesting_columns</span><span class="p">:</span>
+    <span class="n">df_reduced</span> <span class="o">=</span> <span class="n">df_reduced</span><span class="p">[((</span><span class="n">df_reduced</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">upper_limits</span><span class="p">[</span><span class="n">col</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_reduced</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">lower_limits</span><span class="p">[</span><span class="n">col</span><span class="p">]))</span> <span class="o">|</span> <span class="n">df_reduced</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wir haben nun also eine grobe Auswahl an Attributen getroffen, mit denen wir ab jetzt weiterarbeiten möchten.</p>
+<section id="behandlung-von-fehlenden-datensatzen">
+<h3>Behandlung von fehlenden Datensätzen<a class="headerlink" href="#behandlung-von-fehlenden-datensatzen" title="Link zu dieser Überschrift">#</a></h3>
+<p>Wir haben eben schon gesehen, dass es einige NaN (=not a number) Felder in den Daten gibt. Bevor wir entscheiden, was wir damit tun, verschaffen wir uns einen Überblick, wie viele das etwa sind.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df_reduced</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1"># isna() wandelt jeden Wert in einen Boolschen Datentyp (0/1) um. sum() summiert diese Werte pro Spalte. Man erhält also die Anzahl der NaN Werte pro Spalte.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das sind z.T. sehr viele NaN Werte. Wenn wir alle Daten ignorieren würden, würden nicht mehr viele übrig bleiben. Wir verfolgen zunächst folgende Strategie:</p>
+<ul class="simple">
+<li><p>Für numerische Werte wird für einen fehlenden Wert der Mittelwert der restlichen Werte eingesetzt.</p></li>
+<li><p>Für nicht-numerische Werte wird für einen fehlenden Wert der häufigsten Wert (=Modus) der restlichen Werte eingesetzt.</p></li>
+</ul>
+<p>Zum Auffüllen der Werte stellt scikit-learn stellt die Klasse SimpleImputer bereit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+
+<span class="c1"># Technisches Detail: wir müssen noch die Bool-Werte explizit konvertieren, sonst wirft der Imputer einen Fehler</span>
+<span class="n">df_reduced</span> <span class="o">=</span> <span class="n">df_reduced</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="kc">False</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+<span class="n">numeric_columns</span> <span class="o">=</span> <span class="n">df_reduced</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">numeric_columns</span> <span class="o">=</span> <span class="n">numeric_columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;baseRent&quot;</span><span class="p">)</span> <span class="c1"># Wenn das Label fehlt, wird es nicht ersetzt</span>
+<span class="n">categorical_columns</span> <span class="o">=</span> <span class="n">df_reduced</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="n">imp_freq</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;most_frequent&#39;</span><span class="p">)</span>
+<span class="n">imp_mean</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+
+<span class="n">df_reduced</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="n">numeric_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">imp_mean</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_reduced</span><span class="p">[</span><span class="n">numeric_columns</span><span class="p">])</span>
+<span class="n">df_reduced</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="n">categorical_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">imp_freq</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_reduced</span><span class="p">[</span><span class="n">categorical_columns</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="feature-engineering">
+<h2>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Link zu dieser Überschrift">#</a></h2>
+<section id="korrelationen">
+<h3>Korrelationen<a class="headerlink" href="#korrelationen" title="Link zu dieser Überschrift">#</a></h3>
+<p>Wir erzeugen uns Scatter Plots um offensichtlich lineare oder nichtlineare Zusammenhänge zwischen einzelnen Features und der Zielvariable zu identifizieren.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">interesting_columns</span><span class="p">):</span>
+    <span class="c1">#plt.subplot(4, 3, i+1)</span>
+    <span class="n">df_reduced</span><span class="p">[[</span><span class="s2">&quot;baseRent&quot;</span><span class="p">,</span><span class="n">col</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;baseRent&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">3</span><span class="p">)),</span><span class="n">i</span><span class="o">%</span><span class="k">3</span>], alpha=0.2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Daten streuen relativ breit. Erwartbare Zusammenhänge zwischen Größe und Mietpreis. Zunächst keine weiteren Auffälligkeiten.</p>
+</section>
+<section id="onehot-encoding">
+<h3>OneHot Encoding<a class="headerlink" href="#onehot-encoding" title="Link zu dieser Überschrift">#</a></h3>
+<p>Als nächstes transformidf_reducedir die kategoriellen Spalten mittels OneHot-Encoding. Dafür benutzen wir die Pandas Funktion get_dummies() die in einem DataFrame für jede kategorielle Spalte das OneHot Encoding durchführt. D.h., für jede kategorielle Spalte entstehen mehrere 0/1-wertige Spalten, und zwar gerade so viele wie es Ausprägungen der Variable gibt. Das Ergebnis ist nun ein DataFrame, der weitaus mehr Spalten hat. Diese sind dafür aber alle numerisch, d.h. wir können sie für die lineare Regression (oder einen anderen ML Algorithmus verwenden).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reduced</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df_reduced</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ein letzter Blick in die Daten ob alles funktioniert hat:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df_reduced</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="entfernen-des-labels-aus-den-attributen">
+<h3>Entfernen des Labels aus den Attributen<a class="headerlink" href="#entfernen-des-labels-aus-den-attributen" title="Link zu dieser Überschrift">#</a></h3>
+<p>WICHTIG: Wir möchten die Kaltmiete bzw. Gesamtmiete <em>vorhersagen</em>. Diese (und das davon direkt abgeleitete Attribut baseRentRange) müssen wir also auch noch ausschließen. Zuvor entfernen wir noch Datensätze, für die wir kein Label haben.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reduced</span> <span class="o">=</span> <span class="n">df_reduced</span><span class="p">[</span><span class="n">df_reduced</span><span class="p">[</span><span class="s2">&quot;baseRent&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span> <span class="c1"># Entfernen der Datensätze ohne Label</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_reduced</span><span class="p">[</span><span class="s2">&quot;baseRent&quot;</span><span class="p">]</span>
+<span class="n">df_reduced</span> <span class="o">=</span> <span class="n">df_reduced</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;baseRent&quot;</span><span class="p">,</span> <span class="s2">&quot;totalRent&quot;</span><span class="p">,</span><span class="s2">&quot;baseRentRange&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="erstellen-von-trainings-und-testset">
+<h3>Erstellen von Trainings- und Testset<a class="headerlink" href="#erstellen-von-trainings-und-testset" title="Link zu dieser Überschrift">#</a></h3>
+<p>Bevor wir die Daten weiter bearbeiten, spalten wir sie in Trainings- und Testset auf.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df_reduced</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="modelltraining">
+<h3>Modelltraining<a class="headerlink" href="#modelltraining" title="Link zu dieser Überschrift">#</a></h3>
+<p>Nun ist es soweit: Wir trainieren das Regressionsmodel!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
+<span class="n">r2_train</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">mse_train</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+<span class="n">mae_train</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+<span class="n">r2_test</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">mse_test</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<span class="n">mae_test</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R² Trainingsdaten: </span><span class="si">{</span><span class="n">r2_train</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean squared error Trainingsdaten: </span><span class="si">{</span><span class="n">mse_train</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean absolute error Trainingsdaten: </span><span class="si">{</span><span class="n">mae_train</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R² Testdaten: </span><span class="si">{</span><span class="n">r2_test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean squared error Testdaten: </span><span class="si">{</span><span class="n">mse_test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean absolute error Testdaten: </span><span class="si">{</span><span class="n">mae_test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Ergebnis der multiplen linearen Regression ist nicht so einfach zu visualisieren. Hier ein Versuch als Scatterplot zwischen der Größe der Wohnung und der Kaltmiete (blau) bzw. der vorhergesagten Kaltmiete (rot).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="s2">&quot;livingSpace&quot;</span><span class="p">],</span> <span class="n">y_test</span><span class="p">,</span> <span class="s2">&quot;bo&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="s2">&quot;livingSpace&quot;</span><span class="p">],</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="s2">&quot;ro&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="aufgabe-1">
+<h2>✏ Aufgabe 1<a class="headerlink" href="#aufgabe-1" title="Link zu dieser Überschrift">#</a></h2>
+<p>Arbeiten Sie das Notebook durch und versuchen Sie die einzelnen Schritte nachzuvollziehen.</p>
+</section>
+<section id="aufgabe-2">
+<h2>✏ Aufgabe 2<a class="headerlink" href="#aufgabe-2" title="Link zu dieser Überschrift">#</a></h2>
+<p>Wie ändert sich die Vorhersagequalität des Modells, wenn sie die Ausreißer nicht entfernen?
+Gehen Sie dazu zum Abschnitt Datenbereinigung, identifizieren sie den Code, der für das Entfernen der Ausreißer zuständig ist und kommentieren sie ihn aus.</p>
+</section>
+<section id="aufgabe-3">
+<h2>✏ Aufgabe 3<a class="headerlink" href="#aufgabe-3" title="Link zu dieser Überschrift">#</a></h2>
+<p>Erstellen Sie ein Modell, das die Kaltmiete nur für eine bestimmte Region (z.B. Baden Württemberg, Karlsruhe, Karlsruhe und benachbarte Landkreise) vorhersagt.
+Am einfachsten geht das, indem Sie den Datensatz direkt nach dem Einlesen der Daten einschränken und dann alle weiteren Zellen unverändert ausführen. Wie ist die Vorhersagequalität auf Trainings- und Testdaten?</p>
+</section>
+<section id="aufgabe-4">
+<h2>✏ Aufgabe 4<a class="headerlink" href="#aufgabe-4" title="Link zu dieser Überschrift">#</a></h2>
+<p>Erstellen Sie ein Modell mit anderen Features. Hier einige Vorschläge:</p>
+<ul class="simple">
+<li><p>Nehmen Sie Features mit in das Modell auf, die wir am Anfang ausgeschlossen hatten und schauen sie, ob sie die Vorhersagegüte verbessern.</p></li>
+<li><p>Nehmen Sie weniger Features. Die Vorhersagegüte (zumindest auf dem Trainingsdatensatz) wird dadurch zwar schlechter, doch auf kleinen Datensätzen sollten Sie ein robusteres Modell erhalten, d.h. eines, welches auf den Testdaten ähnlich gute Ergebnisse liefert wie auf den Trainingsdaten. Entweder wählen Sie per Hand geeignete Features aus oder Sie nehmen z.B. eine automatische Methode wie SelectKBest. Benutzen Sie dazu folgenden Code:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectKBest</span><span class="p">,</span> <span class="n">f_regression</span>
+<span class="n">feature_selection</span> <span class="o">=</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">f_regression</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span> <span class="c1"># Ein Transformer, der per f_regression die 50 vielversprechendsten Features auswählt</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">feature_selection</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">feature_selection</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Erstellen Sie sich neue Features durch Kombination oder Umformung vorhandener Features, z.B. polynomielle bzw. Interaktionsfeatures. Hier ein Code Beispiel, mit dem sie sich Interaktionsfeatures Bundesland x livingSpace erzeugen. Anschaulich bedeutet das: Der Koeffizient für das Feature livingSpace kann von Bundesland zu Bundesland unterschiedlich sein. Der Koeffizient für livingSpace ist anschaulich der Preis, der für einen zusätzlichen qm Wohnung mehr bezahlt werden muss.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">interaction_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Ein Transformer, der Interaktionsfeatures vom (bis zu) Grad 2 erzeugt</span>
+
+<span class="c1"># Interaktionsfeatures: Bundesland x livingSpace</span>
+<span class="n">bundeslaender_columns</span> <span class="o">=</span> <span class="s2">&quot;regio1_&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;regio1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">bundeslaender_columns</span><span class="p">:</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_reduced</span><span class="p">[[</span><span class="n">col</span><span class="p">,</span><span class="s2">&quot;livingSpace&quot;</span><span class="p">]])</span>
+    <span class="n">df_reduced</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s2">&quot;_livingSpace&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="aufgabe-5">
+<h2>✏ Aufgabe 5 🤯<a class="headerlink" href="#aufgabe-5" title="Link zu dieser Überschrift">#</a></h2>
+<ul class="simple">
+<li><p>Sagen sie die Kaltmiete für Ihre Wohnung voraus. Überlegen Sie sich dazu, wie der Featurevektor für Ihre Wohnung aussehen würde, erstellen Sie einen DataFrame mit einer Zeile und wenden Sie das gelernte Modell mit .predict() an.</p></li>
+<li><p>Wie würde die Normalengleichung für das Problem aussehen? Versuchen Sie, statt des scikit-learn Modells das Modell “per Hand” zu trainieren, indem Sie die Normalengleichung aufstellen und nach den Modellparametern <span class="math notranslate nohighlight">\(w\)</span> auflösen (z.B. mit numpy.linalg.solve). Machen Sie sich dazu zunächst die Problemdimensionen klar in Analogie zu den Formeln aus der Vorlesung.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="06_Modellentwicklung.html" title="zurück Seite">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">zurück</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Modellentwicklung</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="07_Regularisierung.html" title="weiter Seite">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">weiter</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Overfitting und Regularisierung</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dennis Janka<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,804 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proof Index &#8212; Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="de">
+    
+
+    <!-- Google Analytics -->
+    
+
+    <script>
+      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
+    </script>
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/HKA_IWI_Bildmarke-h_RGB.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_Ueberblick.html">
+                    Überblick
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="02_Lineare_Algebra.html">
+   2. Grundlagen Lineare Algebra
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_Uebungen.html">
+     2.1. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="03_Multivariate_Analysis.html">
+   3. Grundlagen multivariate Analysis
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_Uebungen.html">
+     3.11. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="04_Lineare_Regression.html">
+   4. Lineare Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_Uebungen.html">
+     4.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_Uebung_Warm-up.html">
+     4.2. Praxisübung: Lineare Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_Uebung_Salary_Daten.html">
+     4.3. Praxisübung: Polynomielle Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="06_Modellentwicklung.html">
+   5. Modellentwicklung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_Uebung_Immoscout.html">
+     5.1. Praxisübung: Vorhersage von Wohnungsmieten
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="07_Regularisierung.html">
+   6. Overfitting und Regularisierung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_Uebung_Immoscout_Regularisierung.html">
+     6.1. Praxisübung: Regularisierung und Hyperparametersuche
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="08_Logistische_Regression.html">
+   7. Logistische Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_Uebungen.html">
+     7.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_Uebung_Gradientenabstieg.html">
+     7.3. Praxisübung: Logistische Regression und Gradientenabstieg
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_SVM.html">
+   8. Support Vector Machines
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="10_Entscheidungsbaeume.html">
+   9. Entscheidungsbäume
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Uebungen.html">
+     9.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Beispiel_Entscheidungsbaum.html">
+     9.2. Beispielcode Entscheidungsbäume
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Uebung_Titanic.html">
+     9.3. Praxisübung: Entscheidungsbaum
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="11_Ensemble_Methoden.html">
+   10. Ensemble Methoden
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Uebung_Immoscout.html">
+     10.1. Praxisübung: Ensemble Modelle
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="12_Eigenwertzerlegung.html">
+   11. Eigenwerte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_Uebungen.html">
+     11.1. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="13_Dimensionsreduktion.html">
+   12. Hauptkomponentenanalyse (PCA)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Uebungen.html">
+     12.1. Praxisübung: PCA
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="14_Empfehlungsdienste.html">
+   13. Empfehlungsdienste
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_Uebungen.html">
+     13.1. Praxisübung: Empfehlungsdienst
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="15_Clustering.html">
+   14. Clustering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_Uebungen.html">
+     14.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_Uebung_Clustering.html">
+     14.2. Praxisübung Clustering
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+
+   <h1>Proof Index</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-bsp:linear"><strong>bsp:linear</strong></a> | 
+   <a href="#cap-definition-10"><strong>definition-10</strong></a> | 
+   <a href="#cap-definition-11"><strong>definition-11</strong></a> | 
+   <a href="#cap-definition-18"><strong>definition-18</strong></a> | 
+   <a href="#cap-definition-25"><strong>definition-25</strong></a> | 
+   <a href="#cap-definition-3"><strong>definition-3</strong></a> | 
+   <a href="#cap-definition-4"><strong>definition-4</strong></a> | 
+   <a href="#cap-definition-5"><strong>definition-5</strong></a> | 
+   <a href="#cap-definition-7"><strong>definition-7</strong></a> | 
+   <a href="#cap-ex:jacobi"><strong>ex:jacobi</strong></a> | 
+   <a href="#cap-ex:partiell-unstetig"><strong>ex:partiell-unstetig</strong></a> | 
+   <a href="#cap-ex:unstetig"><strong>ex:unstetig</strong></a> | 
+   <a href="#cap-example-0"><strong>example-0</strong></a> | 
+   <a href="#cap-example-1"><strong>example-1</strong></a> | 
+   <a href="#cap-example-12"><strong>example-12</strong></a> | 
+   <a href="#cap-example-13"><strong>example-13</strong></a> | 
+   <a href="#cap-example-14"><strong>example-14</strong></a> | 
+   <a href="#cap-example-16"><strong>example-16</strong></a> | 
+   <a href="#cap-example-19"><strong>example-19</strong></a> | 
+   <a href="#cap-example-2"><strong>example-2</strong></a> | 
+   <a href="#cap-example-20"><strong>example-20</strong></a> | 
+   <a href="#cap-example-21"><strong>example-21</strong></a> | 
+   <a href="#cap-example-22"><strong>example-22</strong></a> | 
+   <a href="#cap-example-23"><strong>example-23</strong></a> | 
+   <a href="#cap-example-28"><strong>example-28</strong></a> | 
+   <a href="#cap-example-29"><strong>example-29</strong></a> | 
+   <a href="#cap-example-30"><strong>example-30</strong></a> | 
+   <a href="#cap-example-32"><strong>example-32</strong></a> | 
+   <a href="#cap-example-33"><strong>example-33</strong></a> | 
+   <a href="#cap-example-6"><strong>example-6</strong></a> | 
+   <a href="#cap-example-8"><strong>example-8</strong></a> | 
+   <a href="#cap-example-9"><strong>example-9</strong></a> | 
+   <a href="#cap-theorem-17"><strong>theorem-17</strong></a> | 
+   <a href="#cap-theorem-31"><strong>theorem-31</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-bsp:linear"><td></td><td>
+       <strong>bsp:linear</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#bsp:linear"><code class="xref">bsp:linear</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-10"><td></td><td>
+       <strong>definition-10</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#definition-10"><code class="xref">definition-10</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-11"><td></td><td>
+       <strong>definition-11</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#definition-11"><code class="xref">definition-11</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-18"><td></td><td>
+       <strong>definition-18</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#definition-18"><code class="xref">definition-18</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-25"><td></td><td>
+       <strong>definition-25</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#definition-25"><code class="xref">definition-25</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-3"><td></td><td>
+       <strong>definition-3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#definition-3"><code class="xref">definition-3</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-4"><td></td><td>
+       <strong>definition-4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#definition-4"><code class="xref">definition-4</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-5"><td></td><td>
+       <strong>definition-5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#definition-5"><code class="xref">definition-5</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-7"><td></td><td>
+       <strong>definition-7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#definition-7"><code class="xref">definition-7</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ex:jacobi"><td></td><td>
+       <strong>ex:jacobi</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#ex:jacobi"><code class="xref">ex:jacobi</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ex:partiell-unstetig"><td></td><td>
+       <strong>ex:partiell-unstetig</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#ex:partiell-unstetig"><code class="xref">ex:partiell-unstetig</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ex:unstetig"><td></td><td>
+       <strong>ex:unstetig</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#ex:unstetig"><code class="xref">ex:unstetig</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-0"><td></td><td>
+       <strong>example-0</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-0"><code class="xref">example-0</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-1"><td></td><td>
+       <strong>example-1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-1"><code class="xref">example-1</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-12"><td></td><td>
+       <strong>example-12</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-12"><code class="xref">example-12</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-13"><td></td><td>
+       <strong>example-13</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-13"><code class="xref">example-13</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-14"><td></td><td>
+       <strong>example-14</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-14"><code class="xref">example-14</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-16"><td></td><td>
+       <strong>example-16</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-16"><code class="xref">example-16</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-19"><td></td><td>
+       <strong>example-19</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-19"><code class="xref">example-19</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-2"><td></td><td>
+       <strong>example-2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-2"><code class="xref">example-2</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-20"><td></td><td>
+       <strong>example-20</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-20"><code class="xref">example-20</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-21"><td></td><td>
+       <strong>example-21</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-21"><code class="xref">example-21</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-22"><td></td><td>
+       <strong>example-22</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-22"><code class="xref">example-22</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-23"><td></td><td>
+       <strong>example-23</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-23"><code class="xref">example-23</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-28"><td></td><td>
+       <strong>example-28</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-28"><code class="xref">example-28</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-29"><td></td><td>
+       <strong>example-29</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-29"><code class="xref">example-29</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-30"><td></td><td>
+       <strong>example-30</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-30"><code class="xref">example-30</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-32"><td></td><td>
+       <strong>example-32</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-32"><code class="xref">example-32</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-33"><td></td><td>
+       <strong>example-33</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-33"><code class="xref">example-33</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-6"><td></td><td>
+       <strong>example-6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-6"><code class="xref">example-6</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-8"><td></td><td>
+       <strong>example-8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-8"><code class="xref">example-8</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-9"><td></td><td>
+       <strong>example-9</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#example-9"><code class="xref">example-9</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-17"><td></td><td>
+       <strong>theorem-17</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#theorem-17"><code class="xref">theorem-17</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-31"><td></td><td>
+       <strong>theorem-31</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="03_Multivariate_Analysis.html#theorem-31"><code class="xref">theorem-31</code></a> <em>(03_Multivariate_Analysis)</em></td><td>
+       <em>theorem</em></td></tr>
+   </table>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dennis Janka<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1765 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Grundlagen multivariate Analysis &#8212; Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "R": "\\mathbb{R}", "B": "\\mathbb{B}", "I": "\\mathbb{I}", "NN": "\\mathbb{N}", "RR": "\\mathbb{R}", "BB": "\\mathbb{B}", "norm": ["\\left\\lVert#1 \\right\\rVert", 1], "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\begin{pmatrix}"], "emat": ["\\end{pmatrix}"], "bmats": ["\\left(\\begin{smallmatrix}"], "emats": ["\\end{smallmatrix}\\right)"], "scikit": ["\\texttt{scikit-learn}"], "derv": ["\\frac{\\partial #1}{\\partial #2}", 2], "dervquad": ["\\frac{\\partial^2 #1}{\\partial #2^2}", 2], "dervzwei": ["\\frac{\\partial^2 #1}{\\partial {#2} \\partial {#3}}", 3], "v": ["\\mathbf{#1}", 1], "m": ["\\mathbf{#1}", 1], "argmin": ["\\underset{#1}{\\operatorname{arg\\!min}}", 1], "hyper": ["{\\color{Bittersweet}{#1}}", 1], "initial": "\\DeclareMathOperator{\\initial}{initial}", "reduced": "\\DeclareMathOperator{\\reduced}{reduced}", "lazy": "\\DeclareMathOperator{\\lazy}{lazy}", "ILP": "\\DeclareMathOperator{\\ILP}{ILP}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="3.11. Übungen" href="03_Uebungen.html" />
+    <link rel="prev" title="2.1. Übungen" href="02_Uebungen.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="de">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/HKA_IWI_Bildmarke-h_RGB.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_Ueberblick.html">
+                    Überblick
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Einfuehrung.html">
+   1. Einführung
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="02_Lineare_Algebra.html">
+   2. Grundlagen Lineare Algebra
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_Uebungen.html">
+     2.1. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   3. Grundlagen multivariate Analysis
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_Uebungen.html">
+     3.11. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="04_Lineare_Regression.html">
+   4. Lineare Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_Uebungen.html">
+     4.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_Uebung_Warm-up.html">
+     4.2. Praxisübung: Lineare Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_Uebung_Salary_Daten.html">
+     4.3. Praxisübung: Polynomielle Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="06_Modellentwicklung.html">
+   5. Modellentwicklung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_Uebung_Immoscout.html">
+     5.1. Praxisübung: Vorhersage von Wohnungsmieten
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="07_Regularisierung.html">
+   6. Overfitting und Regularisierung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_Uebung_Immoscout_Regularisierung.html">
+     6.1. Praxisübung: Regularisierung und Hyperparametersuche
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="08_Logistische_Regression.html">
+   7. Logistische Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_Uebungen.html">
+     7.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_Uebung_Gradientenabstieg.html">
+     7.3. Praxisübung: Logistische Regression und Gradientenabstieg
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_SVM.html">
+   8. Support Vector Machines
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="10_Entscheidungsbaeume.html">
+   9. Entscheidungsbäume
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Uebungen.html">
+     9.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Beispiel_Entscheidungsbaum.html">
+     9.2. Beispielcode Entscheidungsbäume
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_Uebung_Titanic.html">
+     9.3. Praxisübung: Entscheidungsbaum
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="11_Ensemble_Methoden.html">
+   10. Ensemble Methoden
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_Uebung_Immoscout.html">
+     10.1. Praxisübung: Ensemble Modelle
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="12_Eigenwertzerlegung.html">
+   11. Eigenwerte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12_Uebungen.html">
+     11.1. Übungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="13_Dimensionsreduktion.html">
+   12. Hauptkomponentenanalyse (PCA)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Uebungen.html">
+     12.1. Praxisübung: PCA
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="14_Empfehlungsdienste.html">
+   13. Empfehlungsdienste
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14_Uebungen.html">
+     13.1. Praxisübung: Empfehlungsdienst
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="15_Clustering.html">
+   14. Clustering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_Uebungen.html">
+     14.1. Übungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15_Uebung_Clustering.html">
+     14.2. Praxisübung Clustering
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03_Multivariate_Analysis.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/03_Multivariate_Analysis.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/03_Multivariate_Analysis.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multivariate-funktionen">
+   3.1. Multivariate Funktionen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#differentialrechnung-einer-veranderlicher">
+   3.2. Differentialrechnung einer Veränderlicher
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normen-und-abstande-von-vektoren">
+   3.3. Normen und Abstände von Vektoren
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stetigkeit-multivariater-funktionen">
+   3.4. Stetigkeit multivariater Funktionen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partielle-ableitungen-und-gradient">
+   3.5. Partielle Ableitungen und Gradient
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zusammenhang-zwischen-stetigkeit-und-differenzierbarkeit">
+     Zusammenhang zwischen Stetigkeit und Differenzierbarkeit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ableitungen-von-vektorwertigen-funktionen-jacobi-matrix">
+   3.6. Ableitungen von vektorwertigen Funktionen: Jacobi-Matrix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#die-kettenregel">
+   3.7. Die Kettenregel
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ableitungen-hoherer-ordnung">
+   3.8. Ableitungen höherer Ordnung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#richtungsableitungen">
+   3.9. Richtungsableitungen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skalarprodukt-und-richtungsableitung">
+     Skalarprodukt und Richtungsableitung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jacobimatrix-und-richtungsableitung">
+     Jacobimatrix und Richtungsableitung
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusammenfassung-interpretation-des-gradienten-als-anderungsrate-einer-funktion">
+   3.10. Zusammenfassung: Interpretation des Gradienten als Änderungsrate einer Funktion
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Grundlagen multivariate Analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multivariate-funktionen">
+   3.1. Multivariate Funktionen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#differentialrechnung-einer-veranderlicher">
+   3.2. Differentialrechnung einer Veränderlicher
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normen-und-abstande-von-vektoren">
+   3.3. Normen und Abstände von Vektoren
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stetigkeit-multivariater-funktionen">
+   3.4. Stetigkeit multivariater Funktionen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partielle-ableitungen-und-gradient">
+   3.5. Partielle Ableitungen und Gradient
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zusammenhang-zwischen-stetigkeit-und-differenzierbarkeit">
+     Zusammenhang zwischen Stetigkeit und Differenzierbarkeit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ableitungen-von-vektorwertigen-funktionen-jacobi-matrix">
+   3.6. Ableitungen von vektorwertigen Funktionen: Jacobi-Matrix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#die-kettenregel">
+   3.7. Die Kettenregel
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ableitungen-hoherer-ordnung">
+   3.8. Ableitungen höherer Ordnung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#richtungsableitungen">
+   3.9. Richtungsableitungen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skalarprodukt-und-richtungsableitung">
+     Skalarprodukt und Richtungsableitung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jacobimatrix-und-richtungsableitung">
+     Jacobimatrix und Richtungsableitung
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusammenfassung-interpretation-des-gradienten-als-anderungsrate-einer-funktion">
+   3.10. Zusammenfassung: Interpretation des Gradienten als Änderungsrate einer Funktion
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="grundlagen-multivariate-analysis">
+<h1><span class="section-number">3. </span>Grundlagen multivariate Analysis<a class="headerlink" href="#grundlagen-multivariate-analysis" title="Link zu dieser Überschrift">#</a></h1>
+<p>In diesem Kapitel führen wir den Begriff der <em>multivariaten Funktion</em> und der <em>partiellen Ableitung</em> ein. Diese beiden Begriffe sind von zentraler Bedeutung für die gesamte Vorlesung.</p>
+<section id="multivariate-funktionen">
+<span id="sec-multivariate-funktionen"></span><h2><span class="section-number">3.1. </span>Multivariate Funktionen<a class="headerlink" href="#multivariate-funktionen" title="Link zu dieser Überschrift">#</a></h2>
+<p>Ein zentraler Begriff der nichtlinearen Optimierung und des maschinelles Lernen ist der Begriff der <em>multivariaten Funktion</em>. Dies ist eine Verallgemeinerung des Funktionenbegriffs, wie er aus der Analysis einer Veränderlicher (1. Semester) bekannt ist: Wie im eindimensionalen beschreibt eine multivariate Funktion eine Beziehung zwischen einer Eingabegröße und einer Ausgabegröße (dem <em>Funktionswert</em>), nur dass die Eingabegröße nicht wie im eindimensionalen Fall eine Zahl ist, sondern ein Vektor im <span class="math notranslate nohighlight">\(\R^n\)</span>, wobei <span class="math notranslate nohighlight">\(n\in\N\)</span> im folgenden eine beliebige natürliche Zahl sei. Die Ausgabegröße kann ebenfalls ein Vektor sein, der von anderer Dimension wie der Eingangsvektor sein kann. Anschaulich:</p>
+<figure class="align-default" id="multivariate-funktion-r-n-rightarrow-r-m-schematisch">
+<a class="reference internal image-reference" href="_images/multivariate_funktion.png"><img alt="_images/multivariate_funktion.png" src="_images/multivariate_funktion.png" style="width: 400px;" /></a>
+</figure>
+<p>Um eine Funktion (mathematische korrekt) zu spezifizieren, schreiben wir oft</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d7cc9d22-505f-44b6-8430-5179f85817b8">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-d7cc9d22-505f-44b6-8430-5179f85817b8" title="Permalink to this equation">#</a></span>\[\begin{align}
+	\v f:D\subseteq\R^n\rightarrow\R^m\label{eq:func}\\
+	\v x\mapsto \v f(\v x)\label{eq:mapsto}
+\end{align}\]</div>
+<p>Die erste Zeile bedeutet, dass <span class="math notranslate nohighlight">\(f\)</span> eine Abbildung von einer Teilmenge <span class="math notranslate nohighlight">\(D\)</span> des <span class="math notranslate nohighlight">\(\R^n\)</span>, der sog. <em>Definitionsbereich</em> oder die <em>Definitionsmenge</em>, nach <span class="math notranslate nohighlight">\(\R^m\)</span> ist. <span class="math notranslate nohighlight">\(\R^m\)</span> nennen wir in diesem Zusammenhang auch den <em>Bildraum</em>, <em>Zielraum</em> oder die <em>Zielmenge</em>. Die zweite Zeile spezifiziert, dass ein Eingabevektor <span class="math notranslate nohighlight">\(\v x\in\R^n\)</span> auf einen Funktionsvektor <span class="math notranslate nohighlight">\(\v f(\v x)\in\R^m \)</span> abgebildet wird. Eine multivariate Funktion <span class="math notranslate nohighlight">\(\v f\)</span> weist jedem Eingabevektor <em>genau einen</em> Funktionsvektor <span class="math notranslate nohighlight">\(\v f(\v x)\)</span> zu.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Obwohl <span class="math notranslate nohighlight">\(\v x\in\R^n\)</span> ein Spaltenvektor ist, schreibt man normalerweise <span class="math notranslate nohighlight">\(\v f(\v x)=f(x_1,x_2,\dots,x_n)\)</span>. Beim Spezialfall <span class="math notranslate nohighlight">\(f:\R^2\rightarrow\R\)</span> nennt man die beiden Komponenten des Eingabevektors oft statt <span class="math notranslate nohighlight">\(x_1, x_2\)</span> auch <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> und schreibt <span class="math notranslate nohighlight">\(f(x,y)\)</span> für den Funktionswert.</p>
+</div>
+<p>In der Optimierung interessiert man sich vor allem für den Fall, dass der Funktionswert eine reelle Zahl ist (also der Spezialfall <span class="math notranslate nohighlight">\(m=1\)</span>), oder in der Sprache des vorherigen Bildes:</p>
+<figure class="align-default" id="multivariate-funktion-r-n-rightarrow-r-schematisch">
+<a class="reference internal image-reference" href="_images/multivariate_funktion_1.png"><img alt="_images/multivariate_funktion_1.png" src="_images/multivariate_funktion_1.png" style="width: 400px;" /></a>
+</figure>
+<p>Solch eine Funktion spezifiziert man als</p>
+<div class="amsmath math notranslate nohighlight" id="equation-711d5313-b491-4e78-9fd6-5ed72a7b40d8">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-711d5313-b491-4e78-9fd6-5ed72a7b40d8" title="Permalink to this equation">#</a></span>\[\begin{align}
+	f:D\subseteq\R^n\rightarrow\R\\
+	\v x\mapsto f(\v x)
+\end{align}\]</div>
+<p>Diese Funktion <span class="math notranslate nohighlight">\(f\)</span> weist also jedem Eingabevektor <em>genau einen</em> Funktions<em>wert</em> <span class="math notranslate nohighlight">\(f(\v x)\)</span> zu.</p>
+<p>Wir betrachten zunächst einige Beispiele für multivariate Funktionen <span class="math notranslate nohighlight">\(\R^n\rightarrow\R\)</span> bevor wir uns den grundlegenden Eigenschaften von Funktionen, nämlich Stetigkeit und Differenzierbarkeit, zuwenden.</p>
+<div class="proof example admonition" id="example-0">
+<p class="admonition-title"><span class="caption-number">Example 3.1 </span> (Lineare Funktion)</p>
+<section class="example-content" id="proof-content">
+<div class="amsmath math notranslate nohighlight" id="equation-9abdd702-fbe6-4941-9d92-ec9fcb698e2a">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-9abdd702-fbe6-4941-9d92-ec9fcb698e2a" title="Permalink to this equation">#</a></span>\[\begin{align}
+	f:\R^2\rightarrow\R\\
+	\bmat x\\y\emat  \mapsto x+2y
+\end{align}\]</div>
+</section>
+</div><p>Der Funktionsgraph dieser Funktion lässt sich als Ebene im <span class="math notranslate nohighlight">\(\R^3\)</span> darstellen. Allgemein lassen sich Funktionen <span class="math notranslate nohighlight">\(f:\R^2\rightarrow \R\)</span> als dreidimensionale Plots visualisieren. Dafür gibt es zwei Möglichkeiten:</p>
+<ul class="simple">
+<li><p>Oberflächenplot: für jeden Punkt der <span class="math notranslate nohighlight">\(x\)</span>-<span class="math notranslate nohighlight">\(y\)</span>-Ebene wird der Funktionswert <span class="math notranslate nohighlight">\(f(x,y)\)</span> auf der dritten Achse (<span class="math notranslate nohighlight">\(z\)</span>-Achse) aufgetragen und man erhält eine Oberfläche im dreidimensionalen Raum. Für das Beispiel <span class="math notranslate nohighlight">\(f(x,y)=x+2y\)</span>:</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Y</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Surface</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">colorscale</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">showscale</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span> <span class="n">autosize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+                  <span class="n">margin</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Margin</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Konturdiagramm: Es wird die <span class="math notranslate nohighlight">\(x\)</span>-<span class="math notranslate nohighlight">\(y\)</span>-Ebene dargestellt. Entlange den eingezeichneten <em>Höhenlinien</em> (Isolinien), ist der Funktionswert jeweils gleich. Zusätzlich wird der Funktionswert durch eine Farbe gekennzeichnet.Für das Beispiel <span class="math notranslate nohighlight">\(f(x,y)=x+2y\)</span>:</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Y</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Contour</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">colorscale</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">contours_coloring</span><span class="o">=</span><span class="s1">&#39;heatmap&#39;</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span> <span class="n">autosize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+                  <span class="n">margin</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Margin</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Funktionen von mehr als zwei Variablen lassen sich nicht mehr ohne weiteres visualisieren.</p>
+<p>Allgemein lässt sich <em>jede</em> <strong>lineare</strong> Funktion <span class="math notranslate nohighlight">\(f:\R^n\rightarrow \R\)</span> in <span class="math notranslate nohighlight">\(n\)</span> Variablen auf folgende Form bringen:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(x_1,x_2,\dots,x_n)=b_1x_1+\cdots +b_nx_n+c=\v b^T\v x+c
+\end{align*}\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(b_1,\dots,b_n\)</span> sowie <span class="math notranslate nohighlight">\(c\)</span> (fest gewählte) reelle Zahlen sind.
+Der Funktionsgraph einer linearen Funktion in <span class="math notranslate nohighlight">\(n\)</span> Veränderlichen ist eine <em>Hyperebene</em> (d.h. ein <span class="math notranslate nohighlight">\(n\)</span>-dimensionaler Untervektorraum) im <span class="math notranslate nohighlight">\(\R^{n+1}\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n=1\)</span>: Gerade im <span class="math notranslate nohighlight">\(\R^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(n=2\)</span>: Ebene im <span class="math notranslate nohighlight">\(\R^3\)</span></p></li>
+</ul>
+<div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span class="caption-number">Example 3.2 </span> (Quadratische Funktion)</p>
+<section class="example-content" id="proof-content">
+<div class="amsmath math notranslate nohighlight" id="equation-71e2edea-c092-40bd-b2be-872a8d54902e">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-71e2edea-c092-40bd-b2be-872a8d54902e" title="Permalink to this equation">#</a></span>\[\begin{align}
+	f:\R^2\rightarrow\R\\
+	\bmat x\\y\emat  \mapsto 3x^2+y^2
+\end{align}\]</div>
+</section>
+</div><p>Der Graph der Funktion <span class="math notranslate nohighlight">\(f(x,y)=3x^2+y^2\)</span> ist eine Verallgemeinerung der Parabel, auch <em>Paraboloid</em> genannt:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">Y</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Surface</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">colorscale</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">showscale</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span> <span class="n">autosize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+                  <span class="n">margin</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Margin</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Allgemein lässt sich <em>jede</em> <strong>quadratische</strong> Funktion <span class="math notranslate nohighlight">\(f:\R^n\rightarrow \R\)</span> in <span class="math notranslate nohighlight">\(n\)</span> Variablen auf folgende Form bringen:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(x_1,x_2,\dots,x_n)=\frac{1}{2}\v x^T\v A\v x+\v b^T\v x+c,
+\end{align*}\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(\v A\in\R^{n\times n}\)</span> eine symmetrische Matrix ist, <span class="math notranslate nohighlight">\(\v b\in\R^n\)</span> ein Vektor und <span class="math notranslate nohighlight">\(c\in\R\)</span> eine reelle Zahl. Zum Beispiel lässt sich <span class="math notranslate nohighlight">\(f(x,y)=3x^2+y^2\)</span> schreiben als</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(x,y)=\frac{1}{2}(x,y) \bmat 6 &amp; 0\\0&amp;2\emat  \bmat x\\y\emat   + (0,0)\bmat x\\y\emat  +0.
+\end{align*}\]</div>
+<p>Wir werden uns später noch eingehender mit quadratischen Funktionen beschäftigen (dann wird auch klar werden, warum man diese zunächst kompliziert anmutende Schreibweise bevorzugt).</p>
+<p>Natürlich kann man auch aus dem eindimensionalen bekannte Funktionen wie Polynome, Winkelfunktionen, Exponentialfunktion, Logarithmus, etc. zu mehrdimensionalen Funktionen kombinieren. Der Definitionsbereich muss eingeschränkt werden, falls Funktionen wie <span class="math notranslate nohighlight">\(\sqrt{\ }\)</span> oder <span class="math notranslate nohighlight">\(\log\)</span> verwendet werden.</p>
+<div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 3.3 </span></p>
+<section class="example-content" id="proof-content">
+<div class="amsmath math notranslate nohighlight" id="equation-9e3404d7-998a-478c-a6ca-d0cfecadc2ae">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-9e3404d7-998a-478c-a6ca-d0cfecadc2ae" title="Permalink to this equation">#</a></span>\[\begin{align}
+	f:\R_{&gt;0}\times \R_{\geq 0}\rightarrow\R\\
+	\bmat x\\y\emat  \mapsto \frac{1}{2}\sin(3xy) + \log(x) - \sqrt{y}\\
+\end{align}\]</div>
+</section>
+</div><p>Und hier der Graph dieser Funktion:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">X</span><span class="o">*</span><span class="n">Y</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Surface</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">colorscale</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">showscale</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">autosize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                  <span class="n">margin</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Margin</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Schließlich möchte ich noch darauf hinweisen, dass der Begriff der <em>multivariaten Funktion</em> eine unheimlich breite und nützliche Klasse von Objekten beschreibt. So kann man z.B. <em>jedes</em> Modell des überwachten Lernens als mathematische Funktion <span class="math notranslate nohighlight">\(\v f:\R^n\rightarrow \R^m\)</span> auffassen. So ist z.B. <a class="reference external" href="https://openai.com/dall-e-2/">DALL<span class="math notranslate nohighlight">\(\cdot\)</span>E 2</a> eine mathematische Funktion, die eine (numerische Darstellung einer) Zeichenkette (also einen Vektor) abbildet auf den Raum der Bilder mit 1024<span class="math notranslate nohighlight">\(\times\)</span> 1024 Pixeln (den kann man z.B. numerisch als <span class="math notranslate nohighlight">\(\R^{1024\cdot 1024\cdot 3}\)</span> auffassen, wobei jeder Pixel durch einen dreidimensionalen RGB-Farbwert dargestellt wird). Auch DALL<span class="math notranslate nohighlight">\(\cdot\)</span>E 2 ist eine Hintereinanderausführung von—ziemlich vielen—elementaren Operationen wir Additionen, Multiplikationen und Verzweigungen.</p>
+<p>Wir möchten als nächstes die Eigenschaften <em>Stetigkeit</em> und <em>Differenzierbarkeit</em> für multivariate Funktionen definieren. Dazu wiederholen wir kurz diese Begriffe für univariate Funktionen (siehe 1. Semester: Grundlagen der Analysis).</p>
+</section>
+<section id="differentialrechnung-einer-veranderlicher">
+<span id="sec-diff1"></span><h2><span class="section-number">3.2. </span>Differentialrechnung einer Veränderlicher<a class="headerlink" href="#differentialrechnung-einer-veranderlicher" title="Link zu dieser Überschrift">#</a></h2>
+<p>Im Folgenden setzen wir voraus, soweit nicht anders angegeben, dass alle Funktionen <em>stetig</em> sind. Zur Erinnerung: Anschaulich bedeutet das, dass man den Graph der Funktion zeichnen kann, ohne den Stift abzusetzen. Mathematisch ausgedrückt:</p>
+<div class="proof definition admonition" id="definition-3">
+<p class="admonition-title"><span class="caption-number">Definition 3.1 </span> (Stetigkeit für Funktionen einer Variablen)</p>
+<section class="definition-content" id="proof-content">
+<p>Eine Funktion <span class="math notranslate nohighlight">\(f:\R\rightarrow\R\)</span> heißt <em>stetig</em> in <span class="math notranslate nohighlight">\(x_0\)</span>, wenn zu jedem <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span> ein <span class="math notranslate nohighlight">\(\delta&gt;0\)</span> existiert, so dass für alle <span class="math notranslate nohighlight">\(x\in\R\)</span> mit</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+		|x-x_0|&lt;\delta
+\end{align*}\]</div>
+<p>gilt:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    |f(x)-f(x_0)|&lt;\varepsilon
+\end{align*}\]</div>
+</section>
+</div><p>Intuitiv bedeutet das, dass hinreichend kleine Änderungen des Arguments <span class="math notranslate nohighlight">\(x\)</span> (nämlich kleiner als <span class="math notranslate nohighlight">\(\delta\)</span>) nur beliebig kleine Änderungen des Funktionswerts <span class="math notranslate nohighlight">\(f(x)\)</span> verursachen.</p>
+<p>Wir wiederholen kurz die Differentialrechnung einer Veränderlicher, die aus der Analysis Vorlesung bekannt ist (bzw. sein sollte).</p>
+<div class="proof definition admonition" id="definition-4">
+<p class="admonition-title"><span class="caption-number">Definition 3.2 </span> (Differenzenquotient)</p>
+<section class="definition-content" id="proof-content">
+<p>Der <em>Differenzenquotient</em></p>
+<div class="amsmath math notranslate nohighlight" id="equation-df393e98-e093-45de-b480-5303d465ac57">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-df393e98-e093-45de-b480-5303d465ac57" title="Permalink to this equation">#</a></span>\[\begin{align}	\frac{\delta y}{\delta x}:=\frac{f(x+\delta x)-f(x)}{\delta x}	\end{align}\]</div>
+<p>beschreibt die Steigung der Sekante durch zwei Punkte mit Koordinaten <span class="math notranslate nohighlight">\(x\)</span> und <span class="math notranslate nohighlight">\(x+\delta x\)</span>.</p>
+</section>
+</div><p>Wenn wir nun <span class="math notranslate nohighlight">\(\delta x\)</span> gegen <span class="math notranslate nohighlight">\(0\)</span> laufen lassen (d.h. wir betrachten eine Folge von <span class="math notranslate nohighlight">\(\delta\)</span>’s, die gegen <span class="math notranslate nohighlight">\(0\)</span> konvergiert), erhalten wir als Grenzwert die Steigung der Tangente an <span class="math notranslate nohighlight">\(f\)</span> im Punkt <span class="math notranslate nohighlight">\(x\)</span>, falls <span class="math notranslate nohighlight">\(f\)</span> differenzierbar ist. Die Tangente ist die Ableitung von <span class="math notranslate nohighlight">\(f\)</span> an der Stelle <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="proof definition admonition" id="definition-5">
+<p class="admonition-title"><span class="caption-number">Definition 3.3 </span> (Ableitung)</p>
+<section class="definition-content" id="proof-content">
+<p>Die <em>Ableitung</em> von <span class="math notranslate nohighlight">\(f\)</span> an der Stelle <span class="math notranslate nohighlight">\(x\)</span> ist definiert als der Grenzwert</p>
+<div class="math notranslate nohighlight" id="equation-eq-ableitung">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-eq-ableitung" title="Permalink to this equation">#</a></span>\[\begin{align}\label{eq:ableitung}
+    \frac{\textup{d}f}{\textup{d}x}:=\lim_{h\rightarrow 0}\frac{f(x+h)-f(x)}{h}.
+\end{align}\]</div>
+</section>
+</div><p>Wenn dieser Grenzwert für einen Punkt <span class="math notranslate nohighlight">\(x\)</span> existiert, nennen wir die Funktion <em>differenzierbar</em>. Ein Beispiel für eine Funktion, die nicht überall differenzierbar ist, ist die Betragsfunktion <span class="math notranslate nohighlight">\(f(x)=|x|\)</span>. Im Punkt <span class="math notranslate nohighlight">\(x=0\)</span> hängt der Grenzwert <a class="reference internal" href="#equation-eq-ableitung">(3.7)</a> davon ab, ob man sich dem Punkt <span class="math notranslate nohighlight">\(x=0\)</span> von links oder von rechts nähert (entweder <span class="math notranslate nohighlight">\(1\)</span> oder <span class="math notranslate nohighlight">\(-1\)</span>). Die Ableitung der Betragsfunktion im Punkt <span class="math notranslate nohighlight">\(x=0\)</span> ist also nicht definiert.</p>
+<p>Für die elementaren Funktionen können wir auf gegebene Ausdrücke für die Ableitungen zurückgreifen, siehe Tabelle <a class="reference internal" href="#tab-ableitung1"><span class="std std-numref">Tab. 3.1</span></a>.</p>
+<table class="colwidths-auto table" id="tab-ableitung1">
+<caption><span class="caption-number">Tab. 3.1 </span><span class="caption-text">Ableitungen elementarer Funktionen.</span><a class="headerlink" href="#tab-ableitung1" title="Link zu dieser Tabelle">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Funktion</p></th>
+<th class="head"><p>Ableitung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Konstante</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = c\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x) = 0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Potenzen</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = x^r\)</span> mit <span class="math notranslate nohighlight">\(r \neq 0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x) = rx^{r-1}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Exponentialfunktion</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = \exp(x)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x)=\exp(x)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Logarithmus</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = \ln(x)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x) = \frac{1}{x} \)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Sinus</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = \sin(x)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x) = \cos(x) \)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Cosinus</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = \cos(x)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x) = -\sin(x) \)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Tangens</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = \tan(x)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x) = \frac{1}{\cos^2(x)}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Des weiteren kennen wir folgende <a class="reference internal" href="#tab-ableitung2"><span class="std std-ref">Regeln für die Bildung von Ableitungen.</span></a>, nach denen wir Ableitungen für differenzierbare Funktionen bilden dürfen.</p>
+<table class="colwidths-auto table" id="tab-ableitung2">
+<caption><span class="caption-number">Tab. 3.2 </span><span class="caption-text">Regeln für die Bildung von Ableitungen.</span><a class="headerlink" href="#tab-ableitung2" title="Link zu dieser Tabelle">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Funktion</p></th>
+<th class="head"><p>Ableitung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Summenregel</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = g(x) + h(x)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x) = g'(x) + h'(x)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Produktregel</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = g(x) h(x)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x) = g(x)h'(x) + g'(x)h(x)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Quotientenregel</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = \frac{g(x)}{h(x)}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x) = \frac{g'(x)h(x) - g(x)h'(x)}{h^2(x)}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Kettenregel</p></td>
+<td><p><span class="math notranslate nohighlight">\(f(x) = g(h(x))\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f'(x) = g'(h(x))\,h'(x)\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="proof example admonition" id="example-6">
+<p class="admonition-title"><span class="caption-number">Example 3.4 </span></p>
+<section class="example-content" id="proof-content">
+<p>Wir möchten die Funktion <span class="math notranslate nohighlight">\(h(x)=(1-2x)^2\)</span> mit der Kettenregel ableiten. Wir setzen</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    &amp;h(x)=(1-2x)^2=g(f(x))\\
+    &amp;f(x)=1-2x\\
+    &amp;g(f)=f^2.
+\end{align*}\]</div>
+<p>Nach den Regeln in Tabelle <a class="reference internal" href="#tab-ableitung1"><span class="std std-numref">Tab. 3.1</span></a> leiten wir ab:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    &amp;f'(x)=-2\\
+    &amp;g'(f)=2f.
+\end{align*}\]</div>
+<p>Nach der Kettenregel ist die Ableitung von <span class="math notranslate nohighlight">\(h\)</span> gegeben als</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    h'(x)=g'(f)\cdot f'(x)=2f \cdot (-2) = 2(1-2x) \cdot (-2) = 8x-4.
+\end{align*}\]</div>
+</section>
+</div><p>Die Kettenregel für zusammengesetzte Funktionen lässt sich auch kurz zusammenfassen als “äußere Ableitung <span class="math notranslate nohighlight">\(\times\)</span> innere Ableitung”.</p>
+</section>
+<section id="normen-und-abstande-von-vektoren">
+<h2><span class="section-number">3.3. </span>Normen und Abstände von Vektoren<a class="headerlink" href="#normen-und-abstande-von-vektoren" title="Link zu dieser Überschrift">#</a></h2>
+<p>Wir möchten nun Funktionen betrachten, die nicht nur von einer skalaren Variablen <span class="math notranslate nohighlight">\(x\in\R\)</span> abhängen, sondern von mehr als einer Variablen, also von einem Vektor <span class="math notranslate nohighlight">\(\v x=(x_1,x_2,\dots,x_n)^T\in\R^n\)</span>.</p>
+<p>Ein entscheidender Unterschied zwischen Vektoren und Zahlen ist, dass man zwei Zahlen mittels der <span class="math notranslate nohighlight">\(&lt;\)</span> oder <span class="math notranslate nohighlight">\(&gt;\)</span> miteinander <em>vergleichen</em> kann; sie bilden eine geordnete Menge. Bei Vektoren mit <span class="math notranslate nohighlight">\(n\geq 2\)</span> geht das nicht, Aussagen wie <span class="math notranslate nohighlight">\(\v x&gt;\v y\)</span> machen keinen Sinn. Man kann aber ihren <em>Abstand</em> miteinander vergleichen. Im Falle zweier Zahlen <span class="math notranslate nohighlight">\(a\)</span> und <span class="math notranslate nohighlight">\(b\)</span> ist ihr Abstand durch ihre Entfernung auf dem Zahlenstrahl gegeben, d.h. durch den Betrag ihrer  Differenz, <span class="math notranslate nohighlight">\(|a-b|\)</span>. Diesen Abstandsbegriff verallgemeinert man auf Vektoren mit dem Konzept der <em>Norm</em>.</p>
+<div class="proof definition admonition" id="definition-7">
+<p class="admonition-title"><span class="caption-number">Definition 3.4 </span> (Norm)</p>
+<section class="definition-content" id="proof-content">
+<p>Eine <em>Norm</em> auf einem Vektorraum <span class="math notranslate nohighlight">\(V\)</span> ist eine Funktion</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \norm{\cdot_{}}: V&amp;\rightarrow \R\\
+    \v x&amp;\mapsto \norm{\v x_{}},
+\end{align*}\]</div>
+<p>die jedem Vektor <span class="math notranslate nohighlight">\(\v x\)</span> seine <em>Länge</em> <span class="math notranslate nohighlight">\(\norm{\v x_{}}\in\R\)</span> zuweist, so dass für alle <span class="math notranslate nohighlight">\(\lambda\in\R\)</span> und <span class="math notranslate nohighlight">\(\v x,\v y\in V\)</span> folgendes gilt:</p>
+<ul class="simple">
+<li><p>Homogenität: <span class="math notranslate nohighlight">\(\norm{\lambda \v x}=|\lambda|\norm{\v x_{}}\)</span></p></li>
+<li><p>Dreiecksungleichung: <span class="math notranslate nohighlight">\(\norm{\v x+\v y} \leq \norm{\v x_{}}+\norm{\v y}\)</span></p></li>
+<li><p>Positive Definitheit: <span class="math notranslate nohighlight">\(\norm{\v x_{}}\geq 0\)</span> und <span class="math notranslate nohighlight">\(\norm{\v x_{}}=0\)</span> dann und nur dann wenn <span class="math notranslate nohighlight">\(\v x=0\)</span></p></li>
+</ul>
+</section>
+</div><p>Der Begriff der Norm ist sehr allgemein. Für unsere Zwecke sind vor allem zwei Beispiele wichtig:</p>
+<div class="proof example admonition" id="example-8">
+<p class="admonition-title"><span class="caption-number">Example 3.5 </span> (Manhattan Norm)</p>
+<section class="example-content" id="proof-content">
+<p>Die <em>Manhattan Norm</em> von <span class="math notranslate nohighlight">\(\v x\in\R^n\)</span> ist definiert als</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\norm{\v x_{}}_1 := \sum_{i=1}^n |x_i|,
+\end{align*}\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(| \cdot|\)</span> den Betrag bezeichnet.</p>
+</section>
+</div><div class="proof example admonition" id="example-9">
+<p class="admonition-title"><span class="caption-number">Example 3.6 </span> (Euklidische Norm)</p>
+<section class="example-content" id="proof-content">
+<p>Die <em>Euklidische Norm</em> von <span class="math notranslate nohighlight">\(\v x\in\R^n\)</span> ist definiert als</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\norm{\v x}_2 := \sqrt{\sum_{i=1}^n x_i^2 = \sqrt{\v x^T \v x}}
+\end{align*}\]</div>
+<p>und berechnet die <em>Euklidische Distanz</em> von <span class="math notranslate nohighlight">\(x\)</span> vom Koordinatenursprung. Die Euklidische Norm nennt man auch <span class="math notranslate nohighlight">\(\ell_2\)</span>-Norm.</p>
+</section>
+</div><p>Das folgende Bild zeigt alle Vektoren (Punkte) mit <span class="math notranslate nohighlight">\(\norm{\v x_{}}_1=1\)</span> (rot) und alle Vektoren (Punkte) mit <span class="math notranslate nohighlight">\(\norm{\v x_{}}_2=1\)</span> (blau):</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/l1_l2_ball.png"><img alt="_images/l1_l2_ball.png" src="_images/l1_l2_ball.png" style="width: 400px;" /></a>
+</figure>
+<p>Mit der Definition der Euklidischen Norm können wir nun auch <em>Distanzen</em> (oder <em>Abstände</em>) zwischen Vektoren sinnvoll definieren:</p>
+<div class="proof definition admonition" id="definition-10">
+<p class="admonition-title"><span class="caption-number">Definition 3.5 </span> (Abstand)</p>
+<section class="definition-content" id="proof-content">
+<p>Für zwei Vektoren <span class="math notranslate nohighlight">\(\v x,\v y\in\R^n\)</span> nennen wir</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+d(\v x,\v y)=\norm{\v x-\v y}
+\end{align*}\]</div>
+<p>die <em>Distanz</em> oder den <em>Abstand</em> von <span class="math notranslate nohighlight">\(x\)</span> und <span class="math notranslate nohighlight">\(y\)</span>. Man nennt</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\norm{\v x-\v y}_1\)</span> die <em>Manhattan-Distanz</em></p></li>
+<li><p><span class="math notranslate nohighlight">\(\norm{\v x-\v y}_2\)</span> die <em>Euklidische Distanz</em></p></li>
+</ul>
+</section>
+</div><p>Das folgende Bild veranschaulicht die beiden Distanzbegriffe: Die euklidische Distanz (blau) ist die Länge der Strecke zwischen den beiden schwarzen Punkten—genau so, wie man Abstände in der klassischen, durch Euklid<a class="footnote-reference brackets" href="#fn-euklid" id="id1">1</a> verbreiteten Geometrie (die aus dem Schulunterricht…) misst. Im Beispiel: <span class="math notranslate nohighlight">\(\norm{\v x-\v y}_2=\sqrt{(5-1)^2+(4-1)^2}=3\)</span>. Die Manhattan-Distanz ist die Summe der beiden roten Strecken—also die Strecke, die ein Taxi zwischen den Häuserblocks Manhattans zurücklegen müsste, um vom einen zum anderen Punkt zu gelangen. Im Beispiel: <span class="math notranslate nohighlight">\(\norm{\v x-\v y}_1=|5-1|+|4-1|=7\)</span>.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/l1_l2_distance.png"><img alt="_images/l1_l2_distance.png" src="_images/l1_l2_distance.png" style="width: 400px;" /></a>
+</figure>
+</section>
+<section id="stetigkeit-multivariater-funktionen">
+<h2><span class="section-number">3.4. </span>Stetigkeit multivariater Funktionen<a class="headerlink" href="#stetigkeit-multivariater-funktionen" title="Link zu dieser Überschrift">#</a></h2>
+<p>Mit diesem Abstandsbegriff ausgerüstet, definieren wir nun den Begriff der Stetigkeit, analog zum eindimensionalen Fall. Wir tun dies hier direkt für den allgemeinsten Fall, d.h. Abbildungen von Vektoren auf Vektoren.</p>
+<div class="proof definition admonition" id="definition-11">
+<p class="admonition-title"><span class="caption-number">Definition 3.6 </span> (Stetigkeit für Funktionen mehrerer Variablen)</p>
+<section class="definition-content" id="proof-content">
+<p>Eine Funktion <span class="math notranslate nohighlight">\(\v f:\R^n\rightarrow\R^m\)</span> heißt <em>stetig</em> in <span class="math notranslate nohighlight">\(\v x_0\)</span>, wenn zu jedem <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span> ein <span class="math notranslate nohighlight">\(\delta&gt;0\)</span> existiert, so dass für alle <span class="math notranslate nohighlight">\(x\in\R^n\)</span> mit</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \left\|\v x-\v x_0\right\|&lt;\delta
+\end{align*}\]</div>
+<p>gilt:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \left\|\v f(\v x)-\v f(\v x_0)\right\|&lt;\varepsilon.
+\end{align*}\]</div>
+</section>
+</div><p>Wir benutzen hier nun nicht mehr den Betrag als Abstand zwischen zwei Zahlen, sondern eine Vektornorm (z.B. die euklidische Norm), mit der man den Abstand zwischen zwei Vektoren bestimmen kann (bzw. die Länge des Differenzenvektors). Anschaulich bedeutet dies genau das gleiche wie im Eindimensionalen: wenn zwei Vektoren nahe beieinander sind, dann sind auch ihre Funktionswerte nahe beieinander (und zwar <em>beliebig</em> nahe, nämlich <span class="math notranslate nohighlight">\(&lt;\varepsilon\)</span>, wenn nur die Vektoren nahe genug beieinander gewählt, nämlich mit Abstand <span class="math notranslate nohighlight">\(&lt;\delta\)</span>). Oder auch: Die Funktion macht keine Sprünge.</p>
+<div class="proof example admonition" id="example-12">
+<p class="admonition-title"><span class="caption-number">Example 3.7 </span> (Beispiele stetiger Funktionen)</p>
+<section class="example-content" id="proof-content">
+<p>Die folgenden Funktionen sind stetig:</p>
+<ul class="simple">
+<li><p>Lineare Funktionen sind stetig.</p></li>
+<li><p>Quadratische Funktionen sind stetig.</p></li>
+<li><p>Allgemein: Multivariate Polynome beliebigen Grades sind stetig:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+p(x_1,\dots,x_n)=\sum_{q_1+q_2+\cdots+q_n\leq n}\alpha_{q_1,\dots,q_n}x_1^{q_1}\cdots x_n^{q_n}
+\end{align*}\]</div>
+<p>also z.B.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+p(x_1,x_2,x_3)=x_1^2+x_2^4x_3+x_3^3+x_2x_1+3
+\end{align*}\]</div>
+<ul class="simple">
+<li><p>Projektion auf die <span class="math notranslate nohighlight">\(j\)</span>-te Komponente <span class="math notranslate nohighlight">\(f(\v x)=x_j\)</span> ist stetig.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sin x, \cos x, \exp x\)</span> sind stetig auf <span class="math notranslate nohighlight">\(\R\)</span>, <span class="math notranslate nohighlight">\(\ln x\)</span> ist stetig auf <span class="math notranslate nohighlight">\(\R_{&gt;0}\)</span>.</p></li>
+</ul>
+</section>
+</div><div class="proof example admonition" id="example-13">
+<p class="admonition-title"><span class="caption-number">Example 3.8 </span> (Beispiele unstetiger Funktionen (I))</p>
+<section class="example-content" id="proof-content">
+<p>Die <em>Heaviside</em>-Funktion</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(x)=\left\{\begin{array}{lr} 0, &amp; x&lt;0\\1, &amp; x\geq 0\end{array}\right.
+\end{align*}\]</div>
+<p>ist unstetig in <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</section>
+</div><div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">1e-16</span><span class="p">,</span><span class="mf">1e-16</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+<span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">color_discrete_sequence</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Blues</span><span class="p">)),</span> <span class="n">height</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="proof example admonition" id="example-14">
+<p class="admonition-title"><span class="caption-number">Example 3.9 </span> (Beispiele unstetiger Funktionen (II))</p>
+<section class="example-content" id="proof-content">
+<p>Die Funktion</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(x)=\left\{\begin{array}{lr} \sin(1/x), &amp; x\neq 0\\0, &amp; x=0\end{array}\right.
+\end{align*}\]</div>
+<p>ist unstetig in <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</section>
+</div><div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="p">)</span>
+<span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">color_discrete_sequence</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Blues</span><span class="p">)),</span> <span class="n">height</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="proof example admonition" id="ex:unstetig">
+<p class="admonition-title"><span class="caption-number">Example 3.10 </span> (Beispiele unstetiger Funktionen (III))</p>
+<section class="example-content" id="proof-content">
+<p>Die Funktion</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(x,y)=\left\{\begin{array}{lr} 0, &amp; x=y=0\\\frac{xy}{x^2+y^2}, &amp; \text{sonst}\end{array}\right.
+\end{align*}\]</div>
+<p>ist unstetig in <span class="math notranslate nohighlight">\((0,0)\)</span> (obwohl sie stetig in <span class="math notranslate nohighlight">\(x\)</span> und in <span class="math notranslate nohighlight">\(y\)</span> ist!). Je nachdem, aus welcher Richtung man sich dem Punkt <span class="math notranslate nohighlight">\((0,0)\)</span> nähert, ergeben sich unterschiedliche stetige Fortsetzungen der Funktion. Nähert man sich entlang einer der Koordinatenachsen, ergibt sich 0. Nähert man sich entlang der Winkelhalbierenden der <span class="math notranslate nohighlight">\(x\)</span>-<span class="math notranslate nohighlight">\(y\)</span>-Ebene, erhält man entweder <span class="math notranslate nohighlight">\(+0.5\)</span> oder <span class="math notranslate nohighlight">\(-0.5\)</span>.</p>
+</section>
+</div><div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">X</span><span class="o">*</span><span class="n">Y</span><span class="o">/</span><span class="p">(</span><span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">Y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Surface</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">colorscale</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">showscale</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span> <span class="n">autosize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+                  <span class="n">margin</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Margin</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="proof example admonition" id="example-16">
+<p class="admonition-title"><span class="caption-number">Example 3.11 </span> (Beispiele unstetiger Funktionen (IV))</p>
+<section class="example-content" id="proof-content">
+<p>Ein pathologisches Beispiel für eine unstetige Funktion ist die Dirichlet-Funktion<a class="footnote-reference brackets" href="#fn-dirichlet" id="id2">2</a>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+D:\R\rightarrow \R,\quad
+x\mapsto D(x)=\left\{\begin{array}{ll} 1, &amp; \text{wenn }x\text{ rational,}\\
+0, &amp;  \text{wenn }x\text{ irrational.}\end{array}\right.
+\end{align*}\]</div>
+<p>Diese ist NIRGENDS STETIG 🙀!</p>
+</section>
+</div><p>In vielen Fällen weiß man, dass eine Funktion stetig ist, weil sie aus stetigen Funktion “aufgebaut” ist. Das stellt der folgende Satz sicher.</p>
+<div class="proof theorem admonition" id="theorem-17">
+<p class="admonition-title"><span class="caption-number">Theorem 3.1 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Sind die Funktionen <span class="math notranslate nohighlight">\(f,g:D\subseteq \R^n\rightarrow \R\)</span> stetig an der Stelle <span class="math notranslate nohighlight">\(\v x_0\in D\)</span>, dann sind auch <span class="math notranslate nohighlight">\(f+g\)</span>, <span class="math notranslate nohighlight">\(f\cdot g\)</span> und <span class="math notranslate nohighlight">\(\frac{f}{g}\)</span> (falls <span class="math notranslate nohighlight">\(g(\v x_0)\neq 0\)</span>) stetig.</p>
+<p>Ist <span class="math notranslate nohighlight">\(\v f:D_f\subseteq \R^n\rightarrow \R^m\)</span> stetig an der Stelle <span class="math notranslate nohighlight">\(\v x_0\in D_g\)</span> und <span class="math notranslate nohighlight">\(\v g:D_g\subseteq \R^m\rightarrow \R^k\)</span> stetig in <span class="math notranslate nohighlight">\(\v f(\v x_0)\)</span>, so ist auch die Verkettung <span class="math notranslate nohighlight">\(\v g\circ \v f\)</span> (erst <span class="math notranslate nohighlight">\(\v f\)</span>, dann <span class="math notranslate nohighlight">\(\v g\)</span>) stetig.</p>
+</section>
+</div></section>
+<section id="partielle-ableitungen-und-gradient">
+<h2><span class="section-number">3.5. </span>Partielle Ableitungen und Gradient<a class="headerlink" href="#partielle-ableitungen-und-gradient" title="Link zu dieser Überschrift">#</a></h2>
+<p>Geometrisch entspricht die Ableitung einer univariaten Funktion in einem Punkt <span class="math notranslate nohighlight">\(x_0\)</span> der  <em>Steigung der Tangenten</em> in diesem Punkt. Der Punkt <span class="math notranslate nohighlight">\(x_0\)</span> und die Ableitung <span class="math notranslate nohighlight">\(f'(x_0)\)</span> definieren also die Tangente.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/tangente.png"><img alt="_images/tangente.png" src="_images/tangente.png" style="width: 300px;" /></a>
+</figure>
+<p>Diese Anschauung lässt sich nun auch auf zwei Dimensionen übertragen: Im Zweidimensionalen definieren der Punkt <span class="math notranslate nohighlight">\(\v x_0\)</span> und die (eindimensionalen) Ableitungen in Richtung der beiden Koordinatenachsen die Tangentialebene an die Funktion.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/tangentialebene.png"><img alt="_images/tangentialebene.png" src="_images/tangentialebene.png" style="width: 400px;" /></a>
+</figure>
+<p>Die Ableitungen in Richtung der Koordinatenachsen nennt man <em>partielle Ableitungen</em> der Funktion. Man bestimmt sie, indem <em>jeweils eine</em> der Variablen variiert wird, während die anderen konstant bleiben. Alle so bestimmten partiellen Ableitungen werden in einem Vektor angeordnet, den man <em>Gradient</em> nennt.</p>
+<div class="proof definition admonition" id="definition-18">
+<p class="admonition-title"><span class="caption-number">Definition 3.7 </span> (Partielle Ableitung und Gradient)</p>
+<section class="definition-content" id="proof-content">
+<p>Für eine Funktion <span class="math notranslate nohighlight">\(f:\R^n\rightarrow \R\)</span>, <span class="math notranslate nohighlight">\(\v x\mapsto f(\v x)\)</span>, <span class="math notranslate nohighlight">\(\v x\in\R^n\)</span> in <span class="math notranslate nohighlight">\(n\)</span> Variablen <span class="math notranslate nohighlight">\(x_1,x_2,\dots,x_n\)</span> definieren wir die <em>partielle Ableitung</em> als</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{\partial f}{\partial x_1}&amp;=\lim_{h\rightarrow 0}\frac{f(x_1+h,x_2,\dots,x_n)-f(\v x)}{h}\\
+    \frac{\partial f}{\partial x_2}&amp;=\lim_{h\rightarrow 0}\frac{f(x_1,x_2+h,\dots,x_n)-f(\v x)}{h}\\
+    &amp;\vdots\\
+    \frac{\partial f}{\partial x_n}&amp;=\lim_{h\rightarrow 0}\frac{f(x_1,x_2,\dots,x_n+h)-f(\v x)}{h}
+\end{align*}\]</div>
+<p>und fassen sie in einem Zeilenvektor</p>
+<div class="math notranslate nohighlight" id="equation-eq-gradient">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-eq-gradient" title="Permalink to this equation">#</a></span>\[\begin{align}\label{eq:gradient}
+    \nabla_{\v x} f=\frac{\textup{d}f}{\textup{d}\v x}=
+    \left(\frac{\partial f(\v x)}{\partial x_1}\quad \frac{\partial f(\v x)}{\partial x_2}\quad\dots\quad\frac{\partial f(\v x)}{\partial x_n}\right)\in \R^{1\times n}
+\end{align}\]</div>
+<p>zusammen. Der Zeilenvektor <a class="reference internal" href="#equation-eq-gradient">(3.8)</a> heißt <em>Gradient</em> von <span class="math notranslate nohighlight">\(f\)</span> und ist eine Verallgemeinerung der Ableitung aus Abschnitt <a class="reference internal" href="#sec-diff1"><span class="std std-ref">Differentialrechnung einer Veränderlicher</span></a>. Das bedeutet, für <span class="math notranslate nohighlight">\(n=1\)</span> ist der Gradient die gewöhnliche Ableitung in einer Variablen. Wenn klar ist, nach welchen Variablen abgeleitet wird, schreiben wir anstatt <span class="math notranslate nohighlight">\(\nabla_{\v x} f\)</span> auch einfach <span class="math notranslate nohighlight">\(\nabla f\)</span>.</p>
+</section>
+</div><p>Wenn man sich Formel <a class="reference internal" href="#equation-eq-gradient">(3.8)</a> genauer anschaut, sieht man, dass jede partielle Ableitung eine Ableitung nach einem Skalar ist—also genau der Ableitungsbegriff, den wir schon aus dem eindimensionalen kennen. Anschaulich ist die partielle Ableitung <span class="math notranslate nohighlight">\(\derv{f}{x_1}\)</span> die Änderung (genauer: die Änderungs<em>rate</em>) des Funktionswertes bei kleinen Störungen von <span class="math notranslate nohighlight">\(x_1\)</span>, während die anderen Variablen konstant gehalten werden.</p>
+<div class="proof example admonition" id="example-19">
+<p class="admonition-title"><span class="caption-number">Example 3.12 </span></p>
+<section class="example-content" id="proof-content">
+<p>Für <span class="math notranslate nohighlight">\(f(x_1,x_2)=x_1^2+x_2^2\)</span> erhalten wir die partiellen Ableitungen</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{\partial f}{\partial x_1} = 2x_1\\
+    \frac{\partial f}{\partial x_2} = 2x_2,
+\end{align*}\]</div>
+<p>d.h. <span class="math notranslate nohighlight">\(\nabla f(x_1,x_2)=\left(2x_1,2x_2\right)\)</span>.</p>
+</section>
+</div><div class="proof example admonition" id="example-20">
+<p class="admonition-title"><span class="caption-number">Example 3.13 </span></p>
+<section class="example-content" id="proof-content">
+<p>Für <span class="math notranslate nohighlight">\(f(x_1,x_2)=x_1^2\cdot x_2\)</span> erhalten wir die partiellen Ableitungen</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{\partial f}{\partial x_1} = 2x_1 x_2\\
+    \frac{\partial f}{\partial x_2} = x_1^2,
+\end{align*}\]</div>
+<p>d.h. <span class="math notranslate nohighlight">\(\nabla f(x_1,x_2)=\left(2x_1 x_2, x_1^2\right)\)</span>.</p>
+</section>
+</div><div class="proof example admonition" id="example-21">
+<p class="admonition-title"><span class="caption-number">Example 3.14 </span></p>
+<section class="example-content" id="proof-content">
+<p>Für <span class="math notranslate nohighlight">\(f(x_1,x_2)=(x_1+2x_2^3)^2\)</span> erhalten wir die partiellen Ableitungen</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{\partial f}{\partial x_1} = 2(x_1+2x_2^3)\frac{\partial}{\partial x_1}(x_1+2x_2^3)=2(x_1+2x_2^3)\\
+    \frac{\partial f}{\partial x_2} = 2(x_1+2x_2^3)\frac{\partial}{\partial x_2}(x_1+2x_2^3)=12(x+2x_2^3)x_2^2.
+\end{align*}\]</div>
+<p>Für beide partiellen Ableitungen haben wir die Kettenregel für univariate Funktionen benutzt.</p>
+</section>
+</div><div class="proof example admonition" id="example-22">
+<p class="admonition-title"><span class="caption-number">Example 3.15 </span></p>
+<section class="example-content" id="proof-content">
+<p>Für <span class="math notranslate nohighlight">\(f(x_1,x_2)=w_0+w_1x_1+w_2x_2\)</span> erhalten wir die partiellen Ableitungen</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{\partial f}{\partial x_1} = w_1\\
+    \frac{\partial f}{\partial x_2} = w_2,
+\end{align*}\]</div>
+<p>d.h. <span class="math notranslate nohighlight">\(\nabla f(x_1,x_2)=(w_1,w_2)\)</span>.</p>
+</section>
+</div><div class="proof example admonition" id="example-23">
+<p class="admonition-title"><span class="caption-number">Example 3.16 </span></p>
+<section class="example-content" id="proof-content">
+<p>Für <span class="math notranslate nohighlight">\(f(x_1,\dots,x_n)=w_0+\v w^T\v x=w_0+w_1x_1+\cdots + w_nx_n\)</span> erhalten wir die partiellen Ableitungen</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{\partial f}{\partial x_1} &amp;= w_1\\
+    &amp;\vdots\\
+    \frac{\partial f}{\partial x_n} &amp;= w_n,
+\end{align*}\]</div>
+<p>d.h. <span class="math notranslate nohighlight">\(\nabla f(x_1,\dots, x_n)=(w_1,\dots,w_n)\)</span>.</p>
+</section>
+</div><section id="zusammenhang-zwischen-stetigkeit-und-differenzierbarkeit">
+<h3>Zusammenhang zwischen Stetigkeit und Differenzierbarkeit<a class="headerlink" href="#zusammenhang-zwischen-stetigkeit-und-differenzierbarkeit" title="Link zu dieser Überschrift">#</a></h3>
+<p>Für univariate Funktionen gilt folgender Zusammenhang:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\text{Stetig differenzierbar} \Rightarrow \text{differenzierbar} \Rightarrow \text{stetig}
+\end{align*}\]</div>
+<p>Das bedeutet, wenn eine Funktion an einem Punkt differenzierbar ist, muss sie dort auch stetig sein (aber die Ableitung muss nicht zwingend stetig sein). Oder andersherum: wenn die Funktion an einem Punkt einen Sprung macht, kann man sie dort nicht ableiten.</p>
+<p>Für multivariate Funktionen folgt aus der partiellen Differenzierbarkeit allerdings noch nicht, dass die Funktion stetig sein muss, sondern nur, dass sie in Richtung der Koordinatenachsen (auf die beziehen sich ja die partiellen Ableitungen) stetig ist. Stetigkeit folgt aber dann, wenn alle partiellen Ableitungen (als Funktionen aufgefasst) stetig sind:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\text{Stetig partiell differenzierbar} \Rightarrow \text{stetig}
+\end{align*}\]</div>
+<p>Das bedeutet, dass es auch nicht stetige Funktionen geben kann, die aber trotzdem partiell abgeleitet werden können.</p>
+<div class="proof example admonition" id="ex:partiell-unstetig">
+<p class="admonition-title"><span class="caption-number">Example 3.17 </span></p>
+<section class="example-content" id="proof-content">
+<p>Die Funktion aus <a class="reference internal" href="#ex:unstetig">Example 3.10</a></p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(x,y)=\left\{\begin{array}{lr} 0, &amp; x=y=0\\\frac{xy}{x^2+y^2}, &amp; \text{sonst}\end{array}\right.
+\end{align*}\]</div>
+<p>ist im Punkt <span class="math notranslate nohighlight">\((0,0)\)</span> partiell differenzierbar (die beiden partiellen Ableitungen <span class="math notranslate nohighlight">\(\partial_x f\)</span> und <span class="math notranslate nohighlight">\(\partial_y f\)</span> sind dort <span class="math notranslate nohighlight">\(0\)</span>), aber sie ist dort nicht stetig.</p>
+</section>
+</div><!-- In {numref}`sec:theo` schauen wir uns noch den Begriff der *totalen Differenzierbarkeit* an, eine alternative Möglichkeit, den Begriff der Differenzierbarkeit einzuführen (und aus dem, im Gegensatz zur partiellen Differenzierbarkeit, auch die Stetigkeit folgt). -->
+</section>
+</section>
+<section id="ableitungen-von-vektorwertigen-funktionen-jacobi-matrix">
+<h2><span class="section-number">3.6. </span>Ableitungen von vektorwertigen Funktionen: Jacobi-Matrix<a class="headerlink" href="#ableitungen-von-vektorwertigen-funktionen-jacobi-matrix" title="Link zu dieser Überschrift">#</a></h2>
+<p>Bisher haben wir nur Ableitungen von reellwertigen Funktionen <span class="math notranslate nohighlight">\(f:\R^n\rightarrow\R\)</span> betrachtet. Wir können aber genausogut Funktionen betrachten die einen Vektor auf einen Vektor abbilden: <span class="math notranslate nohighlight">\(\v f:\R^n\rightarrow\R^m\)</span>, mit <span class="math notranslate nohighlight">\(m,n\geq 1\)</span> (beachte den Unterschied in der Schreibweise: <span class="math notranslate nohighlight">\(\v f\)</span>: vektorwertige Funktion vs. <span class="math notranslate nohighlight">\(f\)</span>: reellwertige Funktion). In diesem Fall schreiben wir den <em>Vektor</em> der Funktionswerte als</p>
+<div class="math notranslate nohighlight" id="equation-eq-fktvektor">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-eq-fktvektor" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{align}
+	\v f(\v x)=\bmat 
+		f_1(\v x)\\ \vdots \\f_m(\v x)
+	\emat  \in \R^m.
+\end{align}\end{split}\]</div>
+<p>Das bedeutet, wir können die Vektor-wertige Funktion <span class="math notranslate nohighlight">\(\v f\)</span> als Vektor von reellwertigen Funktionen <span class="math notranslate nohighlight">\(\left(f_1,\dots,f_m\right)\in\R^m\)</span> auffassen.</p>
+<p>Damit ist auch die Ableitung von Vektor-wertigen Funktionen sehr ähnlich zur Ableitung von eindimensionalen Funktionen; man muss lediglich aufpassen, dass man die partiellen Ableitungen richtig sortiert und den Überblick über die Indizes behält.</p>
+<p>Analog zum Gradienten werden die partiellen Ableitungen einer Funktion <span class="math notranslate nohighlight">\(\v f:\R^n\rightarrow \R^m\)</span> in der <em>Jacobimatrix</em> zusammengefasst, einer Verallgemeinerung des Gradientenbegriffes.</p>
+<div class="proof definition admonition" id="definition-25">
+<p class="admonition-title"><span class="caption-number">Definition 3.8 </span> (Jacobimatrix)</p>
+<section class="definition-content" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(\v f:\R^n\rightarrow \R^m\)</span> eine differenzierbare Funktion. Dann heißt die <span class="math notranslate nohighlight">\(m\times n\)</span> Matrix <span class="math notranslate nohighlight">\(\v J\)</span> der partiellen Ableitungen,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-27378422-220b-43f7-afbc-3ec07a6dd507">
+<span class="eqno">(3.10)<a class="headerlink" href="#equation-27378422-220b-43f7-afbc-3ec07a6dd507" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \v J=\nabla \v f(\v x) = \bmat 
+        \nabla f_1(\v x)\\
+        \vdots\\
+        \nabla f_m(\v x)
+    \emat  =\bmat 
+        \derv{f_1}{x_1}&amp; \cdots &amp; \derv{f_1}{x_n}\\
+        \vdots\\
+        \derv{f_m}{x_1}&amp; \cdots &amp; \derv{f_m}{x_n}
+    \emat  \in \R^{m\times n}
+\end{align}\]</div>
+<p>die <em>Jacobimatrix</em> von <span class="math notranslate nohighlight">\(\v f\)</span>.</p>
+</section>
+</div><div class="proof example admonition" id="ex:jacobi">
+<p class="admonition-title"><span class="caption-number">Example 3.18 </span></p>
+<section class="example-content" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(\v f:\R^3\rightarrow \R^2\)</span> eine Funktion gegeben durch</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \v f(x_1,x_2,x_3)=\bmat 
+        x_1x_2+x_3 \\x_3^2+1 
+    \emat  
+\end{align*}\]</div>
+<p>Dann ist die Jacobimatrix <span class="math notranslate nohighlight">\(J\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \v J=\bmat 
+        x_2 &amp; x_1 &amp; 1 \\
+        0  &amp; 0  &amp;2x_3
+    \emat  
+\end{align*}\]</div>
+</section>
+</div><div class="proof example admonition" id="bsp:linear">
+<p class="admonition-title"><span class="caption-number">Example 3.19 </span></p>
+<section class="example-content" id="proof-content">
+<p>Wir betrachten die Funktion <span class="math notranslate nohighlight">\(\v f:\R^m\rightarrow \R^n\)</span> mit</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \v f(\v x)=\v A\v x,\quad \v f(\v x)\in\R^m,\quad \v A\in\R^{m\times n},\quad \v x\in\R^n
+\end{align*}\]</div>
+<p>Nach der Definition der Jacobimatrix muss der Gradient dieser Funktion eine <span class="math notranslate nohighlight">\(m\times n\)</span> Matrix sein: <span class="math notranslate nohighlight">\(\nabla \v f\in\R^{m\times n}\)</span>. Nun berechnen wir die partiellen Ableitungen von jedem der <span class="math notranslate nohighlight">\(m\)</span> Einträge des Ergebnisvektors <span class="math notranslate nohighlight">\(\v f\)</span> nach jeder der <span class="math notranslate nohighlight">\(n\)</span> Variablen <span class="math notranslate nohighlight">\(x_j\)</span>. Nach der Definition des Matrix-Vektor Produkts gilt</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    f_i(\v x)=\sum_{j=1}^n a_{ij}x_j \Rightarrow \derv{f_i}{x_j}= a_{ij}
+\end{align*}\]</div>
+<p>Wir fassen alle partiellen Ableitungen in der Jacobimatrix zusammen und erhalten:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \nabla f = \bmat 
+        \derv{f_1}{x_1}&amp; \cdots &amp; \derv{f_1}{x_n}\\
+        \vdots\\
+        \derv{f_m}{x_1}&amp; \cdots &amp; \derv{f_m}{x_n}
+    \emat  =
+    \bmat 
+        a_{11} &amp;\cdots &amp; a_{1n}\\
+        \vdots &amp; 		&amp; \vdots\\
+        a_{m1} &amp; \cdots &amp; a_{mn}
+    \emat  =\v A\in \R^{m\times n}
+\end{align*}\]</div>
+<p>Das bedeutet, dass die Ableitung einer multivariaten linearen Funktion gerade die Koeffizientenmatrix ist. Dies entspricht im Eindimensionalen der Tatsache, dass die Ableitung einer Geradengleichung (=lineare Funktion im Eindimensionalen) die Geradensteigung (=Koeffizient von <span class="math notranslate nohighlight">\(x\)</span>) is.</p>
+</section>
+</div></section>
+<section id="die-kettenregel">
+<h2><span class="section-number">3.7. </span>Die Kettenregel<a class="headerlink" href="#die-kettenregel" title="Link zu dieser Überschrift">#</a></h2>
+<p>Für multivariate Funktionen <span class="math notranslate nohighlight">\(f:\R^n\rightarrow \R\)</span> gelten die gleichen Regeln wie für univariate Funktionen: Summenregel, Produktregel und Kettenregel, siehe Tab. <a class="reference internal" href="#tab-ableitung2"><span class="std std-numref">Tab. 3.2</span></a>. Summenregel und Produktregel für zwei Funktionen <span class="math notranslate nohighlight">\(f,g:\R^n\rightarrow \R\)</span> sind wie folgt:</p>
+<ul class="simple">
+<li><p>Summenregel:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-sumrule">
+<span class="eqno">(3.11)<a class="headerlink" href="#equation-eq-sumrule" title="Permalink to this equation">#</a></span>\[    \begin{align}\label{eq:sumrule}
+		&amp;\derv{}{\v x}\left(f(\v x)+g(\v x)\right)=\derv{f}{\v x}+\derv{g}{\v x}
+	\end{align}\]</div>
+<ul class="simple">
+<li><p>Produktregel:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-productrule">
+<span class="eqno">(3.12)<a class="headerlink" href="#equation-eq-productrule" title="Permalink to this equation">#</a></span>\[	\begin{align}\label{eq:productrule}
+		&amp;\derv{}{\v x}\left(f(\v x)g(\v x)\right)=\derv{f}{\v x}g(\v x)+f(\v x)\derv{g}{\v x}
+	\end{align}\]</div>
+<p>Für vektorwertige Funktionen gelten diese Regeln für jede Komponente des Vektors der Funktionswerte.</p>
+<p>Ein wenig schwieriger ist die Kettenregel. Dort werden im univariaten Fall Ableitungen multipliziert (“äußere <span class="math notranslate nohighlight">\(\times\)</span> innere Ableitung”). Im multivariaten Fall haben wir es aber mit Ableitungen nach <em>Vektoren</em> <span class="math notranslate nohighlight">\(\v x\in\R^n\)</span> zu tun, d.h., in den Ableitungen tauchen nun Vektoren und Matrizen auf und deren Multiplikation ist nicht immer definiert und auch nicht kommutativ (d.h. im Allgemeinen ist für zwei Matrizen <span class="math notranslate nohighlight">\(\v A\)</span> und <span class="math notranslate nohighlight">\(\v B\)</span> das Produkt <span class="math notranslate nohighlight">\(\v A\v B\neq \v B\v A\)</span>).</p>
+<p>Wir geben die Kettenregel zunächst formal an. Für zwei differenzierbare Funktionen mit passenden Definitions- und Bildbereichen, d.h. <span class="math notranslate nohighlight">\(\v f:\R^n\rightarrow \R^m\)</span>, <span class="math notranslate nohighlight">\(\v g:\R^m\rightarrow\R^k\)</span> gilt:</p>
+<div class="math notranslate nohighlight" id="equation-eq-chain">
+<span class="eqno">(3.13)<a class="headerlink" href="#equation-eq-chain" title="Permalink to this equation">#</a></span>\[	\begin{align}\label{eq:chain}
+		&amp;\derv{}{\v x}\left(\v g\circ \v f\right)(\v x)=\derv{}{\v x}\left(\v g(\v f(\v x))\right)=\derv{\v g}{\v f(\v x)}\derv{\v f}{\v x}
+	\end{align}\]</div>
+<p>Als Denkhilfe kann man sich die Kettenregel wie folgt gut merken: In Gleichung <a class="reference internal" href="#equation-eq-chain">(3.13)</a> ist nach der Ableitung von <span class="math notranslate nohighlight">\(\v g\)</span> nach <span class="math notranslate nohighlight">\(\v x\)</span> gesucht. Im Term der rechten Seite “kürzt” sich das <span class="math notranslate nohighlight">\(\partial \v f\)</span> in dem “Bruch” <span class="math notranslate nohighlight">\(\derv{\v g}{\v f}\derv{\v f}{\v x}\)</span> gerade weg, so dass am Ende <span class="math notranslate nohighlight">\(\derv{\v g}{\v x}\)</span>, also die gesuchte Größe, “übrig bleibt”. Das Ganze ist aber wirklich nur eine Denkstütze, denn: <span class="math notranslate nohighlight">\(\derv{\v f}{\v x}\)</span> ist <em>kein</em> Bruch, sondern lediglich eine Schreibweise (für die partielle Ableitung).</p>
+<p>Im folgenden möchten wir die Kettenregel zunächst an einem (wichtigen) Spezialfall näher betrachten. Nehmen wir an, <span class="math notranslate nohighlight">\(g:\R^2\rightarrow\R\)</span> sei eine Funktion in zwei Variablen <span class="math notranslate nohighlight">\(f_1, f_2\)</span>. Weiterhin seien <span class="math notranslate nohighlight">\(f_1(t)\)</span> und <span class="math notranslate nohighlight">\(f_2(t)\)</span> selbst Funktionen von <span class="math notranslate nohighlight">\(t\in\R\)</span>. Wir wenden nun die Kettenregel an, um den Gradienten von <span class="math notranslate nohighlight">\(g\)</span> nach <span class="math notranslate nohighlight">\(t\)</span> zu berechnen. Das ist eine Abbildung von <span class="math notranslate nohighlight">\(\R\)</span> nach <span class="math notranslate nohighlight">\(\R\)</span>: Ein Skalar <span class="math notranslate nohighlight">\(t\)</span> wird zunächst abgebildet auf einen Vektor <span class="math notranslate nohighlight">\(\v f(t)=(f_1(t), f_2(t))^T\)</span>. Dieser Vektor wird dann abgebildet auf einen skalaren Funktionswert <span class="math notranslate nohighlight">\(g(f_1(t),f_2(t))\)</span>. Anschaulich bedeutet dies: wie ändert sich <span class="math notranslate nohighlight">\(g\)</span> bei kleinen Änderungen von <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-chain1">
+<span class="eqno">(3.14)<a class="headerlink" href="#equation-eq-chain1" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{align}\label{eq:chain1}
+	\nabla_t f = \bmat 
+		\derv{g}{f_1(t)} &amp; \derv{g}{f_2(t)}
+	\emat  \bmat 
+		\derv{f_1(t)}{t}\\\derv{f_2(t)}{t}
+	\emat  =\derv{g}{f_1}\derv{f_1}{t}+\derv{g}{f_2}\derv{f_2}{t}
+\end{align}\end{split}\]</div>
+<p>Gleichung <a class="reference internal" href="#equation-eq-chain1">(3.14)</a> ist das Produkt von einem Zeilenvektor und einem Spaltenvektor mit jeweils zwei Einträgen. Hier wird deutlich, dass es wichtig ist, auf die korrekte Reihenfolge und die Dimensionen zu achten, da sonst u.U. das Produkt gar nicht definiert ist. Auch hier können wir, wie im Eindimensionalen, die Kettenregel zusammenfassen als ``äußere Ableitung (<span class="math notranslate nohighlight">\(g\)</span> nach <span class="math notranslate nohighlight">\(\v f(t)\)</span>) <span class="math notranslate nohighlight">\(\times\)</span> innere Ableitung (<span class="math notranslate nohighlight">\(\v f\)</span> nach <span class="math notranslate nohighlight">\(t\)</span>)‘’.
+Wenden wir nun Gleichung <a class="reference internal" href="#equation-eq-chain1">(3.14)</a> in einem konkreten Beispiel an.</p>
+<div class="proof example admonition" id="example-28">
+<p class="admonition-title"><span class="caption-number">Example 3.20 </span></p>
+<section class="example-content" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(g\left(f_1,f_2\right)=f_1^2+2f_2\)</span>, wobei <span class="math notranslate nohighlight">\(f_1=\sin t\)</span> und <span class="math notranslate nohighlight">\(f_2=\cos t\)</span>, dann ist</p>
+<div class="amsmath math notranslate nohighlight" id="equation-37db3d76-55be-48f6-aff7-894decf12b36">
+<span class="eqno">(3.15)<a class="headerlink" href="#equation-37db3d76-55be-48f6-aff7-894decf12b36" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \nabla_t g &amp;=\derv{g}{f_1}\derv{f_1}{t}+\derv{g}{f_2}\derv{f_2}{t}\\
+    &amp;=2f_1 \derv{f_1}{t} + 2\derv{f_2}{t}\\
+    &amp;=2\sin t \derv{\sin t}{t} + 2\derv{\cos t}{t}\\
+    &amp;=2\sin t \cos t - 2\sin t
+\end{align}\]</div>
+<p>die Ableitung von <span class="math notranslate nohighlight">\(g\)</span> nach <span class="math notranslate nohighlight">\(t\)</span> (in diesem Fall kann man sich <span class="math notranslate nohighlight">\(g\)</span> als eine eindimensionale Funktion vorstellen, die ein Skalar über einen ``Umweg’’ in den <span class="math notranslate nohighlight">\(\R^2\)</span> abbildet und dann wieder zurück nach <span class="math notranslate nohighlight">\(\R\)</span>).</p>
+</section>
+</div><p>Das Verständnis und die Anwendung der Kettenregel erfordert etwas Übung. Die Kettenregel ist allerdings ein wichtiges Instrument bei der automatischen, exakten Berechnung von Ableitungen mittels algorithmischer Differentiation. Wir betrachten ein weiteres Beispiel. Viele weitere Beispiele gibt es in den Übungen.</p>
+<div class="proof example admonition" id="example-29">
+<p class="admonition-title"><span class="caption-number">Example 3.21 </span></p>
+<section class="example-content" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(\v f\)</span> gegeben wie in <a class="reference internal" href="#ex:jacobi">Example 3.18</a>. Zusätzlich sei <span class="math notranslate nohighlight">\(g:\R^2\rightarrow\R\)</span> gegeben durch</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    g(x_1,x_2) = x_1^2x_2
+\end{align*}\]</div>
+<p>Die Ableitung der Funktion <span class="math notranslate nohighlight">\(g\circ \v f\)</span> berechnet sich wie folgt:</p>
+<div class="math notranslate nohighlight" id="equation-eq-matmult">
+<span class="eqno">(3.16)<a class="headerlink" href="#equation-eq-matmult" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{align}
+    \nabla (g(\v f(\v x))&amp;= \nabla g(\v f(\v x))\cdot \nabla \v f(\v x)\\
+    &amp;=\nabla g(f_1(\v x),f_2(\v x))\cdot\nabla \v f(\v x)\\
+    &amp;=\bmat 
+        \derv{g}{f_1(\v x)}&amp;\derv{g}{f_2(\v x)}
+    \emat  \bmat 
+        x_2 &amp; x_1 &amp; 1 \\
+        0  &amp; 0  &amp;2x_3
+    \emat  \\
+    &amp;=\bmat 
+        2f_1(x)f_2(x), &amp;f_1(x)^2
+    \emat  
+    \bmat 
+        x_2 &amp; x_1 &amp; 1 \\
+        0  &amp; 0  &amp;2x_3
+    \emat  \label{eq:matmult}\\
+    %						&amp;= \bmat 
+        %							2(x_1x_2+x_3)(x_3^2+1)&amp;(x_1x_2+x_3)^2
+        %						\emat  
+    %					\bmat 
+        %						x_2 &amp; x_1 &amp; 1 \\
+        %						0  &amp; 0  &amp;2x_3
+        %					\emat  		
+    &amp;=\bmat 
+        2f_1(x)f_2(x)x_2, &amp; 2f_1(x)f_2(x)x_1, &amp; 2f_1(x)f_2(x) + f_1(x)^2 2x_3
+    \emat  \label{eq:result1}
+    %		x_1x_2+x_3 \\
+    %x_3^2+1 
+\end{align}\end{split}\]</div>
+<p>Nun kann man in die letzte Gleichung für die Einträge <span class="math notranslate nohighlight">\(f_1(\v x)\)</span> und <span class="math notranslate nohighlight">\(f_2(\v x)\)</span> noch die entsprechenden Funktionswerte von <span class="math notranslate nohighlight">\(\v f\)</span> einsetzen und erhält einen Ausdruck in <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_3\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-result2">
+<span class="eqno">(3.17)<a class="headerlink" href="#equation-eq-result2" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{align}
+    &amp;\nabla (g(\v f(\v x))=\\
+    &amp;\bmat 
+        2(x_1x_2+x_3)(x_3^2+1)x_2, &amp; 2(x_1x_2+x_3)(x_3^2+1)x_1, &amp; 2(x_1x_2+x_3)(x_3^2+1) + (x_1x_2+x_3)^2 2x_3
+    \emat  \label{eq:result2}
+\end{align}\end{split}\]</div>
+<p>Man sieht: die Funktion <span class="math notranslate nohighlight">\(g\circ \v f\)</span> bildet einen Vektor aus dem <span class="math notranslate nohighlight">\(\R^3\)</span> nach <span class="math notranslate nohighlight">\(\R\)</span> ab. Nach der Matrixmultiplikation in <a class="reference internal" href="#equation-eq-matmult">(3.16)</a> erhält man folglich einen Zeilenvektor mit 3 Einträgen als Gradienten <a class="reference internal" href="#equation-eq-result2">(3.17)</a>.</p>
+</section>
+</div></section>
+<section id="ableitungen-hoherer-ordnung">
+<h2><span class="section-number">3.8. </span>Ableitungen höherer Ordnung<a class="headerlink" href="#ableitungen-hoherer-ordnung" title="Link zu dieser Überschrift">#</a></h2>
+<p>Auch im multivariaten Fall können wir Ableitungen höherer Ordnung betrachten. Wir tun dies hier nur für reellwertige Funktionen <span class="math notranslate nohighlight">\(f:\R^n\rightarrow\R\)</span>. Dazu fassen wir den Gradienten von <span class="math notranslate nohighlight">\(f\)</span> auch als Funktion auf:</p>
+<div class="math notranslate nohighlight" id="equation-eq-gradfkt">
+<span class="eqno">(3.18)<a class="headerlink" href="#equation-eq-gradfkt" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{align}
+	\nabla f^T: \R^n \rightarrow \R^n\\
+	\v x\mapsto \bmat 
+		\derv{f}{x_1} \\ \cdots \\ \derv{f}{x_n}
+	\emat  \label{eq:gradfkt}
+\end{align}\end{split}\]</div>
+<p>Beachte, dass wir hier den transponierten Gradienten benutzen, um einen Spaltenvektor zu erhalten, in Übereinstimmung mit dem Ausdruck <a class="reference internal" href="#equation-eq-fktvektor">(3.9)</a>. Wenn wir nun die partielle Ableitung dieser partiellen Ableitung bilden (also die Jacobimatrix der Gradientenfunktion) erhalten wir die zweite partielle Ableitung. Gemäß der Definition der Jacobimatrix ist das eine Matrix mit <span class="math notranslate nohighlight">\(n\)</span> Zeilen (da <a class="reference internal" href="#equation-eq-gradfkt">(3.18)</a> <span class="math notranslate nohighlight">\(n\)</span> Komponenten hat) und <span class="math notranslate nohighlight">\(n\)</span> Spalten (da <a class="reference internal" href="#equation-eq-gradfkt">(3.18)</a> eine Funktion in <span class="math notranslate nohighlight">\(n\)</span> Variablen ist).</p>
+<p>Wir benutzen die folgenden Schreibweisen:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dervquad{f}{x}\)</span> ist die zweite partielle Ableitung von <span class="math notranslate nohighlight">\(f\)</span> nach <span class="math notranslate nohighlight">\(x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\dervzwei{f}{y}{x}=\derv{}{y}(\derv{f}{x})\)</span> ist die partielle Ableitung von <span class="math notranslate nohighlight">\(f\)</span>, bei der erst nach <span class="math notranslate nohighlight">\(x\)</span> und dann nach <span class="math notranslate nohighlight">\(y\)</span> abgeleitet wird</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dervzwei{f}{y}{x}=\derv{}{x}(\derv{f}{y})\)</span> ist die partielle Ableitung von <span class="math notranslate nohighlight">\(f\)</span>, bei der erst nach <span class="math notranslate nohighlight">\(y\)</span> und dann nach <span class="math notranslate nohighlight">\(x\)</span> abgeleitet wird
+Die partiellen zweiten Ableitungen werden in der <em>Hessematrix</em> zusammengefasst. Für eine Funktion zweier Variablen <span class="math notranslate nohighlight">\(x\)</span> und <span class="math notranslate nohighlight">\(y\)</span> schreibt man</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-7ba63508-3e37-4ad6-87e3-bff837ab267d">
+<span class="eqno">(3.19)<a class="headerlink" href="#equation-7ba63508-3e37-4ad6-87e3-bff837ab267d" title="Permalink to this equation">#</a></span>\[\begin{align}
+	\nabla_{xy}^2f=H=\bmat 
+		\dervquad{f}{x} &amp; \dervzwei{f}{y}{x} \\
+		\dervzwei{f}{x}{y} &amp; \dervquad{f}{y}
+	\emat  
+\end{align}\]</div>
+<p>Alle Aussagen dieses Abschnitts gelten auch für <span class="math notranslate nohighlight">\(n\)</span> Variablen. Man hat dann entsprechend <span class="math notranslate nohighlight">\(n\)</span> statt <span class="math notranslate nohighlight">\(2\)</span> Zeilen und Spalten.
+Achtung: im Allgemeinen ist die Hessematrix einer Funktion <span class="math notranslate nohighlight">\(f:\R^n\rightarrow\R\)</span> selbst eine Funktion, und zwar <span class="math notranslate nohighlight">\(\v H:\R^n\rightarrow \R^{n\times n}\)</span>. Ächz. Das heißt für uns vor allem, dass <span class="math notranslate nohighlight">\(\v H\)</span> keine feste Matrix ist, sondern dass sich die Einträge ändern, je nachdem, an welchem Punkt <span class="math notranslate nohighlight">\(\v x\)</span> wir uns die Hessematrix anschauen.</p>
+<p>Zwei wichtige Ausnahmen bilden lineare und quadratische Funktionen.</p>
+<div class="proof example admonition" id="example-30">
+<p class="admonition-title"><span class="caption-number">Example 3.22 </span> (Besondere Hessematrizen)</p>
+<section class="example-content" id="proof-content">
+<dl class="simple myst">
+<dt>Hessematrix einer linearen Funktion</dt><dd><p>Jede lineare Funktion lässt sich schreiben als
+<span class="math notranslate nohighlight">\(f(x_1,\dots,x_n)=b_1x_1+\cdots+b_nx_n+c\)</span>. Da der Gradient <span class="math notranslate nohighlight">\(\nabla f(x_1,\dots,x_n)=(b_1,\dots,b_n)\)</span> konstant ist (er hängt nicht von <span class="math notranslate nohighlight">\(\v x\)</span> ab), ist die Hessematrix die Nullmatrix. Wir schreiben auch <span class="math notranslate nohighlight">\(\nabla^2f(\v x)=\v H(\v x)=0\)</span>.</p>
+</dd>
+<dt>Hessematrix einer quadratischen Funktion</dt><dd><p>Jede quadratische Funktion lässt sich schreiben als
+<span class="math notranslate nohighlight">\(f(x_1,\dots,x_n)=\frac{1}{2}\v x^T\v A\v x+\v b^T\v x+c\)</span>. Da der Gradient <span class="math notranslate nohighlight">\(\nabla f(x_1,\dots,x_n)^T=\v A\v x+\v b\)</span> eine lineare Funktion ist, ist die Hessematrix gleich der Matrix <span class="math notranslate nohighlight">\(\v A\)</span>, also <span class="math notranslate nohighlight">\(\nabla^2f(\v x)=\v H(\v x)=\v A\)</span>.</p>
+</dd>
+</dl>
+</section>
+</div><div class="proof theorem admonition" id="theorem-31">
+<p class="admonition-title"><span class="caption-number">Theorem 3.2 </span> (Satz von Schwarz)</p>
+<section class="theorem-content" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(f:\R^2\rightarrow\R\)</span>, <span class="math notranslate nohighlight">\((x,y)\mapsto f(x,y)\)</span> eine zwei mal stetig differenzierbare Funktion. Dann gilt:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2bde0f5e-9feb-481b-a141-43b4da5d97d0">
+<span class="eqno">(3.20)<a class="headerlink" href="#equation-2bde0f5e-9feb-481b-a141-43b4da5d97d0" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \derv{}{y}\left(\derv{f}{x}\right) = \derv{}{x}\left(\derv{f}{y}\right).
+\end{align}\]</div>
+</section>
+</div><p>Der Satz besagt, dass es egal ist in welcher Reihenfolge die partiellen Ableitungen gebildet werden. Das bedeutet, dass die Hessematrix symmetrisch ist.</p>
+<div class="proof example admonition" id="example-32">
+<p class="admonition-title"><span class="caption-number">Example 3.23 </span></p>
+<section class="example-content" id="proof-content">
+<p>Gegeben sei die Funktion <span class="math notranslate nohighlight">\(f:\R^2\rightarrow\R\)</span>, <span class="math notranslate nohighlight">\(f(x,y)=x^2\sin y\)</span>. Die ersten partiellen Ableitungen nach <span class="math notranslate nohighlight">\(x\)</span> bzw. <span class="math notranslate nohighlight">\(y\)</span> lauten:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \derv{f}{x}=2x\sin y &amp; &amp;\derv{f}{y}=x^2\cos y
+\end{align*}\]</div>
+<p>Leiten wir nun beide Terme erneut ab, erhalten wir:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \dervquad{f}{x}=2\sin y &amp; &amp; \dervquad{f}{y} = -x^2\sin y\\
+    \dervzwei{f}{y}{x} = 2x\cos y &amp; &amp; \dervzwei{f}{x}{y} = 2x \cos y.
+\end{align*}\]</div>
+</section>
+</div><p>Analog zur zweiten Ableitung im eindimensionalen beschreibt die Hessematrix die <em>Krümmung</em> einer Funktion.</p>
+<div class="proof example admonition" id="example-33">
+<p class="admonition-title"><span class="caption-number">Example 3.24 </span></p>
+<section class="example-content" id="proof-content">
+<p>Wir betrachten wieder das Paraboloid gegeben durch <span class="math notranslate nohighlight">\(f:\R^2\rightarrow\R\)</span>, <span class="math notranslate nohighlight">\(f(x,y)=x_1^2+x_2^2\)</span>. Als Hessematrix erhalten wir</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \nabla_{xy}^2 f= \bmat 
+        2 &amp; 0\\
+        0 &amp; 2
+    \emat  
+\end{align*}\]</div>
+<p>Diese Matrix hat den (doppelten) <em>Eigenwert</em> <span class="math notranslate nohighlight">\(2\)</span>. Wenn eine quadratische Matrix nur positive Eigenwerte hat, nennt man sie <em>positiv definit</em>. Falls eine Hessematrix für alle Punkte <span class="math notranslate nohighlight">\((x,y)\)</span> aus dem Definitionsbereich positiv definit ist, nennt man die zugehörige Funktion <em>konvex</em>. In diesem Fall stimmt das mit der Anschauung überein, dass der Graph eines Paraboloids konvex ist.</p>
+</section>
+</div><div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Bildet man die zweite Ableitung einer <em>vektorwertigen</em> Funktion <span class="math notranslate nohighlight">\(\v f:\R^n\rightarrow\R^m\)</span>, erhält man “eine Hessematrix für jede Komponente <span class="math notranslate nohighlight">\(f_i\)</span>”, also <span class="math notranslate nohighlight">\(m\)</span> <span class="math notranslate nohighlight">\(n\times n\)</span>-Matrizen hintereinander—einen sog. <span class="math notranslate nohighlight">\((m\times n\times n)\)</span> <em>Tensor</em>.</p>
+</div>
+</section>
+<section id="richtungsableitungen">
+<span id="sec-richtung"></span><h2><span class="section-number">3.9. </span>Richtungsableitungen<a class="headerlink" href="#richtungsableitungen" title="Link zu dieser Überschrift">#</a></h2>
+<p>Anschaulich beschreiben die partiellen Ableitungen die Änderungsraten einer Funktion <span class="math notranslate nohighlight">\(f\)</span> entlang der Koordinatenachsen (d.h. bei kleinen Variationen <em>einer</em> der Koordinaten). Wenn man sich nun nicht für die Änderung von <span class="math notranslate nohighlight">\(f\)</span> in Richtung der Koordinatenachsen interessiert (das sagen einem die partiellen Ableitungen), sondern dafür, wie sich <span class="math notranslate nohighlight">\(f\)</span> (ausgewertet an einem Punkt <span class="math notranslate nohighlight">\(\v x_0\)</span>) bei kleinen Änderungen in einer beliebigen <em>Richtung</em> ändert, so kann man mit Hilfe des Gradienten die <em>Richtungsableitung</em> von <span class="math notranslate nohighlight">\(f\)</span> in einer beliebigen Richtung bestimmen.</p>
+<p>Wir präzisieren zunächst, was die Richtungsableitung eigentlich genau aussagen soll. Dazu definieren wir einen <em>Richtungsvektor</em> <span class="math notranslate nohighlight">\(\v a\in \R^n\)</span> als einen beliebigen Vektor der Länge <span class="math notranslate nohighlight">\(1\)</span>, also <span class="math notranslate nohighlight">\(\norm{\v a}_2=1\)</span>. Ähnlich wie bei der Definition der partiellen Ableitungen führen wir die Richtungsableitung wieder auf den eindimensionalen Fall zurück. Dazu konstruieren wir zunächst eine Gerade im <span class="math notranslate nohighlight">\(\R^n\)</span>, die durch <span class="math notranslate nohighlight">\(\v x_0\)</span> geht und in die Richtung <span class="math notranslate nohighlight">\(a\)</span> “zeigt”:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\v z(t)=\v x_0+t\v a, \quad t\in\R.
+\end{align*}\]</div>
+<p>Wir können nun die Funktion <span class="math notranslate nohighlight">\(f\)</span> auf diese Gerade anwenden (sie ist ja eine Gerade im Definitionsbereich von <span class="math notranslate nohighlight">\(f\)</span>). Damit wird aus der Gerade im <span class="math notranslate nohighlight">\(\R^n\)</span> eine Kurve im <span class="math notranslate nohighlight">\(\R^{n+1}\)</span> die auf dem Funktionsgraphen von <span class="math notranslate nohighlight">\(f\)</span> liegt:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(\v z(t))=f(\v x_0+t\v a)
+\end{align*}\]</div>
+<p>Hier ein Beispiel für den Fall <span class="math notranslate nohighlight">\(f:\R^2\rightarrow \R, f(x,y)=(1-x)^2 + (y-x^2)^2\)</span>, <span class="math notranslate nohighlight">\(x_0(0,0)\)</span> und <span class="math notranslate nohighlight">\(a=\frac{1}{\sqrt{5}}\bmat 1\\2\emat  \)</span>:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Die Funktion f als Surface Plot</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">X</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">Y</span><span class="o">-</span><span class="n">X</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Surface</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">colorscale</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">showscale</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="c1"># Richtungsvektor a=(2,1)</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># Argument t der Kurve läuft von -0.5 bis 0.75</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.75</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">t</span><span class="o">*</span><span class="n">a1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">t</span><span class="o">*</span><span class="n">a2</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># x,y,z enthält jetzt die Koordinaten der Kurve f(0+t*a). </span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">)))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span> <span class="n">autosize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                  <span class="n">margin</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Margin</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Gerade <span class="math notranslate nohighlight">\(\v z(t)=t\bmat 1\\2\emat  \)</span> in der Ebene wird mittels <span class="math notranslate nohighlight">\(f(\v z(t))\)</span> eine Kurve im <span class="math notranslate nohighlight">\(\R^3\)</span>.</p>
+<p>Die Richtungsableitung in Richtung <span class="math notranslate nohighlight">\(a\)</span> ist nun die Ableitung der (univariaten) Funktion <span class="math notranslate nohighlight">\(g:\R\rightarrow\R\)</span>, <span class="math notranslate nohighlight">\(g(t):=f(\v z(t))=f(\v x_0+t\v a)\)</span> an der Stelle <span class="math notranslate nohighlight">\(\v x_0\)</span>. Wie bekommen wir die? Natürlich mit der Kettenregel! Dies ist eine skalare Funktion, die einen “Umweg” über den <span class="math notranslate nohighlight">\(\R^n\)</span> macht:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\R&amp;\rightarrow \R^n&amp;&amp;\rightarrow \R\\
+t&amp;\mapsto \v x_0+t\v a=z &amp;&amp;\mapsto f(z)
+\end{align*}\]</div>
+<p>Anwendung der Kettenregel:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+g'(t)&amp;=\derv{g}{t}=\derv{f}{z}\derv{\v z}{t}\\
+     &amp;=\left(\derv{f}{z_1},\dots,\derv{f}{z_2})\right)\cdot \bmat a_1\\\dots\\a_n\emat  =\nabla f(\v z)\cdot \v a
+\end{align*}\]</div>
+<p>Ausgewertet an der Stelle <span class="math notranslate nohighlight">\(t=0\)</span> ergibt sich:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+g'(t)=\nabla f(\v x_0)\cdot \v a
+\end{align*}\]</div>
+<p>Das bedeutet: um die Änderungsrate der Funktion <span class="math notranslate nohighlight">\(f\)</span> in einer bestimmten Richtung <span class="math notranslate nohighlight">\(\v a\)</span> zu berechnen, bildet man einfach das <em>Skalarprodukt</em> zwischen dem Gradientenvektor und dem Richtungsvektor.</p>
+<section id="skalarprodukt-und-richtungsableitung">
+<h3>Skalarprodukt und Richtungsableitung<a class="headerlink" href="#skalarprodukt-und-richtungsableitung" title="Link zu dieser Überschrift">#</a></h3>
+<p>Aus der linearen Algebra wissen wir, dass die Definition des Skalarproduktes im <span class="math notranslate nohighlight">\(\R^n\)</span> lautet:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\nabla f\cdot \v a= \norm{\nabla f}\cdot \norm{\v a}\cdot \cos \varphi,
+\end{align*}\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(\varphi\)</span> der eingeschlossene Winkel zwischen dem Gradienten <span class="math notranslate nohighlight">\(\nabla f\)</span> und der Richtung <span class="math notranslate nohighlight">\(\v a\)</span> ist.</p>
+<p>Daraus ergeben sich folgende beiden geometrischen Zusammenhänge:</p>
+<ol class="simple">
+<li><p>Das Skalarprodukt, also die Änderungsrate der Funktion wird (betragsmäßig) <em>maximal</em>, wenn <span class="math notranslate nohighlight">\(\cos \varphi=1\)</span>, d.h. <span class="math notranslate nohighlight">\(\nabla f\)</span> und <span class="math notranslate nohighlight">\(\v a\)</span> sind parallel. Daraus folgt, dass der Gradientenvektor in Richtung des steilsten Anstiegs zeigt.</p></li>
+<li><p>Das Skalarprodukt, also die Änderungsrate der Funktion wird (betragsmäßig) <em>minimal</em>, wenn <span class="math notranslate nohighlight">\(\cos \varphi=0\)</span>, d.h. <span class="math notranslate nohighlight">\(\nabla f\)</span> und <span class="math notranslate nohighlight">\(\v a\)</span> sind orthogonal. Der Gradient ist dann insgesamt <span class="math notranslate nohighlight">\(0\)</span>. Die zum Gradienten orthogonalen Richtungen sind diejenigen Richtungen, die entlange der Höhenlinien zeigen. Der Gradientenvektor in einem Punkt <span class="math notranslate nohighlight">\(\v x_0\)</span> steht also senkrecht auf den Höhenlinien.</p></li>
+</ol>
+</section>
+<section id="jacobimatrix-und-richtungsableitung">
+<h3>Jacobimatrix und Richtungsableitung<a class="headerlink" href="#jacobimatrix-und-richtungsableitung" title="Link zu dieser Überschrift">#</a></h3>
+<p>Die Richtungsableitung kann man natürlich auch für Funktionen <span class="math notranslate nohighlight">\(f:\R^n\rightarrow \R^m\)</span> berechnen. Hier erhält man dann einen <span class="math notranslate nohighlight">\(m\)</span>-dimensionalen Vektor als Richtungsableitung, wobei jeder Eintrag das Skalarprodukt einer Zeile der Jacobimatrix mit dem Richtungsvektor ist (das ist gerade das gewöhnliche Matrix-Vektor-Produkt):</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\nabla f\cdot \v a&amp;=\bmat \derv{f_1}{x_1} &amp; \cdots &amp; \derv{f_1}{x_n}\\
+                                \vdots &amp; &amp;\vdots\\
+                                \derv{f_m}{x_1}&amp; \cdots &amp; \derv{f_m}{x_n}\emat  
+                                \bmat a_1 \\ \vdots \\a_n\emat  \\
+                &amp;=\bmat a_1\derv{f_1}{x_1}+ \cdots + a_n \derv{f_1}{x_n}\\
+                                \vdots\\
+                                a_1n\derv{f_m}{x_1}+ \cdots + a_n \derv{f_m}{x_n}\emat  \in\R^m
+\end{align*}\]</div>
+</section>
+</section>
+<section id="zusammenfassung-interpretation-des-gradienten-als-anderungsrate-einer-funktion">
+<span id="sec-interpretation"></span><h2><span class="section-number">3.10. </span>Zusammenfassung: Interpretation des Gradienten als Änderungsrate einer Funktion<a class="headerlink" href="#zusammenfassung-interpretation-des-gradienten-als-anderungsrate-einer-funktion" title="Link zu dieser Überschrift">#</a></h2>
+<p>Wir haben in diesem Kapitel den Begriff der multivariaten Funktion und der partiellen Ableitung eingeführt. Als Anschauung diente uns dabei stets der Begriff der <em>Änderung</em> (genauer: der Änderungsrate) einer Funktion, die durch die partiellen Ableitung ausgedrückt werden.
+Wenn man sich Gradienten <span class="math notranslate nohighlight">\(\nabla f\)</span> einer Funktion <span class="math notranslate nohighlight">\(f:\R^n\rightarrow \R\)</span> in einem beliebigen Punkt <span class="math notranslate nohighlight">\(x_0\)</span> vorstellen möchte, so haben wir folgende hilfreiche Anschauungen diskutiert:</p>
+<ol class="simple">
+<li><p>Die Einträge des Gradienten beschreiben die <em>Änderungsrate</em> des Funktionswerts <span class="math notranslate nohighlight">\(f\)</span> bei  kleinen<a class="footnote-reference brackets" href="#fn-infinitesimal" id="id3">3</a> Schritten in Richtung der Koordinatenachsen.</p></li>
+<li><p>Das Skalarprodukt eines Richtungsvektors <span class="math notranslate nohighlight">\(\v a\)</span> der Länge 1 (also <span class="math notranslate nohighlight">\(||\v a||_2=1\)</span>) mit dem Gradienten, <span class="math notranslate nohighlight">\(\nabla f \cdot v\)</span> beschreibt die Änderungsrate der Funktion in einer Richtung (wie ändert sich Funktion, wenn man das Argument ein kleines<a class="footnote-reference brackets" href="#fn-infinitesimal" id="id4">3</a> Stück in Richtung des Richtungsvektors <span class="math notranslate nohighlight">\(\v a\)</span> verschiebt). Das funktioniert auch mit der Jacobimatrix.</p></li>
+<li><p>Geometrisch: Der Gradient ist ein Vektor, der in Richtung des steilsten Anstiegs zeigt. Dies folgt aus der Interpretation als Richtungsableitung.</p></li>
+<li><p>Geometrisch: Der Gradient ist ein Vektor, der senkrecht auf den Höhenlinien steht. Dies folgt aus der Interpretation als Richtungsableitung.</p></li>
+</ol>
+<p>Im nächsten Kapitel schauen wir uns den Begriff der Ableitung noch unter einem anderen Aspekt her an: Der Gradient bzw. die Jacobi Matrix ausgewertet an einem Punkt können auch als lineare Abbildung aufgefasst werden, die die Funktion in einer Umgebung dieses Punktes approximieren. Ableitungen können also als <em>Approximation</em> einer differenzierbaren Funktion betrachtet werden. Wichtig: es handelt sich dabei nur um unterschiedliche Sichtweisen auf ein und dasselbe Konzept (“Ableitung”). Keine der verschiedenen Interpretationen von Ableitungen ist per se besser oder schlechter. Alle sind richtig. Warum gebe ich dem Begriff der Ableitung überhaupt so viel Raum in dieser Vorlesung? Funktionen, insbesondere multivariate, sind komplizierte Objekte, für die man nur sehr schwer eine Anschauung entwickeln kann. Das geht manchmal unter, wenn man sich nur mit einfachen Beispielen in einer oder zwei Dimensionen beschäftigt.
+Im maschinellen Lernen versuchen wir beispielsweise extrem komplizierte mathematische Funktionen zu lernen, die sehr komplizierte Sachverhalte nachbilden (“Email-Text <span class="math notranslate nohighlight">\(\rightarrow\)</span> {Spam, kein Spam}”, “historische Daten<span class="math notranslate nohighlight">\(\rightarrow\)</span> zukünftiger Umsatz”, “Bild<span class="math notranslate nohighlight">\(\rightarrow\)</span> Objekte im Bild”). Es ist hoffnungslos, sich eine solche Funktion vorzustellen. Wenn wir aber die Ableitung einer Funktion kennen, so können wir zumindest approximieren, wie sich die Funktion in der Umgebung eines Punktes verhält – nämlich wie eine lineare Funktion, was wiederum die einfachste Klasse von Funktionen ist. Algorithmen im maschinellen Lernen bedienen sich dieser zusätzlichen Information.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="fn-euklid"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Griechischer Mathematiker, der wahrscheinlich im 3. Jahrhundert v. Chr. in Alexandria gelebt hat. Sein Werk <em>Elemente</em> fasst Arithmetik und Geometrie seiner Zeit zusammen. Die <em>Elemente</em> wurden 2000 Jahre lang als akademisches Lehrbuch benutzt und waren bis in die zweite Hälfte des 19. Jahrhunderts das nach der Bibel meistverbreitete Werk der Weltliteratur.</p>
+</dd>
+<dt class="label" id="fn-dirichlet"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://de.wikipedia.org/wiki/Dirichlet-Funktion">https://de.wikipedia.org/wiki/Dirichlet-Funktion</a></p>
+</dd>
+<dt class="label" id="fn-infinitesimal"><span class="brackets">3</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>)</span></dt>
+<dd><p>Eigentlich: <em>infinitesimal</em>, also “unendlich” kleine Änderungen - was natürlich schon wieder weniger anschaulich ist.</p>
+</dd>
+</dl>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="02_Uebungen.html" title="zurück Seite">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">zurück</p>
+            <p class="prev-next-title"><span class="section-number">2.1. </span>Übungen</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="03_Uebungen.html" title="weiter Seite">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">weiter</p>
+        <p class="prev-next-title"><span class="section-number">3.11. </span>Übungen</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dennis Janka<br/>
+  
+      &copy; Copyright 2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
