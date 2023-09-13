@@ -1,0 +1,1 @@
+%windir%\System32\cmd.exe "/K" C:\Users\jade0001\Miniconda3\Scripts\activate.bat C:\Users\jade0001\Miniconda3

@@ -13,11 +13,12 @@ chapters:
   - file: 03_Multivariate_Analysis.md
     sections:
     - file: 03_Uebungen.ipynb
-  - file: 04_Lineare_Regression.md
+  - file: 04_Optimierung.md
+  - file: 05_Lineare_Regression.md
     sections:
-    - file: 04_Uebungen.ipynb
-    - file: 04_Uebung_Warm-up.ipynb
-    - file: 04_Uebung_Salary_Daten.ipynb
+    - file: 05_Uebungen.ipynb
+    - file: 05_Uebung_Warm-up.ipynb
+    - file: 05_Uebung_Salary_Daten.ipynb
   - file: 06_Modellentwicklung.md
     sections:
     - file: 06_Uebung_Immoscout.ipynb
