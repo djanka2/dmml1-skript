@@ -14,6 +14,8 @@ chapters:
     sections:
     - file: 03_Uebungen.ipynb
   - file: 04_Optimierung.md
+    sections:
+    - file: 04_Uebungen.ipynb
   - file: 05_Lineare_Regression.md
     sections:
     - file: 05_Uebungen.ipynb

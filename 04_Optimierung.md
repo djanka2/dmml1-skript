@@ -27,7 +27,7 @@ Dabei nennen wir
 Wir nehmen in dieser Vorlesung an, dass $f$ *stetig differenzierbar* ist. Dies ist in der Praxis, gerade im Bereich des maschinellen Lernens, nicht immer erfüllt, soll uns aber hier nicht weiter stören. Weiterhin möchten wir annehmen, dass es bei der Wahl des Vektors $\v x$ keine Einschränkungen gibt, d.h. der Bereich $D$, in dem wir nach einer Lösung suchen, soll der gesamte $\R^n$ sein.  
 
 ````{note} Minimierung vs. Maximierung
-Per Konvention schauen wir uns nur Minimierungsprobleme an, d.h. eine Funktion soll so *klein* wie möglich sein. Haben wir es doch einmal mit einem Maximierungsproblem zu tun, also $\max_{\v x\in D\in\R^n} f(\v x)$, so können wir genausogut das Minimierungsproblem $\min_{\v x\in D\in\R^n} f(\v x)$ betrachten.
+Per Konvention schauen wir uns nur Minimierungsprobleme an, d.h. eine Funktion soll so *klein* wie möglich sein. Haben wir es doch einmal mit einem Maximierungsproblem zu tun, also $\max_{\v x\in D\in\R^n} f(\v x)$, so können wir genausogut das Minimierungsproblem $\min_{\v x\in D\in\R^n} -f(\v x)$ betrachten.
 ````
 
 Wir haben nun schon von einer *Lösung* des Problems gesprochen, ohne präzise zu sagen, was das überhaupt sein soll. Man unterscheidet dabei zwischen lokalen und globalen Lösungen. Hier die Definitionen:
@@ -41,7 +41,7 @@ Ein Punkt $\v x^{\star}\in D$ heißt *lokales  Minimum* von $f$ oder *lokale Lö
 Wenn ein Minimierungsproblem keine globale Lösung besitzt, nennt man es *unbeschränkt*.
 ````
 Wie groß diese "Umgebung" ist, ist nicht weiter spezifiziert. Die Aussage bedeutet lediglich, dass es eine solche gibt. Mathematisch exakter kann man das auch so formulieren:
-Wir definieren für eine Zahl $\varepsilon>0$ die Menge $U_{\varepsilon}(\v x^{\star})$ als $\varepsilon$-Kugel um $\v x^{\star}$, formell $U_{\varepsilon}(\v x^{\star})=\{\v x\in\R^n :\ \norm{\v x^{\star}}-\v x\}<\varepsilon \}$. Ein Vektor $\v x^{\star}$ ist ein lokales Minimum, wenn es eine Zahl $\varepsilon>0$ gibt, so dass $f(\v x)\geq f(\v x^{\star})$ für *jeden* Vektor $\v x\in U_{\varepsilon}$
+Wir definieren für eine Zahl $\varepsilon>0$ die Menge $U_{\varepsilon}(\v x^{\star})$ als Kugel mit Radius $\varepsilon$ um $\v x^{\star}$, formell $U_{\varepsilon}(\v x^{\star})=\{\v x\in\R^n :\ \norm{\v x^{\star}}-\v x\}<\varepsilon \}$. Ein Vektor $\v x^{\star}$ ist ein lokales Minimum, wenn es eine Zahl $\varepsilon>0$ gibt, so dass $f(\v x)\geq f(\v x^{\star})$ für *jeden* Vektor $\v x\in U_{\varepsilon}$
 
 ````{prf:example} Lokale und globale Minima
 Die folgenden Beispiele zeigen, dass eine Funktion weder lokale noch globale Minima haben muss. Wenn es welche gibt, kann es auch sein, dass es mehrere gibt. 
@@ -102,16 +102,16 @@ Wir schauen uns zunächst die Grundform dieses Algorithmus an, der uns dieses Se
 Gegeben: 
 : Differenzierbare Funktion $f:\R\rightarrow\R$.
 : Folge von Schrittweiten $\alpha^{[k]}$, für $k=0,1,2,\dots$.
+: Initialer Schätzwert für die Lösung $x^{[0]}$.
 
 Gesucht: 
 : Lokales Minimum von $f$.
 
 **Algorithmus**:
-1. Starte mit initialer Schätzung $x^{[0]}$, setze $k=0$.
+1. Starte mit initialer Schätzung $x^{[0]}$.
 2. Für $k=0,1,2,\dots$:
     - Berechne neue Iterierte $x^{[k+1]}=x^{[k]}-\alpha^{[k]}f'(x^{[k]})$.
-    - Erhöhe $k$ um $1$.
-    - Falls Abbruchbedingung erfüllt, beende Algorithmus mit Lösung $x^{[k]}$.
+    - Falls Abbruchbedingung erfüllt, beende Algorithmus mit Lösung $x^{[k+1]}$.
 ````
 Hier ergeben sich sofort zwei Fragen:
 1. Wie wählt man die Folge von Schrittweiten $\alpha^{[k]}$?
@@ -149,7 +149,7 @@ In diesem Beispiel ist man nach $15$ Iterationen schon recht nah an der Lösung 
 
 Beobachtung: Wenn wir die Schrittweite vergrößern, machen wir schneller Fortschritte in Richtung der Lösung. Nach 9 Iterationen beträgt die Differenz zur (normalerweise unbekannten) optimalen Lösung nur noch $0.001$.
 
-In folgendem Code ist ein einfaches Gradientenverfahren implementiert, das ein Minimum der Funktion $f(x)=x^2\ln(x)+x-1$ sucht. In jeder Iteration werden $x^{[k]},f(x^{[k]})$ und $f'(x^{[k]})$ ausgegeben. Des weiteren wird die Historie der $x^{[k]}$-Werte zurückgegeben und visualisiert.
+In folgendem Code ist ein einfaches Gradientenverfahren implementiert, das ein Minimum der Funktion $f(x)=x^2\ln(x)+x-1$ sucht. Die Historie der $x^{[k]}$-Werte zurückgegeben und visualisiert.
  
 ```{code-cell} ipython3
 import numpy as np
@@ -166,14 +166,10 @@ def df(x):
 
 def gd(func, derv, alpha, x0, n_steps):
     """ Perform n_steps iterations of gradient descent with steplength alpha and print iterates """
-    print(" k     x           f(x)        f'(x)")
-    print(f"{0:2} {x0:10.4f}, {func(x0):10.4f}, {derv(x0):10.4f}")
     x_history = [x0]
     x = x0
     for k in range(n_steps):
-        dx = derv(x)
-        x = x - alpha * dx
-        print(f"{k+1:2} {x:10.4f}, {func(x):10.4f}, {dx:10.4f}")
+        x = x - alpha * derv(x)
         x_history.append(x)
 
     return np.array(x_history)
@@ -205,16 +201,16 @@ Die Grundform des Verfahrens ist wie folgt:
 Gegeben: 
 : Differenzierbare Funktion $f:\R^n\rightarrow\R$.
 : Folge von Schrittweiten $\alpha^{[k]}$, für $k=0,1,2,\dots$.
+: Initialer Schätzwert für die Lösung $\v x^{[0]}$.
 
 Gesucht: 
 : Lokales Minimum von $f$.
 
 **Algorithmus**:
-1. Starte mit initialer Schätzung $\v x^{[0]}$, setze $k=0$.
+1. Starte mit initialer Schätzung $\v x^{[0]}$.
 2. Für $k=0,1,2,\dots$:
     - Berechne neue Iterierte $\v x^{[k+1]}=x^{[k]}-\alpha^{[k]}\nabla f(\v x^{[k]})$, $\alpha^{[k]}>0$.
-    - Erhöhe $k$ um $1$.
-    - Falls Abbruchbedingung erfüllt, beende Algorithmus mit Lösung $\v x^{[k]}$.
+    - Falls Abbruchbedingung erfüllt, beende Algorithmus mit Lösung $\v x^{[k+1]}$.
 ````
 
 ````{prf:example} Beispiel Gradientenabstieg
