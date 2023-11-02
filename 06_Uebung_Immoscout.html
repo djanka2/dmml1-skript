@@ -819,6 +819,278 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Column Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>regio1</td>
+      <td>Bundesland</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>serviceCharge</td>
+      <td>aucilliary costs such as electricty or interne...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>heatingType</td>
+      <td>Type of heating</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>telekomTvOffer</td>
+      <td>Is payed TV included if so which offer</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>telekomHybridUploadSpeed</td>
+      <td>how fast is the hybrid inter upload speed</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>newlyConst</td>
+      <td>is the building newly constructed</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>balcony</td>
+      <td>does the object have a balcony</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>picturecount</td>
+      <td>how many pictures were uploaded to the listing</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>pricetrend</td>
+      <td>price trend as calculated by Immoscout</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>telekomUploadSpeed</td>
+      <td>how fast is the internet upload speed</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>totalRent</td>
+      <td>total rent (usually a sum of base rent, servic...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>yearConstructed</td>
+      <td>construction year</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>scoutId</td>
+      <td>immoscout Id</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>noParkSpaces</td>
+      <td>number of parking spaces</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>firingTypes</td>
+      <td>main energy sources, separated by colon</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>hasKitchen</td>
+      <td>has a kitchen</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>geo_bln</td>
+      <td>bundesland (state), same as regio1</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>cellar</td>
+      <td>has a cellar</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>yearConstructedRange</td>
+      <td>binned construction year, 1 to 9</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>baseRent</td>
+      <td>base rent without electricity and heating</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>houseNumber</td>
+      <td>house number</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>livingSpace</td>
+      <td>living space in sqm</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>geo_krs</td>
+      <td>district, above ZIP code</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>condition</td>
+      <td>condition of the flat</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>interiorQual</td>
+      <td>interior quality</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>petsAllowed</td>
+      <td>are pets allowed, can be yes, no or negotiable</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>street</td>
+      <td>street name</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>streetPlain</td>
+      <td>street name (plain, different formating)</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>lift</td>
+      <td>is elevator available</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>baseRentRange</td>
+      <td>binned base rent, 1 to 9</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>typeOfFlat</td>
+      <td>type of flat</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>geo_plz</td>
+      <td>ZIP code</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>noRooms</td>
+      <td>number of rooms</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>thermalChar</td>
+      <td>energy need in kWh/(m^2a), defines the energy ...</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>floor</td>
+      <td>which floor is the flat on</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>numberOfFloors</td>
+      <td>number of floors in the building</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>noRoomsRange</td>
+      <td>binned number of rooms, 1 to 5</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>garden</td>
+      <td>has a garden</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>livingSpaceRange</td>
+      <td>binned living space, 1 to 7</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>regio2</td>
+      <td>District or Kreis, same as geo krs</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>regio3</td>
+      <td>City/town</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>description</td>
+      <td>free text description of the object</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>facilities</td>
+      <td>free text description about available facilities</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>heatingCosts</td>
+      <td>monthly heating costs in €</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>energyEfficiencyClass</td>
+      <td>energy efficiency class (based on binned therm...</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>lastRefurbish</td>
+      <td>year of last renovation</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>electricityBasePrice</td>
+      <td>monthly base price for electricity in € (depre...</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>electricityKwhPrice</td>
+      <td>electricity price per kwh (deprecated since Fe...</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>date</td>
+      <td>time of scraping</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Aus der Liste der Beschreibungen fallen uns einige Attribute auf, die doppelt auftreten oder (wahrscheinlich) keine Vorhersagekraft haben (eigentlich müsste man das verifizieren!). Diese schließen wir direkt aus, indem wir die “drop” Methode des DataFrame aufrufen und die entsprechenden Spaltennamen übergeben. Das Argument errors=“ignore” besagt, dass, falls die Spalte nicht (mehr) existiert, keine Fehlermeldung produziert werden soll. Das ist hier hilfreich: falls man im Notebook eine Zelle mehrmals ausführt, würde ab dem zweiten Mal immer eine Fehlermeldung auftauchen.</p>
 <div class="cell docutils container">
@@ -847,11 +1119,153 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>regio1</th>
+      <th>heatingType</th>
+      <th>telekomTvOffer</th>
+      <th>newlyConst</th>
+      <th>balcony</th>
+      <th>firingTypes</th>
+      <th>hasKitchen</th>
+      <th>cellar</th>
+      <th>condition</th>
+      <th>interiorQual</th>
+      <th>petsAllowed</th>
+      <th>street</th>
+      <th>streetPlain</th>
+      <th>lift</th>
+      <th>typeOfFlat</th>
+      <th>garden</th>
+      <th>regio2</th>
+      <th>regio3</th>
+      <th>description</th>
+      <th>facilities</th>
+      <th>energyEfficiencyClass</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>268850</td>
+      <td>223994</td>
+      <td>236231</td>
+      <td>268850</td>
+      <td>268850</td>
+      <td>211886</td>
+      <td>268850</td>
+      <td>268850</td>
+      <td>200361</td>
+      <td>156185</td>
+      <td>154277</td>
+      <td>268850</td>
+      <td>197837</td>
+      <td>268850</td>
+      <td>232236</td>
+      <td>268850</td>
+      <td>268850</td>
+      <td>268850</td>
+      <td>249103</td>
+      <td>215926</td>
+      <td>77787</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>16</td>
+      <td>13</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>132</td>
+      <td>2</td>
+      <td>2</td>
+      <td>10</td>
+      <td>4</td>
+      <td>3</td>
+      <td>52373</td>
+      <td>54490</td>
+      <td>2</td>
+      <td>10</td>
+      <td>2</td>
+      <td>419</td>
+      <td>8684</td>
+      <td>212621</td>
+      <td>189526</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>Nordrhein_Westfalen</td>
+      <td>central_heating</td>
+      <td>ONE_YEAR_FREE</td>
+      <td>False</td>
+      <td>True</td>
+      <td>gas</td>
+      <td>False</td>
+      <td>True</td>
+      <td>well_kept</td>
+      <td>normal</td>
+      <td>negotiable</td>
+      <td>no_information</td>
+      <td>Hauptstraße</td>
+      <td>False</td>
+      <td>apartment</td>
+      <td>False</td>
+      <td>Leipzig</td>
+      <td>Innenstadt</td>
+      <td>+ MEIN GUENTZ - Quartier der Generationen\r\n+...</td>
+      <td>Laminat</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>62863</td>
+      <td>128977</td>
+      <td>227632</td>
+      <td>247679</td>
+      <td>165734</td>
+      <td>110899</td>
+      <td>176794</td>
+      <td>172235</td>
+      <td>66591</td>
+      <td>81826</td>
+      <td>91970</td>
+      <td>71013</td>
+      <td>911</td>
+      <td>205528</td>
+      <td>131522</td>
+      <td>216093</td>
+      <td>13723</td>
+      <td>4751</td>
+      <td>216</td>
+      <td>207</td>
+      <td>14613</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Wir erinnern uns: Wenn kategorielle Features mittels OneHot Encoding transformiert werden, so entsteht für jede Ausprägung eine neue Spalte. Die Anzahl der unterschiedlichen Ausprägungen gibt die Zeile “unique” an. Wenn wir also z.B. “description” (das ist ein Freitext Feld) mittels OneHot Encoding transformieren würden, würden wir einen DataFrame (also eine Datenmatrix) mit über 200,000 Spalten erhalten! Attribute mit zu vielen Ausprägungen schließen wir also zunächst aus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;streetPlain&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;facilities&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;streetPlain&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;facilities&quot;</span><span class="p">,</span> <span class="s2">&quot;regio3&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -863,11 +1277,106 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;oil&#39;, &#39;gas&#39;, nan, &#39;district_heating&#39;, &#39;gas:electricity&#39;,
+       &#39;electricity&#39;, &#39;pellet_heating&#39;, &#39;natural_gas_light&#39;,
+       &#39;combined_heat_and_power_fossil_fuels&#39;,
+       &#39;district_heating:local_heating&#39;, &#39;steam_district_heating&#39;,
+       &#39;natural_gas_heavy&#39;, &#39;gas:district_heating&#39;, &#39;solar_heating:gas&#39;,
+       &#39;environmental_thermal_energy&#39;, &#39;local_heating&#39;,
+       &#39;gas:natural_gas_light&#39;, &#39;geothermal&#39;,
+       &#39;combined_heat_and_power_regenerative_energy&#39;, &#39;heat_supply&#39;,
+       &#39;oil:electricity&#39;, &#39;solar_heating&#39;, &#39;geothermal:solar_heating&#39;,
+       &#39;district_heating:electricity&#39;, &#39;liquid_gas&#39;, &#39;wood&#39;,
+       &#39;hydro_energy&#39;, &#39;combined_heat_and_power_renewable_energy&#39;, &#39;coal&#39;,
+       &#39;gas:steam_district_heating&#39;, &#39;bio_energy&#39;,
+       &#39;gas:environmental_thermal_energy&#39;, &#39;wood_chips&#39;, &#39;gas:oil&#39;,
+       &#39;solar_heating:wood&#39;, &#39;geothermal:gas&#39;,
+       &#39;solar_heating:gas:electricity&#39;,
+       &#39;gas:natural_gas_light:heat_supply&#39;, &#39;pellet_heating:gas&#39;,
+       &#39;solar_heating:gas:bio_energy&#39;, &#39;oil:wood&#39;,
+       &#39;electricity:combined_heat_and_power_fossil_fuels&#39;,
+       &#39;gas:natural_gas_heavy&#39;, &#39;solar_heating:oil&#39;,
+       &#39;combined_heat_and_power_bio_energy&#39;, &#39;pellet_heating:wood&#39;,
+       &#39;district_heating:combined_heat_and_power_fossil_fuels&#39;,
+       &#39;electricity:natural_gas_heavy&#39;,
+       &#39;district_heating:electricity:local_heating&#39;,
+       &#39;electricity:natural_gas_light&#39;, &#39;geothermal:district_heating&#39;,
+       &#39;electricity:bio_energy&#39;, &#39;district_heating:coal&#39;,
+       &#39;oil:district_heating&#39;, &#39;solar_heating:electricity&#39;,
+       &#39;pellet_heating:electricity&#39;, &#39;solar_heating:natural_gas_light&#39;,
+       &#39;solar_heating:oil:wood&#39;, &#39;solar_heating:district_heating&#39;,
+       &#39;district_heating:combined_heat_and_power_renewable_energy&#39;,
+       &#39;district_heating:electricity:local_heating:combined_heat_and_power_fossil_fuels&#39;,
+       &#39;solar_heating:pellet_heating&#39;, &#39;district_heating:heat_supply&#39;,
+       &#39;electricity:local_heating&#39;, &#39;natural_gas_light:heat_supply&#39;,
+       &#39;solar_heating:natural_gas_light:environmental_thermal_energy&#39;,
+       &#39;oil:environmental_thermal_energy&#39;,
+       &#39;electricity:environmental_thermal_energy&#39;, &#39;gas:bio_energy&#39;,
+       &#39;oil:natural_gas_light&#39;, &#39;gas:local_heating&#39;, &#39;pellet_heating:oil&#39;,
+       &#39;natural_gas_light:natural_gas_heavy&#39;,
+       &#39;gas:combined_heat_and_power_fossil_fuels&#39;,
+       &#39;district_heating:bio_energy&#39;,
+       &#39;district_heating:local_heating:combined_heat_and_power_fossil_fuels&#39;,
+       &#39;solar_heating:gas:district_heating&#39;,
+       &#39;solar_heating:wood:environmental_thermal_energy&#39;, &#39;gas:wood&#39;,
+       &#39;solar_heating:gas:wood&#39;, &#39;wind_energy&#39;, &#39;geothermal:electricity&#39;,
+       &#39;district_heating:electricity:combined_heat_and_power_fossil_fuels&#39;,
+       &#39;gas:district_heating:local_heating&#39;, &#39;coal_coke&#39;,
+       &#39;natural_gas_light:liquid_gas&#39;, &#39;electricity:wood&#39;,
+       &#39;local_heating:combined_heat_and_power_fossil_fuels&#39;,
+       &#39;geothermal:bio_energy&#39;,
+       &#39;solar_heating:gas:electricity:coal:coal_coke:local_heating&#39;,
+       &#39;pellet_heating:district_heating&#39;, &#39;solar_heating:local_heating&#39;,
+       &#39;district_heating:combined_heat_and_power_regenerative_energy&#39;,
+       &#39;gas:electricity:environmental_thermal_energy&#39;,
+       &#39;liquid_gas:steam_district_heating:wood:wood_chips:coal_coke:local_heating:heat_supply:bio_energy:wind_energy:hydro_energy:environmental_thermal_energy:combined_heat_and_power_fossil_fuels&#39;,
+       &#39;natural_gas_light:wood&#39;,
+       &#39;district_heating:local_heating:combined_heat_and_power_renewable_energy&#39;,
+       &#39;pellet_heating:natural_gas_light&#39;, &#39;solar_heating:heat_supply&#39;,
+       &#39;geothermal:solar_heating:pellet_heating:gas&#39;, &#39;gas:heat_supply&#39;,
+       &#39;gas:oil:electricity&#39;,
+       &#39;district_heating:combined_heat_and_power_fossil_fuels:combined_heat_and_power_regenerative_energy&#39;,
+       &#39;pellet_heating:wood:wood_chips&#39;, &#39;solar_heating:liquid_gas&#39;,
+       &#39;geothermal:solar_heating:pellet_heating&#39;,
+       &#39;geothermal:combined_heat_and_power_fossil_fuels&#39;,
+       &#39;district_heating:natural_gas_heavy&#39;,
+       &#39;electricity:coal:natural_gas_light:natural_gas_heavy:liquid_gas:steam_district_heating:wood:wood_chips:coal_coke:local_heating:heat_supply:bio_energy:wind_energy&#39;,
+       &#39;district_heating:wood&#39;, &#39;solar_heating:gas:natural_gas_light&#39;,
+       &#39;district_heating:electricity:natural_gas_heavy&#39;,
+       &#39;natural_gas_heavy:local_heating&#39;, &#39;solar_heating:gas:oil:coal&#39;,
+       &#39;district_heating:wood:bio_energy&#39;,
+       &#39;solar_heating:environmental_thermal_energy&#39;,
+       &#39;geothermal:solar_heating:pellet_heating:district_heating&#39;,
+       &#39;solar_heating:wood_chips&#39;, &#39;district_heating:natural_gas_light&#39;,
+       &#39;gas:oil:district_heating&#39;,
+       &#39;solar_heating:pellet_heating:bio_energy&#39;, &#39;geothermal:wood&#39;,
+       &#39;gas:district_heating:electricity&#39;,
+       &#39;solar_heating:oil:electricity&#39;,
+       &#39;solar_heating:pellet_heating:gas&#39;, &#39;gas:liquid_gas&#39;,
+       &#39;gas:wood_chips&#39;,
+       &#39;gas:oil:district_heating:electricity:coal:natural_gas_light&#39;,
+       &#39;geothermal:solar_heating:gas&#39;, &#39;electricity:wood_chips&#39;,
+       &#39;electricity:coal&#39;, &#39;solar_heating:bio_energy&#39;,
+       &#39;district_heating:hydro_energy&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Es gibt ein ähnliches Attribut heatingType, das hat aber deutlich weniger Ausprägungen. Wir schauen uns an, welche Ausprägungen es gibt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;heatingType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;central_heating&#39;, &#39;self_contained_central_heating&#39;,
+       &#39;floor_heating&#39;, &#39;district_heating&#39;, &#39;gas_heating&#39;, &#39;oil_heating&#39;,
+       nan, &#39;wood_pellet_heating&#39;, &#39;electric_heating&#39;,
+       &#39;combined_heat_and_power_plant&#39;, &#39;heat_pump&#39;,
+       &#39;night_storage_heater&#39;, &#39;stove_heating&#39;, &#39;solar_heating&#39;],
+      dtype=object)
 </pre></div>
 </div>
 </div>
@@ -887,6 +1396,118 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>regio1</th>
+      <th>heatingType</th>
+      <th>telekomTvOffer</th>
+      <th>newlyConst</th>
+      <th>balcony</th>
+      <th>hasKitchen</th>
+      <th>cellar</th>
+      <th>condition</th>
+      <th>interiorQual</th>
+      <th>petsAllowed</th>
+      <th>lift</th>
+      <th>typeOfFlat</th>
+      <th>garden</th>
+      <th>regio2</th>
+      <th>energyEfficiencyClass</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>268850</td>
+      <td>223994</td>
+      <td>236231</td>
+      <td>268850</td>
+      <td>268850</td>
+      <td>268850</td>
+      <td>268850</td>
+      <td>200361</td>
+      <td>156185</td>
+      <td>154277</td>
+      <td>268850</td>
+      <td>232236</td>
+      <td>268850</td>
+      <td>268850</td>
+      <td>77787</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>16</td>
+      <td>13</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>10</td>
+      <td>4</td>
+      <td>3</td>
+      <td>2</td>
+      <td>10</td>
+      <td>2</td>
+      <td>419</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>Nordrhein_Westfalen</td>
+      <td>central_heating</td>
+      <td>ONE_YEAR_FREE</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>well_kept</td>
+      <td>normal</td>
+      <td>negotiable</td>
+      <td>False</td>
+      <td>apartment</td>
+      <td>False</td>
+      <td>Leipzig</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>62863</td>
+      <td>128977</td>
+      <td>227632</td>
+      <td>247679</td>
+      <td>165734</td>
+      <td>176794</td>
+      <td>172235</td>
+      <td>66591</td>
+      <td>81826</td>
+      <td>91970</td>
+      <td>205528</td>
+      <td>131522</td>
+      <td>216093</td>
+      <td>13723</td>
+      <td>14613</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Als nächstes schauen wir uns noch die Häufigkeitsverteilung der verschiedenen Ausprägungen an. Hier arbeiten wir mit der Methode .value_counts() von Pandas und erzeugen jeden Plot separat in einem Gitter.</p>
 <div class="cell docutils container">
@@ -907,6 +1528,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Uebung_Immoscout_21_0.png" src="_images/06_Uebung_Immoscout_21_0.png" />
+</div>
 </div>
 </section>
 <section id="aufgabe">
@@ -922,6 +1546,262 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>serviceCharge</th>
+      <th>telekomHybridUploadSpeed</th>
+      <th>picturecount</th>
+      <th>pricetrend</th>
+      <th>telekomUploadSpeed</th>
+      <th>totalRent</th>
+      <th>yearConstructed</th>
+      <th>noParkSpaces</th>
+      <th>yearConstructedRange</th>
+      <th>baseRent</th>
+      <th>livingSpace</th>
+      <th>baseRentRange</th>
+      <th>geo_plz</th>
+      <th>noRooms</th>
+      <th>thermalChar</th>
+      <th>floor</th>
+      <th>numberOfFloors</th>
+      <th>noRoomsRange</th>
+      <th>livingSpaceRange</th>
+      <th>heatingCosts</th>
+      <th>lastRefurbish</th>
+      <th>electricityBasePrice</th>
+      <th>electricityKwhPrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>261941.000000</td>
+      <td>45020.0</td>
+      <td>268850.000000</td>
+      <td>267018.000000</td>
+      <td>235492.000000</td>
+      <td>2.283330e+05</td>
+      <td>211805.000000</td>
+      <td>93052.000000</td>
+      <td>211805.000000</td>
+      <td>2.688500e+05</td>
+      <td>268850.000000</td>
+      <td>268850.000000</td>
+      <td>268850.000000</td>
+      <td>268850.000000</td>
+      <td>162344.000000</td>
+      <td>217541.000000</td>
+      <td>171118.000000</td>
+      <td>268850.000000</td>
+      <td>268850.000000</td>
+      <td>85518.000000</td>
+      <td>80711.000000</td>
+      <td>46846.000000</td>
+      <td>46846.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>151.206113</td>
+      <td>10.0</td>
+      <td>9.791958</td>
+      <td>3.389001</td>
+      <td>28.804928</td>
+      <td>9.013315e+02</td>
+      <td>1966.400590</td>
+      <td>1.327634</td>
+      <td>3.714544</td>
+      <td>6.941294e+02</td>
+      <td>74.355548</td>
+      <td>3.765256</td>
+      <td>37283.022235</td>
+      <td>2.641261</td>
+      <td>114.749533</td>
+      <td>2.122405</td>
+      <td>3.572319</td>
+      <td>2.571542</td>
+      <td>3.070790</td>
+      <td>76.990866</td>
+      <td>2013.904536</td>
+      <td>89.113612</td>
+      <td>0.199769</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>308.295790</td>
+      <td>0.0</td>
+      <td>6.408399</td>
+      <td>1.964874</td>
+      <td>16.337151</td>
+      <td>3.323833e+04</td>
+      <td>46.992207</td>
+      <td>8.361403</td>
+      <td>2.738134</td>
+      <td>1.953602e+04</td>
+      <td>254.759208</td>
+      <td>2.214357</td>
+      <td>27798.037296</td>
+      <td>2.633440</td>
+      <td>61.653663</td>
+      <td>3.634934</td>
+      <td>6.375496</td>
+      <td>0.937594</td>
+      <td>1.407127</td>
+      <td>147.716278</td>
+      <td>10.963125</td>
+      <td>5.395805</td>
+      <td>0.009667</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>10.0</td>
+      <td>0.000000</td>
+      <td>-12.330000</td>
+      <td>1.000000</td>
+      <td>0.000000e+00</td>
+      <td>1000.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>852.000000</td>
+      <td>1.000000</td>
+      <td>0.100000</td>
+      <td>-1.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>1015.000000</td>
+      <td>71.430000</td>
+      <td>0.170500</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>95.000000</td>
+      <td>10.0</td>
+      <td>6.000000</td>
+      <td>2.000000</td>
+      <td>10.000000</td>
+      <td>4.698000e+02</td>
+      <td>1950.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>3.380000e+02</td>
+      <td>54.000000</td>
+      <td>2.000000</td>
+      <td>9128.000000</td>
+      <td>2.000000</td>
+      <td>79.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>2.000000</td>
+      <td>2.000000</td>
+      <td>54.000000</td>
+      <td>2012.000000</td>
+      <td>90.760000</td>
+      <td>0.191500</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>135.000000</td>
+      <td>10.0</td>
+      <td>9.000000</td>
+      <td>3.390000</td>
+      <td>40.000000</td>
+      <td>6.500000e+02</td>
+      <td>1973.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>4.900000e+02</td>
+      <td>67.320000</td>
+      <td>3.000000</td>
+      <td>38667.000000</td>
+      <td>3.000000</td>
+      <td>107.000000</td>
+      <td>2.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>70.000000</td>
+      <td>2017.000000</td>
+      <td>90.760000</td>
+      <td>0.198500</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>190.000000</td>
+      <td>10.0</td>
+      <td>13.000000</td>
+      <td>4.570000</td>
+      <td>40.000000</td>
+      <td>9.850000e+02</td>
+      <td>1996.000000</td>
+      <td>1.000000</td>
+      <td>5.000000</td>
+      <td>7.990000e+02</td>
+      <td>87.000000</td>
+      <td>5.000000</td>
+      <td>57072.000000</td>
+      <td>3.000000</td>
+      <td>140.300000</td>
+      <td>3.000000</td>
+      <td>4.000000</td>
+      <td>3.000000</td>
+      <td>4.000000</td>
+      <td>90.000000</td>
+      <td>2019.000000</td>
+      <td>90.760000</td>
+      <td>0.205500</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>146118.000000</td>
+      <td>10.0</td>
+      <td>121.000000</td>
+      <td>14.920000</td>
+      <td>100.000000</td>
+      <td>1.575154e+07</td>
+      <td>2090.000000</td>
+      <td>2241.000000</td>
+      <td>9.000000</td>
+      <td>9.999999e+06</td>
+      <td>111111.000000</td>
+      <td>9.000000</td>
+      <td>99998.000000</td>
+      <td>999.990000</td>
+      <td>1996.000000</td>
+      <td>999.000000</td>
+      <td>999.000000</td>
+      <td>5.000000</td>
+      <td>7.000000</td>
+      <td>12613.000000</td>
+      <td>2919.000000</td>
+      <td>90.760000</td>
+      <td>0.227600</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Wir sehen, dass es einige extreme <em>Ausreißer</em> in den Daten gibt. So gibt es z.B. eine Wohnung mit monatlichen Nebenkosten von 146118 EUR, ein Objekt, das etwa 15 mio EUR Miete pro Monat kostet oder 111111m² Wohnfläche besitzt. Wir speichern uns die Namen der verdächtigen Spalten in einer Liste.
 Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10 hat oder leer ist, deshalb löschen wir es.</p>
@@ -976,6 +1856,9 @@ Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Uebung_Immoscout_32_0.png" src="_images/06_Uebung_Immoscout_32_0.png" />
+</div>
 </div>
 </section>
 </section>
@@ -986,6 +1869,34 @@ Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">interesting_columns</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.995</span><span class="p">))</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">interesting_columns</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.005</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>serviceCharge       500.000
+totalRent          3473.482
+yearConstructed    2020.000
+noParkSpaces         16.000
+baseRent           3000.000
+livingSpace         208.000
+noRooms               6.000
+numberOfFloors       14.000
+heatingCosts        233.000
+lastRefurbish      2020.000
+Name: 0.995, dtype: float64
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>serviceCharge         0.00
+totalRent           220.00
+yearConstructed    1810.02
+noParkSpaces          0.00
+baseRent            152.00
+livingSpace          18.00
+noRooms               1.00
+numberOfFloors        0.00
+heatingCosts          0.00
+lastRefurbish      1990.00
+Name: 0.005, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1005,6 +1916,244 @@ Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>serviceCharge</th>
+      <th>picturecount</th>
+      <th>pricetrend</th>
+      <th>telekomUploadSpeed</th>
+      <th>totalRent</th>
+      <th>yearConstructed</th>
+      <th>noParkSpaces</th>
+      <th>yearConstructedRange</th>
+      <th>baseRent</th>
+      <th>livingSpace</th>
+      <th>baseRentRange</th>
+      <th>noRooms</th>
+      <th>thermalChar</th>
+      <th>floor</th>
+      <th>numberOfFloors</th>
+      <th>noRoomsRange</th>
+      <th>livingSpaceRange</th>
+      <th>heatingCosts</th>
+      <th>lastRefurbish</th>
+      <th>electricityBasePrice</th>
+      <th>electricityKwhPrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>261941.000000</td>
+      <td>268850.000000</td>
+      <td>267018.000000</td>
+      <td>235492.000000</td>
+      <td>2.283330e+05</td>
+      <td>211805.000000</td>
+      <td>93052.000000</td>
+      <td>211805.000000</td>
+      <td>2.688500e+05</td>
+      <td>268850.000000</td>
+      <td>268850.000000</td>
+      <td>268850.000000</td>
+      <td>162344.000000</td>
+      <td>217541.000000</td>
+      <td>171118.000000</td>
+      <td>268850.000000</td>
+      <td>268850.000000</td>
+      <td>85518.000000</td>
+      <td>80711.000000</td>
+      <td>46846.000000</td>
+      <td>46846.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>151.206113</td>
+      <td>9.791958</td>
+      <td>3.389001</td>
+      <td>28.804928</td>
+      <td>9.013315e+02</td>
+      <td>1966.400590</td>
+      <td>1.327634</td>
+      <td>3.714544</td>
+      <td>6.941294e+02</td>
+      <td>74.355548</td>
+      <td>3.765256</td>
+      <td>2.641261</td>
+      <td>114.749533</td>
+      <td>2.122405</td>
+      <td>3.572319</td>
+      <td>2.571542</td>
+      <td>3.070790</td>
+      <td>76.990866</td>
+      <td>2013.904536</td>
+      <td>89.113612</td>
+      <td>0.199769</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>308.295790</td>
+      <td>6.408399</td>
+      <td>1.964874</td>
+      <td>16.337151</td>
+      <td>3.323833e+04</td>
+      <td>46.992207</td>
+      <td>8.361403</td>
+      <td>2.738134</td>
+      <td>1.953602e+04</td>
+      <td>254.759208</td>
+      <td>2.214357</td>
+      <td>2.633440</td>
+      <td>61.653663</td>
+      <td>3.634934</td>
+      <td>6.375496</td>
+      <td>0.937594</td>
+      <td>1.407127</td>
+      <td>147.716278</td>
+      <td>10.963125</td>
+      <td>5.395805</td>
+      <td>0.009667</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>-12.330000</td>
+      <td>1.000000</td>
+      <td>0.000000e+00</td>
+      <td>1000.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.100000</td>
+      <td>-1.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>1015.000000</td>
+      <td>71.430000</td>
+      <td>0.170500</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>95.000000</td>
+      <td>6.000000</td>
+      <td>2.000000</td>
+      <td>10.000000</td>
+      <td>4.698000e+02</td>
+      <td>1950.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>3.380000e+02</td>
+      <td>54.000000</td>
+      <td>2.000000</td>
+      <td>2.000000</td>
+      <td>79.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>2.000000</td>
+      <td>2.000000</td>
+      <td>54.000000</td>
+      <td>2012.000000</td>
+      <td>90.760000</td>
+      <td>0.191500</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>135.000000</td>
+      <td>9.000000</td>
+      <td>3.390000</td>
+      <td>40.000000</td>
+      <td>6.500000e+02</td>
+      <td>1973.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>4.900000e+02</td>
+      <td>67.320000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>107.000000</td>
+      <td>2.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>70.000000</td>
+      <td>2017.000000</td>
+      <td>90.760000</td>
+      <td>0.198500</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>190.000000</td>
+      <td>13.000000</td>
+      <td>4.570000</td>
+      <td>40.000000</td>
+      <td>9.850000e+02</td>
+      <td>1996.000000</td>
+      <td>1.000000</td>
+      <td>5.000000</td>
+      <td>7.990000e+02</td>
+      <td>87.000000</td>
+      <td>5.000000</td>
+      <td>3.000000</td>
+      <td>140.300000</td>
+      <td>3.000000</td>
+      <td>4.000000</td>
+      <td>3.000000</td>
+      <td>4.000000</td>
+      <td>90.000000</td>
+      <td>2019.000000</td>
+      <td>90.760000</td>
+      <td>0.205500</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>146118.000000</td>
+      <td>121.000000</td>
+      <td>14.920000</td>
+      <td>100.000000</td>
+      <td>1.575154e+07</td>
+      <td>2090.000000</td>
+      <td>2241.000000</td>
+      <td>9.000000</td>
+      <td>9.999999e+06</td>
+      <td>111111.000000</td>
+      <td>9.000000</td>
+      <td>999.990000</td>
+      <td>1996.000000</td>
+      <td>999.000000</td>
+      <td>999.000000</td>
+      <td>5.000000</td>
+      <td>7.000000</td>
+      <td>12613.000000</td>
+      <td>2919.000000</td>
+      <td>90.760000</td>
+      <td>0.227600</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Wir haben nun also eine grobe Auswahl an Attributen getroffen, mit denen wir ab jetzt weiterarbeiten möchten.</p>
 <div class="cell docutils container">
@@ -1018,6 +2167,9 @@ Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Uebung_Immoscout_38_0.png" src="_images/06_Uebung_Immoscout_38_0.png" />
+</div>
 </div>
 <section id="behandlung-von-fehlenden-datensatzen">
 <h3>Behandlung von fehlenden Datensätzen<a class="headerlink" href="#behandlung-von-fehlenden-datensatzen" title="Link zu dieser Überschrift">#</a></h3>
@@ -1025,6 +2177,47 @@ Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df_reduced</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1"># isna() wandelt jeden Wert in einen Boolschen Datentyp (0/1) um. sum() summiert diese Werte pro Spalte. Man erhält also die Anzahl der NaN Werte pro Spalte.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>regio1                        0
+serviceCharge              6375
+heatingType               43271
+telekomTvOffer            31473
+newlyConst                    0
+balcony                       0
+picturecount                  0
+pricetrend                 1784
+telekomUploadSpeed        32175
+totalRent                 39200
+yearConstructed           55191
+noParkSpaces             170566
+hasKitchen                    0
+cellar                        0
+yearConstructedRange      55191
+baseRent                      0
+livingSpace                   0
+condition                 66312
+interiorQual             109212
+petsAllowed              110565
+lift                          0
+baseRentRange                 0
+typeOfFlat                35148
+noRooms                       0
+thermalChar              102247
+floor                     49356
+numberOfFloors            94738
+noRoomsRange                  0
+garden                        0
+livingSpaceRange              0
+regio2                        0
+heatingCosts             177095
+energyEfficiencyClass    184418
+lastRefurbish            182539
+electricityBasePrice     214774
+electricityKwhPrice      214774
+dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1073,6 +2266,9 @@ Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Uebung_Immoscout_44_0.png" src="_images/06_Uebung_Immoscout_44_0.png" />
+</div>
 </div>
 </section>
 <section id="id2">
@@ -1096,6 +2292,677 @@ Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>serviceCharge</th>
+      <th>newlyConst</th>
+      <th>balcony</th>
+      <th>picturecount</th>
+      <th>pricetrend</th>
+      <th>telekomUploadSpeed</th>
+      <th>totalRent</th>
+      <th>yearConstructed</th>
+      <th>noParkSpaces</th>
+      <th>hasKitchen</th>
+      <th>cellar</th>
+      <th>yearConstructedRange</th>
+      <th>baseRent</th>
+      <th>livingSpace</th>
+      <th>lift</th>
+      <th>baseRentRange</th>
+      <th>noRooms</th>
+      <th>thermalChar</th>
+      <th>floor</th>
+      <th>numberOfFloors</th>
+      <th>noRoomsRange</th>
+      <th>garden</th>
+      <th>livingSpaceRange</th>
+      <th>heatingCosts</th>
+      <th>lastRefurbish</th>
+      <th>...</th>
+      <th>regio2_Wilhelmshaven</th>
+      <th>regio2_Wismar</th>
+      <th>regio2_Wittenberg_Kreis</th>
+      <th>regio2_Wittmund_Kreis</th>
+      <th>regio2_Wolfenbüttel_Kreis</th>
+      <th>regio2_Wolfsburg</th>
+      <th>regio2_Worms</th>
+      <th>regio2_Wunsiedel_im_Fichtelgebirge_Kreis</th>
+      <th>regio2_Wuppertal</th>
+      <th>regio2_Würzburg</th>
+      <th>regio2_Würzburg_Kreis</th>
+      <th>regio2_Zollernalbkreis</th>
+      <th>regio2_Zweibrücken</th>
+      <th>regio2_Zwickau</th>
+      <th>regio2_Zwickau_Kreis</th>
+      <th>energyEfficiencyClass_A</th>
+      <th>energyEfficiencyClass_A_PLUS</th>
+      <th>energyEfficiencyClass_B</th>
+      <th>energyEfficiencyClass_C</th>
+      <th>energyEfficiencyClass_D</th>
+      <th>energyEfficiencyClass_E</th>
+      <th>energyEfficiencyClass_F</th>
+      <th>energyEfficiencyClass_G</th>
+      <th>energyEfficiencyClass_H</th>
+      <th>energyEfficiencyClass_NO_INFORMATION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>245.00</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>4.62</td>
+      <td>10.000000</td>
+      <td>840.000000</td>
+      <td>1965.0</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>595.0</td>
+      <td>86.00</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4.0</td>
+      <td>181.400000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>4</td>
+      <td>1</td>
+      <td>4</td>
+      <td>73.682626</td>
+      <td>2013.987672</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>134.00</td>
+      <td>0</td>
+      <td>1</td>
+      <td>8</td>
+      <td>3.47</td>
+      <td>10.000000</td>
+      <td>790.174609</td>
+      <td>1871.0</td>
+      <td>2.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>800.0</td>
+      <td>89.00</td>
+      <td>0</td>
+      <td>5</td>
+      <td>3.0</td>
+      <td>114.675604</td>
+      <td>2.094547</td>
+      <td>3.448687</td>
+      <td>3</td>
+      <td>0</td>
+      <td>4</td>
+      <td>73.682626</td>
+      <td>2019.000000</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>255.00</td>
+      <td>1</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2.72</td>
+      <td>2.400000</td>
+      <td>1300.000000</td>
+      <td>2019.0</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9.0</td>
+      <td>965.0</td>
+      <td>83.80</td>
+      <td>1</td>
+      <td>6</td>
+      <td>3.0</td>
+      <td>114.675604</td>
+      <td>3.000000</td>
+      <td>4.000000</td>
+      <td>3</td>
+      <td>0</td>
+      <td>4</td>
+      <td>73.682626</td>
+      <td>2013.987672</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>58.15</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9</td>
+      <td>1.53</td>
+      <td>40.000000</td>
+      <td>790.174609</td>
+      <td>1964.0</td>
+      <td>1.096681</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.0</td>
+      <td>343.0</td>
+      <td>58.15</td>
+      <td>0</td>
+      <td>2</td>
+      <td>3.0</td>
+      <td>86.000000</td>
+      <td>3.000000</td>
+      <td>3.448687</td>
+      <td>3</td>
+      <td>0</td>
+      <td>2</td>
+      <td>87.230000</td>
+      <td>2013.987672</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>138.00</td>
+      <td>0</td>
+      <td>1</td>
+      <td>19</td>
+      <td>2.46</td>
+      <td>28.864072</td>
+      <td>903.000000</td>
+      <td>1950.0</td>
+      <td>1.096681</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>765.0</td>
+      <td>84.97</td>
+      <td>0</td>
+      <td>5</td>
+      <td>3.0</td>
+      <td>188.900000</td>
+      <td>1.000000</td>
+      <td>3.448687</td>
+      <td>3</td>
+      <td>0</td>
+      <td>4</td>
+      <td>73.682626</td>
+      <td>2013.987672</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>268845</th>
+      <td>90.00</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2.74</td>
+      <td>10.000000</td>
+      <td>910.000000</td>
+      <td>2016.0</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9.0</td>
+      <td>820.0</td>
+      <td>90.00</td>
+      <td>0</td>
+      <td>6</td>
+      <td>3.0</td>
+      <td>114.675604</td>
+      <td>2.094547</td>
+      <td>3.448687</td>
+      <td>3</td>
+      <td>0</td>
+      <td>4</td>
+      <td>73.682626</td>
+      <td>2013.987672</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>268846</th>
+      <td>220.00</td>
+      <td>0</td>
+      <td>1</td>
+      <td>12</td>
+      <td>6.49</td>
+      <td>28.864072</td>
+      <td>1150.000000</td>
+      <td>1983.0</td>
+      <td>1.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>930.0</td>
+      <td>115.00</td>
+      <td>0</td>
+      <td>6</td>
+      <td>3.5</td>
+      <td>114.675604</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>3</td>
+      <td>0</td>
+      <td>5</td>
+      <td>73.682626</td>
+      <td>2015.000000</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>268847</th>
+      <td>220.00</td>
+      <td>0</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2.90</td>
+      <td>40.000000</td>
+      <td>930.000000</td>
+      <td>1965.0</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>650.0</td>
+      <td>95.00</td>
+      <td>0</td>
+      <td>5</td>
+      <td>4.0</td>
+      <td>160.770000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>4</td>
+      <td>1</td>
+      <td>4</td>
+      <td>73.682626</td>
+      <td>2019.000000</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>268848</th>
+      <td>175.00</td>
+      <td>1</td>
+      <td>1</td>
+      <td>16</td>
+      <td>4.39</td>
+      <td>28.864072</td>
+      <td>1015.000000</td>
+      <td>2019.0</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9.0</td>
+      <td>840.0</td>
+      <td>70.00</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2.0</td>
+      <td>24.700000</td>
+      <td>2.094547</td>
+      <td>5.000000</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>40.000000</td>
+      <td>2019.000000</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>268849</th>
+      <td>315.00</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9</td>
+      <td>5.00</td>
+      <td>28.864072</td>
+      <td>790.174609</td>
+      <td>1972.0</td>
+      <td>1.000000</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3.0</td>
+      <td>935.0</td>
+      <td>77.00</td>
+      <td>1</td>
+      <td>6</td>
+      <td>3.0</td>
+      <td>114.675604</td>
+      <td>2.094547</td>
+      <td>13.000000</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>73.682626</td>
+      <td>2013.987672</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+<p>260087 rows × 515 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="entfernen-des-labels-aus-den-attributen">
@@ -1135,16 +3002,21 @@ Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LinearRegression</label><div class="sk-toggleable__content"><pre>LinearRegression()</pre></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
 <span class="n">r2_train</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">mse_train</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
-<span class="n">mae_train</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+<span class="n">y_pred_train</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">mse_train</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred_train</span> <span class="p">)</span>
+<span class="n">mae_train</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred_train</span><span class="p">)</span>
+
 <span class="n">r2_test</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">mse_test</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
-<span class="n">mae_test</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">mse_test</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">)</span>
+<span class="n">mae_test</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1160,14 +3032,146 @@ Weiterhin sehen wir, dass das Feature telekomHybridUploadSpeed immer den Wert 10
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R² Trainingsdaten: 0.8399814837534707
+Mean squared error Trainingsdaten: 26855.641303919656
+Mean absolute error Trainingsdaten: 106.60367167034775
+R² Testdaten: 0.8400247818083212
+Mean squared error Testdaten: 26659.41757133355
+Mean absolute error Testdaten: 106.33262059580271
+</pre></div>
+</div>
+</div>
 </div>
 <p>Das Ergebnis der multiplen linearen Regression ist nicht so einfach zu visualisieren. Hier ein Versuch als Scatterplot zwischen der Größe der Wohnung und der Kaltmiete (blau) bzw. der vorhergesagten Kaltmiete (rot).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Feature Name&quot;</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">feature_names_in_</span><span class="p">,</span> <span class="s2">&quot;Koeffizient&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">coef_</span><span class="p">)})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Koeffizient&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature Name</th>
+      <th>Koeffizient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>71</th>
+      <td>petsAllowed_no</td>
+      <td>1.230983e+11</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>petsAllowed_yes</td>
+      <td>1.230983e+11</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>petsAllowed_negotiable</td>
+      <td>1.230983e+11</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>regio1_Berlin</td>
+      <td>4.896274e+10</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>interiorQual_luxury</td>
+      <td>4.749810e+10</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>heatingCosts</td>
+      <td>4.180088e-01</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>floor</td>
+      <td>1.960565e-01</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>serviceCharge</td>
+      <td>1.641620e-01</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>telekomUploadSpeed</td>
+      <td>1.162277e-01</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>thermalChar</td>
+      <td>5.641662e-02</td>
+    </tr>
+  </tbody>
+</table>
+<p>512 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)),</span><span class="n">y_test</span><span class="o">-</span><span class="n">y_pred_test</span><span class="p">,</span> <span class="s2">&quot;b.&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x19e113d4c70&gt;]
+</pre></div>
+</div>
+<img alt="_images/06_Uebung_Immoscout_60_1.png" src="_images/06_Uebung_Immoscout_60_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)),</span> <span class="n">y_pred_test</span> <span class="o">/</span> <span class="n">y_test</span><span class="p">,</span> <span class="s2">&quot;b.&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x19e0f654760&gt;]
+</pre></div>
+</div>
+<img alt="_images/06_Uebung_Immoscout_61_1.png" src="_images/06_Uebung_Immoscout_61_1.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="s2">&quot;livingSpace&quot;</span><span class="p">],</span> <span class="n">y_test</span><span class="p">,</span> <span class="s2">&quot;bo&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="s2">&quot;livingSpace&quot;</span><span class="p">],</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="s2">&quot;ro&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x19e0df3ca90&gt;]
+</pre></div>
+</div>
+<img alt="_images/06_Uebung_Immoscout_62_1.png" src="_images/06_Uebung_Immoscout_62_1.png" />
 </div>
 </div>
 </section>
