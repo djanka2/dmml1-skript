@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>8.3. Praxisübung: Logistische Regression und Gradientenabstieg &#8212; Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)</title>
+    <title>8.1. Übung: Logistische Regression und Gradientenabstieg &#8212; Data Mining und Grundlagen Maschinelles Lernen I (DSCB320)</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,10 +53,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "R": "\\mathbb{R}", "B": "\\mathbb{B}", "I": "\\mathbb{I}", "NN": "\\mathbb{N}", "RR": "\\mathbb{R}", "BB": "\\mathbb{B}", "norm": ["\\left\\lVert#1 \\right\\rVert", 1], "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\begin{pmatrix}"], "emat": ["\\end{pmatrix}"], "bmats": ["\\left(\\begin{smallmatrix}"], "emats": ["\\end{smallmatrix}\\right)"], "scikit": ["\\texttt{scikit-learn}"], "derv": ["\\frac{\\partial #1}{\\partial #2}", 2], "dervquad": ["\\frac{\\partial^2 #1}{\\partial #2^2}", 2], "dervzwei": ["\\frac{\\partial^2 #1}{\\partial {#2} \\partial {#3}}", 3], "v": ["\\mathbf{#1}", 1], "m": ["\\mathbf{#1}", 1], "argmin": ["\\underset{#1}{\\operatorname{arg\\!min}}", 1], "hyper": ["{\\color{Bittersweet}{#1}}", 1], "initial": "\\DeclareMathOperator{\\initial}{initial}", "reduced": "\\DeclareMathOperator{\\reduced}{reduced}", "lazy": "\\DeclareMathOperator{\\lazy}{lazy}", "ILP": "\\DeclareMathOperator{\\ILP}{ILP}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
-    <link rel="next" title="9. Support Vector Machines" href="09_SVM.html" />
-    <link rel="prev" title="8.1. Übungen" href="08_Uebungen.html" />
+    <link rel="next" title="8.2. Übungen" href="08_Uebungen.html" />
+    <link rel="prev" title="8. Logistische Regression" href="08_Logistische_Regression.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="de">
     
@@ -156,17 +158,29 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="04_Optimierung.html">
    4. Grundlagen Optimierung
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_Uebungen.html">
+     4.4. Übungen
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="05_Lineare_Regression.html">
    5. Lineare Regression
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -192,8 +206,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="06_Modellentwicklung.html">
    6. Modellentwicklung
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -209,8 +223,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="07_Regularisierung.html">
    7. Overfitting und Regularisierung
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -226,20 +240,20 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="08_Logistische_Regression.html">
    8. Logistische Regression
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="08_Uebungen.html">
-     8.1. Übungen
-    </a>
-   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     8.3. Praxisübung: Logistische Regression und Gradientenabstieg
+     8.1. Übung: Logistische Regression und Gradientenabstieg
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_Uebungen.html">
+     8.2. Übungen
     </a>
    </li>
   </ul>
@@ -253,8 +267,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="10_Entscheidungsbaeume.html">
    10. Entscheidungsbäume
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -280,8 +294,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="11_Ensemble_Methoden.html">
    11. Ensemble Methoden
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -297,8 +311,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="12_Eigenwertzerlegung.html">
    12. Eigenwerte
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -314,8 +328,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="13_Dimensionsreduktion.html">
    13. Hauptkomponentenanalyse (PCA)
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -331,8 +345,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="14_Empfehlungsdienste.html">
    14. Empfehlungsdienste
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -348,8 +362,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="15_Clustering.html">
    15. Clustering
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -533,6 +547,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beispielcode-gradientenabstieg-fur-logistische-regression">
+   Beispielcode: Gradientenabstieg für logistische Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aufgabe-2">
    ✏ Aufgabe 2
   </a>
@@ -540,6 +559,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aufgabe-3">
    ✏ Aufgabe 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-4">
+   ✏ Aufgabe 4
   </a>
  </li>
 </ul>
@@ -551,7 +575,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Praxisübung: Logistische Regression und Gradientenabstieg</h1>
+                <h1>Übung: Logistische Regression und Gradientenabstieg</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -567,6 +591,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beispielcode-gradientenabstieg-fur-logistische-regression">
+   Beispielcode: Gradientenabstieg für logistische Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aufgabe-2">
    ✏ Aufgabe 2
   </a>
@@ -574,6 +603,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aufgabe-3">
    ✏ Aufgabe 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufgabe-4">
+   ✏ Aufgabe 4
   </a>
  </li>
 </ul>
@@ -586,9 +620,35 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="praxisubung-logistische-regression-und-gradientenabstieg">
-<h1><span class="section-number">8.3. </span>Praxisübung: Logistische Regression und Gradientenabstieg<a class="headerlink" href="#praxisubung-logistische-regression-und-gradientenabstieg" title="Link zu dieser Überschrift">#</a></h1>
-<p>In dieser Übung trainieren Sie ein kleines logistisches Regressionsmodell mittels Gradientenabstieg.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ubung-logistische-regression-und-gradientenabstieg">
+<h1><span class="section-number">8.1. </span>Übung: Logistische Regression und Gradientenabstieg<a class="headerlink" href="#ubung-logistische-regression-und-gradientenabstieg" title="Link zu dieser Überschrift">#</a></h1>
+<p>In dieser Übung beschäftigen Sie sich mit Modellfunktion und Verlustfunktion der logistischen Regression und trainieren ein kleines logistisches Regressionsmodell mittels Gradientenabstieg.</p>
+<section id="aufgabe-1">
+<h2>✏ Aufgabe 1<a class="headerlink" href="#aufgabe-1" title="Link zu dieser Überschrift">#</a></h2>
+<p>In der folgenden Aufgabe sollen Sie ein Gefühl für die Modellfunktion und die Verlustfunktion der logistischen Regression entwickeln. Dafür betrachten wir drei verschiedene Modelle <span class="math notranslate nohighlight">\(f_1\)</span>, <span class="math notranslate nohighlight">\(f_2\)</span>, <span class="math notranslate nohighlight">\(f_3\)</span>, <span class="math notranslate nohighlight">\(f_4\)</span> mit unterschiedlichen Parametern <span class="math notranslate nohighlight">\(w_0\)</span> und <span class="math notranslate nohighlight">\(w_1\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    f_1&amp;: w_0=0, w_1=5\\		
+    f_2&amp;: w_0=0, w_1=10\\
+    f_3&amp;: w_0=1, w_1=10\\
+    f_4&amp;: w_0=1, w_1=-7\\
+\end{align*}\]</div>
+<p>Weiterhin sei folgender Datensatz aus 4 Punkten gegeben:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    x &amp;= (-0.4,-0.2,0,0.2)\\
+    y &amp;= (0,0,1,1)
+\end{align*}\]</div>
+<ol class="simple">
+<li><p>Berechnen Sie die Modellvorhersage von Modell <span class="math notranslate nohighlight">\(f_3\)</span> für den Datensatz.</p></li>
+<li><p>Plotten Sie die vier Modellfunktionen. Wie kann man die Werte <span class="math notranslate nohighlight">\(w_0\)</span> und <span class="math notranslate nohighlight">\(w_1\)</span> graphisch interpretieren?</p></li>
+<li><p>Berechnen Sie die Kreuzentropie-Verlustfunktion für das Modell <span class="math notranslate nohighlight">\(f_3\)</span>. Schreiben Sie den Term auf.</p></li>
+<li><p>Berechnen Sie die Entscheidungsgrenze für das Modell <span class="math notranslate nohighlight">\(f_3\)</span> für den Schwellwert <span class="math notranslate nohighlight">\(B=0.5\)</span>.</p></li>
+</ol>
+</section>
+<section id="beispielcode-gradientenabstieg-fur-logistische-regression">
+<h2>Beispielcode: Gradientenabstieg für logistische Regression<a class="headerlink" href="#beispielcode-gradientenabstieg-fur-logistische-regression" title="Link zu dieser Überschrift">#</a></h2>
+<p>Im folgenden ist beispielhaft ein Gradientenabstiegsverfahren für die logistische Regression implementiert. Weiter unten gibt es Aufgaben dazu :-)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -606,7 +666,7 @@ title="Print to PDF"
 <span class="c1"># 2 Features: die erste Spalte sorgt dafür, dass der Koeffizienten w_0 (&quot;Intercept&quot;) mitgeschätzt wird</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
               <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X = </span><span class="se">\n</span><span class="si">{</span><span class="n">X</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
@@ -648,21 +708,11 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<section id="aufgabe-1">
-<h2>✏ Aufgabe 1<a class="headerlink" href="#aufgabe-1" title="Link zu dieser Überschrift">#</a></h2>
-<p>Lassen Sie das Gradientenverfahren mit Schrittweite 1 für 10000 Iterationen laufen.
-Geben Sie am Ende die gelernten Koeffizienten aus.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TO DO</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="aufgabe-2">
 <h2>✏ Aufgabe 2<a class="headerlink" href="#aufgabe-2" title="Link zu dieser Überschrift">#</a></h2>
-<p>Sagen Sie die Wahrscheinlichkeit und die Klasse (Schwellwert 0.5) für die Trainingsdaten vorher.</p>
+<p>Lassen Sie das Gradientenverfahren mit Schrittweite 1 für 100 Iterationen laufen.
+Geben Sie am Ende die gelernten Koeffizienten aus und plotten Sie das Modell.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TO DO</span>
@@ -673,14 +723,21 @@ Geben Sie am Ende die gelernten Koeffizienten aus.</p>
 </section>
 <section id="aufgabe-3">
 <h2>✏ Aufgabe 3<a class="headerlink" href="#aufgabe-3" title="Link zu dieser Überschrift">#</a></h2>
-<p>Trainieren Sie ein logistisches Regressionsmodell mit scikit-learn für denselben Datensatz. Was bedeutet der Parameter <code class="docutils literal notranslate"><span class="pre">penalty=&quot;none&quot;</span></code>? Lassen Sie sich auch hier die Koeffizienten ausgeben und sagen Sie Wahrscheinlichkeiten und Klasse für die Trainingsdaten vorher. Beobachten Sie Unterschiede zum Modell oben?</p>
+<p>Sagen Sie die Wahrscheinlichkeit und die Klasse (Schwellwert 0.5) für die Trainingsdaten vorher.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gegenprobe mit scikit-learn</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="n">m</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
-
-<span class="c1"># TODO</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TO DO</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="aufgabe-4">
+<h2>✏ Aufgabe 4<a class="headerlink" href="#aufgabe-4" title="Link zu dieser Überschrift">#</a></h2>
+<p>Trainieren Sie ein logistisches Regressionsmodell mit scikit-learn für denselben Datensatz. Was bedeutet der Parameter <code class="docutils literal notranslate"><span class="pre">penalty=&quot;none&quot;</span></code>? Lassen Sie sich auch hier die Koeffizienten ausgeben, plotten Sie das Modell, und sagen Sie Wahrscheinlichkeiten und Klasse für die Trainingsdaten vorher. Beobachten Sie Unterschiede zum Modell oben? Was passiert, wenn Sie das Gradientenverfahren aus Aufgabe 2 für 10000 Iterationen laufen lassen?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TO DO</span>
 </pre></div>
 </div>
 </div>
@@ -715,17 +772,17 @@ Geben Sie am Ende die gelernten Koeffizienten aus.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="08_Uebungen.html" title="zurück Seite">
+    <a class='left-prev' id="prev-link" href="08_Logistische_Regression.html" title="zurück Seite">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">zurück</p>
-            <p class="prev-next-title"><span class="section-number">8.1. </span>Übungen</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Logistische Regression</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="09_SVM.html" title="weiter Seite">
+    <a class='right-next' id="next-link" href="08_Uebungen.html" title="weiter Seite">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">weiter</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Support Vector Machines</p>
+        <p class="prev-next-title"><span class="section-number">8.2. </span>Übungen</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
