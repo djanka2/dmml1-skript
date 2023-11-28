@@ -294,7 +294,7 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="11_Uebung_Immoscout.html">
+    <a class="reference internal" href="11_Uebung_Titanic_RF.html">
      10.1. Praxisübung: Ensemble Modelle
     </a>
    </li>
@@ -624,13 +624,22 @@ title="Print to PDF"
 <span class="n">tree_clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;entropy&quot;</span><span class="p">)</span>
 <span class="n">tree_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-<span class="n">plot_tree</span><span class="p">(</span><span class="n">tree_clf</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">tree_clf</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">tree_clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;Wetterlage&quot;</span><span class="p">,</span> <span class="s2">&quot;Schnee&quot;</span><span class="p">,</span> <span class="s2">&quot;Auto kaputt&quot;</span><span class="p">,</span> <span class="s2">&quot;Start 8:00&quot;</span><span class="p">],</span> <span class="n">tree_clf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wetterlage 0.09582771325373216
+Schnee 0.5880378925029466
+Auto kaputt 0.23150275745152366
+Start 8:00 0.0846316367917976
+</pre></div>
+</div>
+<img alt="_images/10_Beispiel_Entscheidungsbaum_4_1.png" src="_images/10_Beispiel_Entscheidungsbaum_4_1.png" />
 </div>
 </div>
 </section>
@@ -672,6 +681,24 @@ title="Print to PDF"
 <span class="sd">print(f&quot;Accuracy Entscheidungsbaum:{accuracy_score(y_test, tree_clf.predict(X_test))}&quot;)</span>
 <span class="sd">print(f&quot;Accuracy Random Forest:{accuracy_score(y_test, rf_clf.predict(X_test))}&quot;)</span>
 <span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\nprint(&quot;Feature importance decision tree&quot;)\nfor name, score in zip(iris.feature_names, tree_clf.feature_importances_):\n    print(name, score)\n\nrf_clf = RandomForestClassifier()\nrf_clf.fit(X_train, y_train)\n\nprint(&quot;Feature importance random forest&quot;)\nfor name, score in zip(iris.feature_names, rf_clf.feature_importances_):\n    print(name, score)\n    \nprint(f&quot;Accuracy Entscheidungsbaum:{accuracy_score(y_test, tree_clf.predict(X_test))}&quot;)\nprint(f&quot;Accuracy Random Forest:{accuracy_score(y_test, rf_clf.predict(X_test))}&quot;)\n&#39;
+</pre></div>
+</div>
+<img alt="_images/10_Beispiel_Entscheidungsbaum_6_1.png" src="_images/10_Beispiel_Entscheidungsbaum_6_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Wetterlage_sonnig&#39;, &#39;Schnee_Nein&#39;, &#39;Auto kaputt_Nein&#39;, &#39;Start 8:00_Nein&#39;]
 </pre></div>
 </div>
 </div>

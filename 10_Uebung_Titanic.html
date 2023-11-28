@@ -294,7 +294,7 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="11_Uebung_Immoscout.html">
+    <a class="reference internal" href="11_Uebung_Titanic_RF.html">
      10.1. Praxisübung: Ensemble Modelle
     </a>
    </li>
@@ -625,7 +625,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../Daten/titanic.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Daten/titanic.csv&quot;</span><span class="p">)</span>
 <span class="c1"># Wir entfernen einige Features um das Problem übersichtlicher zu machen</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;PassengerId&quot;</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span><span class="s2">&quot;Ticket&quot;</span><span class="p">,</span> <span class="s2">&quot;Cabin&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># Wir entfernen diejenigen Passagiere, für die das Alter nicht angegeben ist</span>
@@ -643,6 +643,185 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Pclass</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Sex_female</th>
+      <th>Sex_male</th>
+      <th>Embarked_C</th>
+      <th>Embarked_Q</th>
+      <th>Embarked_S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>328</th>
+      <td>3</td>
+      <td>31.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>20.5250</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>3</td>
+      <td>26.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>14.4542</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>253</th>
+      <td>3</td>
+      <td>30.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>16.1000</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>719</th>
+      <td>3</td>
+      <td>33.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.7750</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>666</th>
+      <td>2</td>
+      <td>25.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13.0000</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>1</td>
+      <td>46.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>61.1750</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>134</th>
+      <td>2</td>
+      <td>25.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13.0000</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>337</th>
+      <td>1</td>
+      <td>41.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>134.5000</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>548</th>
+      <td>3</td>
+      <td>33.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>20.5250</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>3</td>
+      <td>33.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.8958</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+<p>571 rows × 10 columns</p>
+</div></div></div>
 </div>
 <section id="aufgabe-1">
 <h2>✏ Aufgabe 1<a class="headerlink" href="#aufgabe-1" title="Link zu dieser Überschrift">#</a></h2>
