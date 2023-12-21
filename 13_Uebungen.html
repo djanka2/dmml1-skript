@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
-    <link rel="next" title="13. Empfehlungsdienste" href="14_Empfehlungsdienste.html" />
+    <link rel="next" title="12.2. Praxisübung: Eigengesichter" href="13_Eigenfaces.html" />
     <link rel="prev" title="12. Hauptkomponentenanalyse (PCA)" href="13_Dimensionsreduktion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="de">
@@ -332,6 +332,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      12.1. Übung: Eigenwerte und PCA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13_Eigenfaces.html">
+     12.2. Praxisübung: Eigengesichter
     </a>
    </li>
   </ul>
@@ -687,12 +692,11 @@ title="Print to PDF"
 <span class="n">X_zent</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">X</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Schritt 2: Eigenwertzerlegung der Kovarianzmatrix</span>
-<span class="n">eig_result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">X_zent</span><span class="o">.</span><span class="n">T</span><span class="nd">@X_zent</span><span class="p">)</span>
-<span class="n">Vt</span> <span class="o">=</span> <span class="n">eig_result</span><span class="o">.</span><span class="n">eigenvectors</span><span class="o">.</span><span class="n">T</span>
-<span class="n">S</span> <span class="o">=</span> <span class="n">eig_result</span><span class="o">.</span><span class="n">eigenvalues</span>
+<span class="n">S</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">X_zent</span><span class="o">.</span><span class="n">T</span><span class="nd">@X_zent</span><span class="p">)</span>
+<span class="n">Vt</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">T</span>
 
 <span class="c1"># Schritt 3: Projizieren auf 2D mit den ersten zwei Zeilen von VT (bzw. Spalten von V). </span>
-<span class="c1"># Das entspricht der .predict() Methode der PCA für zwei Hauptkomponenten).</span>
+<span class="c1"># Das entspricht der .transform() Methode der PCA für zwei Hauptkomponenten).</span>
 <span class="n">X2D</span> <span class="o">=</span> <span class="n">X_zent</span> <span class="o">@</span> <span class="n">Vt</span><span class="p">[:</span><span class="n">m</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span>
 
 <span class="c1"># Rekonstruierte Version der Daten (in 3d!)</span>
@@ -702,12 +706,6 @@ title="Print to PDF"
 <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">S</span><span class="o">/</span><span class="n">S</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 3 artists&gt;
-</pre></div>
-</div>
-<img alt="_images/13_Uebungen_5_1.png" src="_images/13_Uebungen_5_1.png" />
 </div>
 </div>
 </section>
@@ -729,8 +727,6 @@ title="Print to PDF"
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
 </div>
 </div>
 </section>
@@ -771,10 +767,10 @@ title="Print to PDF"
             <p class="prev-next-title"><span class="section-number">12. </span>Hauptkomponentenanalyse (PCA)</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="14_Empfehlungsdienste.html" title="weiter Seite">
+    <a class='right-next' id="next-link" href="13_Eigenfaces.html" title="weiter Seite">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">weiter</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>Empfehlungsdienste</p>
+        <p class="prev-next-title"><span class="section-number">12.2. </span>Praxisübung: Eigengesichter</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
