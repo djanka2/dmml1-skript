@@ -700,7 +700,7 @@ Man sieht: die Funktion $g\circ \v f$ bildet einen Vektor aus dem $\R^3$ nach $\
 ````
 
 
-## Ableitungen höherer Ordnung
+<!-- ## Ableitungen höherer Ordnung
 Auch im multivariaten Fall können wir Ableitungen höherer Ordnung betrachten. Wir tun dies hier nur für reellwertige Funktionen $f:\R^n\rightarrow\R$. Dazu fassen wir den Gradienten von $f$ auch als Funktion auf: 
 ```{math}
 :label: eq:gradfkt
@@ -858,24 +858,24 @@ Die Richtungsableitung kann man natürlich auch für Funktionen $f:\R^n\rightarr
                 &=\bmat a_1\derv{f_1}{x_1}+ \cdots + a_n \derv{f_1}{x_n}\\
                                 \vdots\\
                                 a_1n\derv{f_m}{x_1}+ \cdots + a_n \derv{f_m}{x_n}\emat  \in\R^m
-\end{align*}
+\end{align*} -->
 
 (sec:interpretation)=
 ## Zusammenfassung: Interpretation des Gradienten als Änderungsrate einer Funktion
 Wir haben in diesem Kapitel den Begriff der multivariaten Funktion und der partiellen Ableitung eingeführt. Als Anschauung diente uns dabei stets der Begriff der *Änderung* (genauer: der Änderungsrate) einer Funktion, die durch die partiellen Ableitung ausgedrückt werden. 
-Wenn man sich Gradienten $\nabla f$ einer Funktion $f:\R^n\rightarrow \R$ in einem beliebigen Punkt $x_0$ vorstellen möchte, so haben wir folgende hilfreiche Anschauungen diskutiert:
+Wenn man sich Gradienten $\nabla f$ einer Funktion $f:\R^n\rightarrow \R$ in einem beliebigen Punkt $\v x_0$ vorstellen möchte, so haben wir folgende hilfreiche Anschauungen diskutiert:
 
-- Die Einträge des Gradienten beschreiben die *Änderungsrate* des Funktionswerts $f$ bei  kleinen[^fn:infinitesimal] Schritten in Richtung der Koordinatenachsen.
-- Das Skalarprodukt eines Richtungsvektors $\v a$ der Länge 1 (also $||\v a||_2=1$) mit dem Gradienten, $\nabla f \cdot v$ beschreibt die Änderungsrate der Funktion in einer Richtung (wie ändert sich Funktion, wenn man das Argument ein kleines[^fn:infinitesimal] Stück in Richtung des Richtungsvektors $\v a$ verschiebt). Das funktioniert auch mit der Jacobimatrix.
-- Geometrisch: Der Gradient ist ein Vektor, der in Richtung des steilsten Anstiegs zeigt. Dies folgt aus der Interpretation als Richtungsableitung.
-- Geometrisch: Der Gradient ist ein Vektor, der senkrecht auf den Höhenlinien steht. Dies folgt aus der Interpretation als Richtungsableitung.
+- Die Einträge des Gradienten beschreiben die *Änderungsrate* des Funktionswerts $f$ bei kleinen[^fn:infinitesimal] Schritten in Richtung der Koordinatenachsen.
+<!-- - Das Skalarprodukt eines Richtungsvektors $\v a$ der Länge 1 (also $||\v a||_2=1$) mit dem Gradienten, $\nabla f \cdot v$ beschreibt die Änderungsrate der Funktion in einer Richtung (wie ändert sich Funktion, wenn man das Argument ein kleines[^fn:infinitesimal] Stück in Richtung des Richtungsvektors $\v a$ verschiebt). Das funktioniert auch mit der Jacobimatrix. -->
+- Geometrisch: Der Gradient ist ein Vektor, der in Richtung des steilsten Anstiegs zeigt.
+- Geometrisch: Der Gradient ist ein Vektor, der senkrecht auf den Höhenlinien steht. 
 
 Eine weitere Interpretation ist die folgende: 
 
 - Der Gradient bzw. die Jacobi Matrix ausgewertet an einem Punkt können als lineare Abbildung aufgefasst werden, die die Funktion in einer Umgebung dieses Punktes approximieren. Ableitungen können also als *Approximation* einer differenzierbaren Funktion betrachtet werden. 
 
 Wichtig: es handelt sich dabei nur um unterschiedliche Sichtweisen auf ein und dasselbe Konzept ("Ableitung"). Keine der verschiedenen Interpretationen von Ableitungen ist per se besser oder schlechter. Alle sind richtig. Warum gebe ich dem Begriff der Ableitung überhaupt so viel Raum in dieser Vorlesung? Funktionen, insbesondere multivariate, sind komplizierte Objekte, für die man nur sehr schwer eine Anschauung entwickeln kann. Das geht manchmal unter, wenn man sich nur mit einfachen Beispielen in einer oder zwei Dimensionen beschäftigt.
-Im maschinellen Lernen versuchen wir beispielsweise extrem komplizierte mathematische Funktionen zu lernen, die sehr komplizierte Sachverhalte nachbilden ("Email-Text $\rightarrow$ {Spam, kein Spam}", "historische Daten$\rightarrow$ zukünftiger Umsatz", "Bild$\rightarrow$ Objekte im Bild"). Es ist hoffnungslos, sich eine solche Funktion vorzustellen. Wenn wir aber die Ableitung einer Funktion kennen, so können wir zumindest approximieren, wie sich die Funktion in der Umgebung eines Punktes verhält -- nämlich wie eine lineare Funktion, was wiederum die einfachste Klasse von Funktionen ist. Algorithmen im maschinellen Lernen bedienen sich dieser zusätzlichen Information. 
+Im maschinellen Lernen versuchen wir beispielsweise extrem komplizierte mathematische Funktionen zu lernen, die sehr komplizierte Sachverhalte nachbilden ("Email-Text $\rightarrow$ {Spam, kein Spam}", "historische Daten$\rightarrow$ zukünftiger Umsatz", "Bild$\rightarrow$ Objekte im Bild"). Es ist hoffnungslos, sich eine solche Funktion vorzustellen. Wenn wir aber die Ableitung einer Funktion kennen, so können wir zumindest approximieren, wie sich die Funktion in der Umgebung eines Punktes verhält -- nämlich wie eine lineare Funktion, was wiederum die einfachste Klasse von Funktionen ist (lineare Algebra!). Algorithmen im maschinellen Lernen bedienen sich dieser zusätzlichen Information. 
 
 %Nächstes Kapitel: über Approximation, Taylorreihen (als alternative Interpretation, statt über Änderungen), totale Differenzierbarkeit.
 
