@@ -10,4 +10,4 @@ kernelspec:
   name: python3
 ---
 
-# Overfitting und Regularisierung
+# Ensemble Methoden

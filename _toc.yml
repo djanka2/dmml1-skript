@@ -29,27 +29,27 @@ chapters:
     - file: 07_Uebung_Immoscout_Regularisierung.ipynb
   - file: 08_Logistische_Regression.md
     sections:
-    - file: 08_Uebungen.ipynb
     - file: 08_Uebung_Gradientenabstieg.ipynb
-  - file: 09_SVM.md
-  - file: 10_Entscheidungsbaeume.md
+    - file: 08_Uebungen.ipynb
+  - file: 09_Entscheidungsbaeume.md
     sections: 
-    - file: 10_Uebungen.ipynb
-    - file: 10_Beispiel_Entscheidungsbaum.ipynb
-    - file: 10_Uebung_Titanic.ipynb
-  - file: 11_Ensemble_Methoden.md
+    - file: 09_Uebungen.ipynb
+    - file: 09_Beispiel_Entscheidungsbaum.ipynb
+    - file: 09_Uebung_Titanic.ipynb
+  - file: 10_Ensemble_Methoden.md
     sections:
-    - file: 11_Uebung_Immoscout.ipynb
-  - file: 12_Eigenwertzerlegung.md
+    - file: 10_Uebung_Titanic_RF.ipynb
+  - file: 11_Eigenwertzerlegung.md
+    sections:
+    - file: 11_Uebungen.ipynb
+  - file: 12_Dimensionsreduktion.md
     sections:
     - file: 12_Uebungen.ipynb
-  - file: 13_Dimensionsreduktion.md
+    - file: 12_Eigenfaces.ipynb
+  - file: 13_Empfehlungsdienste.md
     sections:
     - file: 13_Uebungen.ipynb
-  - file: 14_Empfehlungsdienste.md
+  - file: 14_Clustering.md
     sections:
     - file: 14_Uebungen.ipynb
-  - file: 15_Clustering.md
-    sections:
-    - file: 15_Uebungen.ipynb
-    - file: 15_Uebung_Clustering.ipynb
+    - file: 14_Uebung_Clustering.ipynb
