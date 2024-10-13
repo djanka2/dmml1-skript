@@ -13,7 +13,7 @@ kernelspec:
 # Grundlagen Optimierung
 
 ## Grundbegriffe
-Was ist eigentlich ein Optimierungsproblem? Bei einem Optimierungsproblem besteht die Aufgabe darin, einen Vektor $\v x$ zu suchen, so dass eine Funktion $f(\v x)$, also ein mathematischer Ausdruck, der von $\v x$ abhängt, *minimal* oder *maximal* wird. In der Mathematik gibt es eine standardisierte Form um Optimierungsprobleme zu spezifizieren.
+Bei einem mathematischen Optimierungsproblem besteht die Aufgabe darin, einen Vektor $\v x$ zu suchen, so dass eine Funktion $f(\v x)$, also ein mathematischer Ausdruck, der von $\v x$ abhängt, *minimal* oder *maximal* wird. In der Mathematik gibt es eine standardisierte Form um Optimierungsprobleme zu spezifizieren.
 ````{prf:definition} Optimierungsproblem
 Ein *Optimierungsproblem* ist ein Problem der Form
 \begin{align*}
@@ -214,8 +214,97 @@ Gesucht:
 ````
 
 ````{prf:example} Beispiel Gradientenabstieg
-TODO
+TODO $f(x,y)=4x^2+y^2$
 ````
+
+Eine einfache Implementierung des Verfahrens (hier mit fest gewählter Schrittweite) in Python sieht so aus:
+```{code-cell} ipython3
+import numpy as np
+
+def f(x):
+    """ Function to minimize """
+    return 4*x[0]**2 + x[1]**2
+    
+def df(x):
+    """ Derivative of the function to minimize """
+    return np.array([8*x[0], 2*x[1]])
+
+def gd(func, derv, alpha, x0, n_steps):
+    """ Perform n_steps iterations of gradient descent with steplength alpha and return iterates """
+    x_history = [x0]
+    x = x0
+    for k in range(n_steps):
+        dx = derv(x)
+        x = x - alpha * dx
+        x_history.append(x)
+
+    return np.array(x_history)
+
+x0 = np.array([-1,1])
+x_history = gd(func=f, derv=df, alpha=0.01, x0=x0, n_steps=30)
+```
+
+Das Gradientenverfahren in Aktion: die Iterierten $x^{[k]}$, die das Gradientenverfahren (hier für die Funktion $f(x,y)=4x^2+y^2$) erzeugt, sind eine Folge von Vektoren. Visualisieren kann man das Ganze für Funktionen zweier Variablen wie folgt:
+```{code-cell} ipython3
+:tags: [hide-input]
+import numpy as np
+import plotly.graph_objects as go
+
+def plot_iterates(iterates, func):
+    """Plot objective function func as contour plot and visualize iterates"""
+    iterates_T = iterates.T
+    x1_min = min(0,np.min(iterates_T[0]))-0.1
+    x1_max = max(0,np.max(iterates_T[0]))+0.1
+    x2_min = min(0,np.min(iterates_T[1]))-0.1
+    x2_max = max(0,np.max(iterates_T[1]))+0.1
+
+    x1_range = np.linspace(x1_min, x1_max, 100)
+    x2_range = np.linspace(x2_min, x2_max, 100)
+    A = np.meshgrid(x1_range, x2_range)
+    Z = func(A)
+
+    n_iter = len(iterates_T[1])
+    fig = go.Figure(data=[go.Contour(z=Z, x=x1_range, y=x2_range, 
+                                     colorscale="Blues",
+                                     contours=dict(start=0,
+                                                   end=10,
+                                                   size=0.2,
+                                                    ))])
+
+    fig.add_scatter(x=iterates_T[0], y=iterates_T[1], 
+                    mode='lines+markers', name='iterates',
+                    marker=dict(color=np.arange(n_iter), cmin=0, cmax=n_iter, size=7, colorbar=dict(title="k", x=1.15), 
+                    colorscale="Oranges"),
+                    line=dict(color="grey")
+                   )
+
+    fig.show()
+
+
+def f(x):
+    """ Function to minimize """
+    return 4*x[0]**2 + x[1]**2
+    
+def df(x):
+    """ Derivative of the function to minimize """
+    return np.array([8*x[0], 2*x[1]])
+
+def gd(func, derv, alpha, x0, n_steps):
+    """ Perform n_steps iterations of gradient descent with steplength alpha and return iterates """
+    x_history = [x0]
+    x = x0
+    for k in range(n_steps):
+        dx = derv(x)
+        x = x - alpha * dx
+        x_history.append(x)
+
+    return np.array(x_history)
+
+x0 = np.array([-1,1])
+x_history = gd(func=f, derv=df, alpha=0.01, x0=x0, n_steps=30)
+plot_iterates(x_history, f)
+```
+
 
 Um ein Verfahren zu erhalten, das in der Praxis funktioniert, müssen einige Dinge beachtet werden, insbesondere:
 - Wie wird die Folge von Schrittweiten gewählt?
