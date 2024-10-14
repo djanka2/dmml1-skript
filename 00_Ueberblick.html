@@ -59,6 +59,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "R": "\\mathbb{R}", "B": "\\mathbb{B}", "I": "\\mathbb{I}", "NN": "\\mathbb{N}", "RR": "\\mathbb{R}", "BB": "\\mathbb{B}", "norm": ["\\left\\lVert#1 \\right\\rVert", 1], "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\begin{pmatrix}"], "emat": ["\\end{pmatrix}"], "bmats": ["\\left(\\begin{smallmatrix}"], "emats": ["\\end{smallmatrix}\\right)"], "scikit": ["\\texttt{scikit-learn}"], "derv": ["\\frac{\\partial #1}{\\partial #2}", 2], "dervquad": ["\\frac{\\partial^2 #1}{\\partial #2^2}", 2], "dervzwei": ["\\frac{\\partial^2 #1}{\\partial {#2} \\partial {#3}}", 3], "v": ["\\mathbf{#1}", 1], "m": ["\\mathbf{#1}", 1], "argmin": ["\\underset{#1}{\\operatorname{arg\\!min}}", 1], "hyper": ["{\\color{Bittersweet}{#1}}", 1], "initial": "\\DeclareMathOperator{\\initial}{initial}", "reduced": "\\DeclareMathOperator{\\reduced}{reduced}", "lazy": "\\DeclareMathOperator{\\lazy}{lazy}", "ILP": "\\DeclareMathOperator{\\ILP}{ILP}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '00_Ueberblick';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
@@ -331,6 +333,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zur-mathematischen-notation">Zur mathematischen Notation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inhaltsverzeichnis">Inhaltsverzeichnis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kontakt">Kontakt</a></li>
 </ul>
@@ -346,7 +349,31 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="uberblick">
 <h1>Überblick<a class="headerlink" href="#uberblick" title="Link to this heading">#</a></h1>
-<p>Dies ist der Beginn eines Skriptes für die Vorlesung Data Mining und Grundlagen Maschinelles Lernen I an der Hochschule Karlsruhe im Studiengang Data Science. Vorläufig sind hier nur die Übungen zu allen Kapiteln sowie Texte für die Kapitel 3 und 4 zu finden. Bei allen anderen Kapiteln finden Sie neben den Übungen lediglich Links zu den jeweiligen Folien in ILIAS.</p>
+<p>Dies ist der Beginn eines Skriptes für die Vorlesung Data Mining und Grundlagen Maschinelles Lernen I an der Hochschule Karlsruhe im Studiengang Data Science. Vorläufig sind hier nur Abschnitte über die benötigte multivariate Analysis und Optimierung zu finden.</p>
+<section id="zur-mathematischen-notation">
+<h2>Zur mathematischen Notation<a class="headerlink" href="#zur-mathematischen-notation" title="Link to this heading">#</a></h2>
+<p>Naturgemäß werden Sie in diesem Mathe-Skript mit vielen Symbolen konfrontiert. Um Ihnen den Weg durch diesen algebraischen Dschungel zu erleichtern (was ist Zahl, was ist Vektor, was ist Matrix?), wird in diesem Skript folgende Notation angewendet.</p>
+<ul>
+<li><p><strong>Lateinische Kleinbuchstaben</strong> wie <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(a\)</span> usw. bezeichnen (meist reelle) Zahlen.</p></li>
+<li><p><strong>Fettgedruckte, lateinische Kleinbuchstaben</strong> wie <span class="math notranslate nohighlight">\(\v x\)</span>, <span class="math notranslate nohighlight">\(\v y\)</span>, <span class="math notranslate nohighlight">\(\v a\)</span> usw. bezeichnen Vektoren im <span class="math notranslate nohighlight">\(\R^n\)</span>. Deren Komponenten sind reelle Zahlen und werden mit einem Subscript indiziert (und sind nicht fettgedruckt, sind ja Zahlen):</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \v x=\bmat x_1\\x_2\\\vdots\\x_n\emat
+  \end{align*}\]</div>
+</li>
+<li><p><strong>Fettgedruckte, lateinische Großbuchstaben</strong> wie <span class="math notranslate nohighlight">\(\m A\)</span>, <span class="math notranslate nohighlight">\(\m X\)</span>, <span class="math notranslate nohighlight">\(\m H\)</span> usw. bezeichnen <span class="math notranslate nohighlight">\(m\times n\)</span>-Matrizen. Deren Einträge (reelle Zahlen) sind die zugehörigen Kleinbuchstaben (nicht fettgedruckt) und werden mit zwei Subscripten indiziert:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \m A=\bmat a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n}\\
+                a_{21} &amp; \cdots &amp; \cdots &amp; \\
+                \vdots &amp;  &amp;      &amp; \vdots\\
+                a_{m1} &amp; \cdots &amp; \cdots &amp; a_{mn}\emat
+  \end{align*}\]</div>
+</li>
+<li><p><strong>Griechische Kleinbuchstaben</strong> wie <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\lambda\)</span>, <span class="math notranslate nohighlight">\(\mu\)</span> usw. bezeichnen reelle Zahlen.</p></li>
+<li><p>Iterationszähler in iterativen Verfahren (Gradientenverfahren u.ä.) werden mit einem <strong>Superscript in eckigen Klammern</strong> indiziert: So bezeichnet <span class="math notranslate nohighlight">\(\v x^{[k]}\)</span> den Vektor <span class="math notranslate nohighlight">\(\v x\)</span> während der <span class="math notranslate nohighlight">\(k\)</span>-ten Iteration.</p></li>
+</ul>
+</section>
 <section id="inhaltsverzeichnis">
 <h2>Inhaltsverzeichnis<a class="headerlink" href="#inhaltsverzeichnis" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
@@ -434,6 +461,7 @@ Naturgemäß werden Sie in diesem Mathe-Skript mit vielen Symbolen konfrontiert.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zur-mathematischen-notation">Zur mathematischen Notation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inhaltsverzeichnis">Inhaltsverzeichnis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kontakt">Kontakt</a></li>
 </ul>
